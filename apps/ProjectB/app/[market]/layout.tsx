@@ -25,7 +25,7 @@ export default async function MarketLayout({
   return (
     <div className="min-h-screen flex flex-col">
       <Header
-        brand={brand}
+        title="Project B"
         navPosition={brandConfig.header.navPosition}
         links={[
           { label: content.nav.home, href: paths.home(locale) },
