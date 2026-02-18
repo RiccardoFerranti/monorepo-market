@@ -1,0 +1,15 @@
+{
+  "extends": "@repo/typescript-config/base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "declaration": true, // generate .d.ts
+    "declarationMap": true, // optional: map for editors
+    "emitDeclarationOnly": false,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "moduleResolution": "bundler",
+    "module": "ESNext"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}
