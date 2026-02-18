@@ -13,3 +13,13 @@ export type Routes = {
   products: (locale: TLocale) => string;
   product: (locale: TLocale, slug: string) => string;
 };
+
+export interface IProduct {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  thumbnail: string;
+  images?: string[];
+  category?: string;
+}

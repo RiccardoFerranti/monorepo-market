@@ -109,3 +109,12 @@ body {
   color: var(--foreground);
   background: var(--background);
 }
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-140%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(140%) skewX(-20deg);
+  }
+}
