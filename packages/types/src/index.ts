@@ -1,15 +1,15 @@
-import { BRANDS, LOCALES } from "@repo/constants";
+import { LOCALES, BRANDS } from "@repo/constants";
 
-// Brand type from constants
-export type Brand = (typeof BRANDS)[number];
+// Brands type from constants
+export type TBrand = keyof typeof BRANDS;
 
 // Locale type from constants
-export type Locale = (typeof LOCALES)[number];
+export type TLocale = (typeof LOCALES)[number];
 
 // Routes per market
 export type Routes = {
-  home: (locale: Locale) => string;
-  login: (locale: Locale) => string;
-  products: (locale: Locale) => string;
-  product: (locale: Locale, slug: string) => string;
+  home: (locale: TLocale) => string;
+  login: (locale: TLocale) => string;
+  products: (locale: TLocale) => string;
+  product: (locale: TLocale, slug: string) => string;
 };

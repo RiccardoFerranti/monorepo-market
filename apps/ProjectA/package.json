@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@repo/eslint-config": "*",
+    "@repo/tailwind-config": "*",
     "@repo/typescript-config": "*",
     "@repo/constants": "*",
     "@repo/types": "*",

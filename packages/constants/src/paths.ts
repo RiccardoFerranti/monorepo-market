@@ -1,4 +1,4 @@
-import type { Locale } from "@repo/types";
+import type { TLocale } from "@repo/types";
 import { ROUTES } from "./routes";
 
 /**
@@ -12,9 +12,9 @@ import { ROUTES } from "./routes";
  */
 
 export const paths = {
-  home: (locale: Locale) => `/${locale}`,
-  login: (locale: Locale) => `/${locale}${ROUTES.LOGIN}`,
-  products: (locale: Locale) => `/${locale}${ROUTES.PRODUCTS}`,
-  productDetail: (locale: Locale, slug: string) =>
-    `/${locale}${ROUTES.PRODUCT_DETAIL}/${slug}`,
+  home: (locale: TLocale) => `/${locale}`,
+  login: (locale: TLocale) => `/${locale}${ROUTES.LOGIN}`,
+  products: (locale: TLocale) => `/${locale}${ROUTES.PRODUCTS}`,
+  product: (locale: TLocale, slug: string) =>
+    `/${locale}${ROUTES.PRODUCT}/${slug}`,
 };
