@@ -1,20 +1,24 @@
 "use client";
 
-import { ReactNode } from "react";
+import type { ReactNode, ButtonHTMLAttributes } from "react";
+import clsx from "clsx";
 
-interface ButtonProps {
+interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   className?: string;
-  appName: string;
 }
 
-export const Button = ({ children, className, appName }: ButtonProps) => {
+export function Button({ children, className, ...props }: IButtonProps) {
   return (
     <button
-      className={className}
-      onClick={() => alert(`Hello from your ${appName} app!`)}
+      className={clsx(
+        "inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium transition",
+        "bg-primary text-primary-foreground hover:opacity-90",
+        className,
+      )}
+      {...props}
     >
       {children}
     </button>
   );
-};
+}
