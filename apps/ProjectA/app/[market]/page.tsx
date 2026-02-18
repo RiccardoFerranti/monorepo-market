@@ -24,7 +24,7 @@ export default async function MarketPage({
             </p>
 
             <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-              {copy.welcome} {copy.hero.titleSuffix}
+              {copy.welcome} Project A
             </h1>
 
             <p className="max-w-2xl text-base text-foreground/70">

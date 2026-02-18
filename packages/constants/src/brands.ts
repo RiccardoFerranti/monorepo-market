@@ -16,10 +16,10 @@ export const BRANDS = {
   },
   projectB: {
     header: {
-      navPosition: "left",
+      navPosition: "center",
     },
     footer: {
-      align: "left",
+      align: "right",
     },
     productCard: {
       layout: "horizontal",

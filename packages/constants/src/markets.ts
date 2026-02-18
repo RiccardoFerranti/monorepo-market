@@ -8,7 +8,6 @@ export const MARKETS = {
     },
     hero: {
       marketLabel: "EN market",
-      titleSuffix: "to ProjectA",
       description:
         "A scalable product portal built in a monorepo with shared UI, brand configuration, and market-aware routing.",
       ctaPrimary: "Browse products",
@@ -33,7 +32,6 @@ export const MARKETS = {
     },
     hero: {
       marketLabel: "Marché CA",
-      titleSuffix: "sur ProjectA",
       description:
         "Un portail produit évolutif construit en monorepo avec une UI partagée, une configuration par marque et un routage par marché.",
       ctaPrimary: "Voir les produits",
