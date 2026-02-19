@@ -1,7 +1,8 @@
+import { IProduct } from "@repo/types";
 import clsx from "clsx";
 import Image from "next/image";
 
-export default function ProductTile({ product }: { product: any }) {
+export default function ProductTile({ product }: { product: IProduct }) {
   return (
     <article
       className={clsx(

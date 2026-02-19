@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
       revalidate: 30,
       expire: 30,
     },
-    products5s: {
+    products5m: {
       stale: 60 * 5,        // serve stale for 5 minutes
       revalidate: 60 * 5,   // regenerate after 5 minutes
       expire: 60 * 60,      // fully expire after 1 hour
