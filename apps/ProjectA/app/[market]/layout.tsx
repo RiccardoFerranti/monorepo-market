@@ -108,7 +108,7 @@ export default async function MarketLayout({
         {children}
       </main>
 
-      <Footer align={brandConfig.footer.align} className="bg-muted/40">
+      <Footer align={brandConfig.footer.align}>
         {brand} • /{locale}
       </Footer>
     </div>

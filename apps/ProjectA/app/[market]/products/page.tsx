@@ -25,7 +25,7 @@ export default async function ProductsPage({
   if (!LOCALES.includes(market as TLocale)) notFound();
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-background via-background to-muted/20">
+    <div className="min-h-screen">
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
         {/* Header */}
         <div className="mb-6 flex items-end justify-between">

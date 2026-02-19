@@ -18,7 +18,7 @@ async function getProductsCached(): Promise<{
   generatedAt: string;
 }> {
   "use cache";
-  cacheLife("products30s");
+  cacheLife("products5m");
 
   const res = await fetch("https://dummyjson.com/products?limit=20");
   if (!res.ok) throw new Error("Failed to fetch products");
