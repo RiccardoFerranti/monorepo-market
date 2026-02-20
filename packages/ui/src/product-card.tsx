@@ -6,7 +6,6 @@ import { Badge } from "./badge";
 type TProductCardProps = {
   config: IProductCardConfig;
   product: IProductRecord;
-  href?: string;
   footerRight?: ReactNode;
   className?: string;
 };
@@ -36,7 +35,6 @@ function alignToJustify(align: IProductCardConfig["contentAlign"]) {
 export function ProductCard({
   config,
   product,
-  href,
   footerRight,
   className,
 }: TProductCardProps) {
@@ -115,7 +113,7 @@ export function ProductCard({
   const MediaVertical = (
     <div className="p-3">
       {primary ? (
-        <div className="h-44 w-full rounded-xl bg-muted/25">
+        <div className="h-44 w-full rounded-xl bg-muted/85">
           <img
             src={primary}
             alt={product.title}
@@ -133,10 +131,10 @@ export function ProductCard({
             <div
               key={src}
               className={clsx(
-                "h-10 w-10 rounded-lg bg-muted/25 overflow-hidden",
-                "ring-1 ring-border/50",
+                "h-10 w-10 rounded-lg bg-muted/85 overflow-hidden",
+                "ring-1 ring-border/70",
                 "transition-transform duration-200",
-                "hover:-translate-y-0.5 hover:scale-[1.03] hover:ring-primary/60",
+                "hover:ring-border hover:bg-muted",
               )}
             >
               <img
@@ -154,7 +152,7 @@ export function ProductCard({
   const MediaHorizontal = (
     <div className="h-full border-r border-border/40 p-3">
       {primary ? (
-        <div className="h-32 rounded-xl bg-muted/25">
+        <div className="h-32 rounded-xl bg-muted">
           <img
             src={primary}
             alt={product.title}
@@ -172,10 +170,10 @@ export function ProductCard({
             <div
               key={src}
               className={clsx(
-                "h-10 w-10 rounded-lg bg-muted/25 overflow-hidden",
-                "ring-1 ring-border/50",
+                "h-10 w-10 rounded-lg bg-muted/85 overflow-hidden",
+                "ring-1 ring-border/70",
                 "transition-transform duration-200",
-                "hover:-translate-y-0.5 hover:scale-[1.03] hover:ring-primary/60",
+                "hover:ring-border hover:bg-muted",
               )}
             >
               <img
@@ -196,9 +194,12 @@ export function ProductCard({
   const Vertical = (
     <article
       className={clsx(
-        "group overflow-hidden rounded-2xl border bg-card shadow-sm",
-        "border-border/60 transition-all duration-200 ease-out",
-        "hover:-translate-y-1 hover:shadow-xl hover:border-primary hover:ring-2 hover:ring-primary/30",
+        "group overflow-hidden rounded-2xl",
+        "border border-border/60",
+        "bg-card backdrop-blur supports-backdrop-filter:bg-card/55",
+        "shadow-sm shadow-black/20 ring-1 ring-white/5",
+        "transition-all duration-200 ease-out",
+        "hover:-translate-y-1 hover:shadow-lg hover:shadow-black/30 hover:border-border hover:ring-1 hover:ring-white/20",
         "cursor-pointer flex flex-col",
         className,
       )}
@@ -220,16 +221,19 @@ export function ProductCard({
   const Horizontal = (
     <article
       className={clsx(
-        "group overflow-hidden rounded-2xl border bg-card shadow-sm",
-        "border-border/60 transition-all duration-200 ease-out",
-        "hover:-translate-y-1 hover:shadow-xl hover:border-primary hover:ring-2 hover:ring-primary/30",
+        "group overflow-hidden rounded-2xl",
+        "border border-border/60",
+        "bg-card/70 backdrop-blur supports-backdrop-filter:bg-card/55",
+        "shadow-sm shadow-black/20 ring-1 ring-white/5",
+        "transition-all duration-200 ease-out",
+        "hover:-translate-y-1 hover:shadow-lg hover:shadow-black/30 hover:border-border hover:ring-1 hover:ring-white/20",
         "cursor-pointer grid grid-cols-[140px_1fr]",
         className,
       )}
     >
       {Media}
 
-      <div className={clsx("min-w-0 p-4 flex flex-col", contentItems)}>
+      <div className={clsx("min-w-0 p-4 flex flex-col bg-card", contentItems)}>
         {titleOnTop ? (
           <>
             <div className="w-full">{Title}</div>
@@ -253,11 +257,5 @@ export function ProductCard({
 
   const CardInner = config.layout === "vertical" ? Vertical : Horizontal;
 
-  return href ? (
-    <a href={href} className="block">
-      {CardInner}
-    </a>
-  ) : (
-    CardInner
-  );
+  return CardInner;
 }

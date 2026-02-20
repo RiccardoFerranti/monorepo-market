@@ -11,12 +11,12 @@ export function SkeletonBlock({ className }: TSSkeletonBlockProps) {
     <div
       className={clsx(
         "relative overflow-hidden rounded-md",
-        "bg-card-foreground/20", // darker base
+        "bg-card-foreground/10", // darker base
         "before:absolute before:inset-0",
         "before:-translate-x-full",
         "before:animate-[shimmer_1.3s_linear_infinite]",
         "before:bg-linear-to-r",
-        "before:from-transparent before:via-foreground/20 before:to-transparent",
+        "before:from-transparent before:via-foreground/10 before:to-transparent",
         className,
       )}
     />

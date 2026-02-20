@@ -14,7 +14,7 @@ export default async function MarketPage({
   const copy = MARKETS[locale];
 
   return (
-    <main className="space-y-10">
+    <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 space-y-10">
       {/* Hero */}
       <section className="rounded-2xl border border-border bg-card p-8 sm:p-10">
         <div className="flex flex-col gap-6">
@@ -83,6 +83,6 @@ export default async function MarketPage({
           </Card.Content>
         </Card>
       </section>
-    </main>
+    </div>
   );
 }

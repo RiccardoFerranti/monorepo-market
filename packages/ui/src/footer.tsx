@@ -18,10 +18,10 @@ export function Footer({ children, className, align = "right" }: TFooterProps) {
         : "text-center";
 
   return (
-    <footer className={clsx("border-t border-border/50", className)}>
+    <footer className={clsx("border-t border-border/70 bg-card/35", className)}>
       <div
         className={clsx(
-          "mx-auto max-w-6xl p-6 text-xs text-muted-foreground",
+          "mx-auto max-w-6xl p-6 text-xs text-foreground/55",
           alignClass,
         )}
       >

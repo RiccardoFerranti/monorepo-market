@@ -10,10 +10,10 @@ export function Badge({ children, className, ...props }: TBadgeProps) {
     <span
       className={clsx(
         "inline-flex items-center rounded-full px-2.5 py-1 text-xs leading-none",
-        "border border-border/60 bg-background/60 backdrop-blur",
+        "border border-border bg-border/60 backdrop-blur",
         "text-foreground/80",
         "max-w-20 overflow-hidden",
-        "transition-colors hover:bg-background/80 hover:text-foreground",
+        "transition-colors hover:bg-border/80 hover:text-foreground",
         className,
       )}
       {...props}

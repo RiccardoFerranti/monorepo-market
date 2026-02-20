@@ -1,11 +1,10 @@
 import { cacheLife } from "next/cache";
-import type { IProductRecord, TBrand, TLocale } from "@repo/types";
-import { BRANDS, paths, PRODUCTS_REVALIDATE_MS } from "@repo/constants";
+import type { IProductRecord, TBrand } from "@repo/types";
+import { BRANDS, PRODUCTS_REVALIDATE_MS } from "@repo/constants";
 import { ProductCard } from "@repo/ui/product-card";
 import shuffleFirstN from "@/app/utils/shuffleFirstN";
 import { logGroup } from "@/app/utils/serverLogger";
 import { BRAND } from "@/app/consts/brand";
-import Link from "next/link";
 
 /**
  * Fetches products from the external API and generates a deterministic seed for shuffling based on cache lifetime.
@@ -45,11 +44,7 @@ async function getProductsCached(): Promise<{
   };
 }
 
-type TProductsGridProps = {
-  market: string;
-};
-
-export default async function ProductsGrid({ market }: TProductsGridProps) {
+export default async function ProductsGrid() {
   const { products, seed, generatedAt } = await getProductsCached();
   console.log(products);
   const shuffledProducts = shuffleFirstN(products, 10, seed);
@@ -69,9 +64,7 @@ export default async function ProductsGrid({ market }: TProductsGridProps) {
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {shuffledProducts.map((p) => (
-        <Link key={p.id} href={paths.product(market as TLocale, String(p.id))}>
-          <ProductCard product={p} config={config} />
-        </Link>
+        <ProductCard key={p.id} product={p} config={config} />
       ))}
     </div>
   );

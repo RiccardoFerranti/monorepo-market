@@ -4,7 +4,7 @@ export const BRANDS = {
       navPosition: "right",
     },
     footer: {
-      align: "left",
+      align: "right",
     },
     productCard: {
       layout: "vertical",

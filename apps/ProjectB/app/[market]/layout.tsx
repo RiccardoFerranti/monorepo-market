@@ -34,11 +34,11 @@ export default async function MarketLayout({
         ]}
       />
 
-      <main className="flex-1 mx-auto max-w-5xl px-6 py-8 w-full">
+      <main className="flex-1 mx-auto max-w-6xl px-6 py-8 w-full">
         {children}
       </main>
 
-      <Footer align={brandConfig.footer.align} className="bg-muted/40">
+      <Footer align={brandConfig.footer.align}>
         {brand} • /{locale}
       </Footer>
     </div>

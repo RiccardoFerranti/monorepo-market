@@ -23,11 +23,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background text-foreground antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background`}
       >
-        {children}
+        <div className="relative h-dvh">
+          <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.06),transparent_55%)]" />
+          <div className="pointer-events-none fixed inset-0 -z-10 bg-linear-to-b from-background via-background to-foreground/5" />
+          {children}
+        </div>
       </body>
     </html>
   );
