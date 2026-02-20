@@ -8,10 +8,10 @@ export const BRANDS = {
     },
     productCard: {
       layout: "vertical",
-      titlePosition: "top-right",
+      titlePlacement: "bottom-left",
+      contentAlign: "left",
       showCategories: false,
-      thumbnails: 1,
-      ctaAlert: "Hello from Green Project",
+      thumbnails: 0,
     },
   },
   projectB: {
@@ -23,10 +23,10 @@ export const BRANDS = {
     },
     productCard: {
       layout: "horizontal",
-      titlePosition: "bottom-left",
+      titlePlacement: "top-left",
+      contentAlign: "left",
       showCategories: true,
       thumbnails: 2,
-      ctaAlert: "Hello from Red Project",
     },
   },
 } as const;

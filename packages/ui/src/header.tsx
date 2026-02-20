@@ -6,19 +6,19 @@ import clsx from "clsx";
 export type THeaderLink = { label: string; href: string };
 export type TNavPosition = "left" | "center" | "right";
 
-interface IHeaderProps {
+type THeaderProps = {
   title: string;
   links: THeaderLink[];
   navPosition?: TNavPosition;
   className?: string;
-}
+};
 
 export function Header({
   title,
   links,
   navPosition = "right",
   className,
-}: IHeaderProps) {
+}: THeaderProps) {
   return (
     <header
       className={clsx(

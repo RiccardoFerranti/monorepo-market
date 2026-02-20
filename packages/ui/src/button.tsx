@@ -3,12 +3,12 @@
 import type { ReactNode, ButtonHTMLAttributes } from "react";
 import clsx from "clsx";
 
-interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+type TButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: ReactNode;
   className?: string;
-}
+};
 
-export function Button({ children, className, ...props }: IButtonProps) {
+export function Button({ children, className, ...props }: TButtonProps) {
   return (
     <button
       className={clsx(

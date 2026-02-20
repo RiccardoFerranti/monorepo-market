@@ -1,26 +1,19 @@
 import { Suspense } from "react";
 import type { TLocale } from "@repo/types";
-import { LOCALES } from "@repo/constants";
+import { BRANDS, LOCALES } from "@repo/constants";
 import { notFound } from "next/navigation";
-import ProductsGrid from "./products-grid";
-import { ProductTileSkeleton } from "../../components/product-tile-skeleton";
+import { ProductsGridFallback } from "./components/products-grid-fallback";
+import ProductsGrid from "./components/products-grid";
+import { BRAND } from "@/app/consts/brand";
 
-export function ProductsGridFallback() {
-  return (
-    <>
-      {Array.from({ length: 12 }).map((_, i) => (
-        <ProductTileSkeleton key={i} />
-      ))}
-    </>
-  );
-}
-
-export default async function ProductsPage({
-  params,
-}: {
+type TProductsPageProps = {
   params: Promise<{ market: string }>;
-}) {
+};
+
+export default async function ProductsPage({ params }: TProductsPageProps) {
   const { market } = await params;
+  await new Promise((r) => setTimeout(r, 3000));
+  const config = BRANDS[BRAND].productCard;
 
   if (!LOCALES.includes(market as TLocale)) notFound();
 
@@ -31,17 +24,12 @@ export default async function ProductsPage({
         <div className="mb-6 flex items-end justify-between">
           <div>
             <h1 className="text-2xl font-semibold tracking-tight">Products</h1>
-            <p className="mt-1 text-sm text-foreground/70">
-              Updated every 5 minutes (ISR + shuffle).
-            </p>
           </div>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <Suspense fallback={<ProductsGridFallback />}>
-            <ProductsGrid />
-          </Suspense>
-        </div>
+        <Suspense fallback={<ProductsGridFallback config={config} />}>
+          <ProductsGrid />
+        </Suspense>
       </div>
     </div>
   );

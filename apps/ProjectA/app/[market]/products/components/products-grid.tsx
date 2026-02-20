@@ -1,9 +1,10 @@
 import { cacheLife } from "next/cache";
-import type { IProduct } from "@repo/types";
-import { PRODUCTS_REVALIDATE_MS } from "@repo/constants";
-import shuffleFirstN from "../../utils/shuffleFirstN";
-import ProductTile from "../../components/product-tile";
-import { logGroup } from "../../utils/serverLogger";
+import type { IProductRecord, TBrand } from "@repo/types";
+import { BRANDS, PRODUCTS_REVALIDATE_MS } from "@repo/constants";
+import { ProductCard } from "@repo/ui/product-card";
+import shuffleFirstN from "@/app/utils/shuffleFirstN";
+import { logGroup } from "@/app/utils/serverLogger";
+import { BRAND } from "@/app/consts/brand";
 
 /**
  * Fetches products from the external API and generates a deterministic seed for shuffling based on cache lifetime.
@@ -13,16 +14,16 @@ import { logGroup } from "../../utils/serverLogger";
  * @throws {Error} If the product fetch fails.
  */
 async function getProductsCached(): Promise<{
-  products: IProduct[];
+  products: IProductRecord[];
   seed: number;
   generatedAt: string;
 }> {
-  "use cache";
-  cacheLife("products5m");
-
+  // "use cache";
+  // cacheLife("products5m");
+  await new Promise((r) => setTimeout(r, 3000));
   const res = await fetch("https://dummyjson.com/products?limit=20");
   if (!res.ok) throw new Error("Failed to fetch products");
-  const data: { products: IProduct[] } = await res.json();
+  const data: { products: IProductRecord[] } = await res.json();
 
   /**
    * We generate the timestamp INSIDE the cached function
@@ -45,7 +46,10 @@ async function getProductsCached(): Promise<{
 
 export default async function ProductsGrid() {
   const { products, seed, generatedAt } = await getProductsCached();
+  console.log(products);
   const shuffledProducts = shuffleFirstN(products, 10, seed);
+
+  const config = BRANDS[BRAND].productCard;
 
   logGroup({
     title: "[Products] Render",
@@ -58,10 +62,10 @@ export default async function ProductsGrid() {
   });
 
   return (
-    <>
+    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {shuffledProducts.map((p) => (
-        <ProductTile key={p.id} product={p} />
+        <ProductCard key={p.id} product={p} config={config} />
       ))}
-    </>
+    </div>
   );
 }

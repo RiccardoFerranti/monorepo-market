@@ -14,12 +14,59 @@ export type Routes = {
   product: (locale: TLocale, slug: string) => string;
 };
 
-export interface IProduct {
+export interface IProductRecordReview {
+  rating: number;
+  comment: string;
+  date: string; // ISO string
+  reviewerName: string;
+  reviewerEmail: string;
+}
+export interface IProductRecord {
   id: number;
+
   title: string;
   description: string;
+  category: string;
   price: number;
-  thumbnail: string;
-  images?: string[];
-  category?: string;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+
+  tags: string[];
+
+  brand: string;
+  sku: string;
+  weight: number;
+
+  dimensions: {
+    width: number;
+    height: number;
+    depth: number;
+  };
+
+  warrantyInformation: string;
+  shippingInformation: string;
+  availabilityStatus: string;
+  returnPolicy: string;
+  minimumOrderQuantity: number;
+
+  meta: {
+    createdAt: string; // ISO string
+    updatedAt: string; // ISO string
+    barcode: string;
+    qrCode: string; // URL
+  };
+
+  images: string[]; // URLs
+  thumbnail: string; // URL
+
+  reviews: IProductRecord[];
+}
+
+export interface IProductCardConfig {
+  layout: "vertical" | "horizontal";
+  titlePlacement: "top-left" | "top-right" | "bottom-left" | "bottom-right";
+  contentAlign?: "left" | "right" | "center";
+  showCategories: boolean;
+  thumbnails: 0 | 1 | 2; // number of thumbnails to show from images[]
 }

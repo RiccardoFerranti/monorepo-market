@@ -3,13 +3,13 @@
 import clsx from "clsx";
 import type { ReactNode } from "react";
 
-interface IFooterProps {
+type TFooterProps = {
   children?: ReactNode;
   className?: string;
   align?: "left" | "center" | "right";
-}
+};
 
-export function Footer({ children, className, align = "right" }: IFooterProps) {
+export function Footer({ children, className, align = "right" }: TFooterProps) {
   const alignClass =
     align === "left"
       ? "text-left"
