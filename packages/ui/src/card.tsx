@@ -1,7 +1,11 @@
 import clsx from "clsx";
 import type { ReactNode, ReactElement } from "react";
 
-type CardProps = { children: ReactNode; className?: string };
+type CardProps = {
+  children: ReactNode;
+  className?: string;
+  variant?: "solid" | "soft";
+};
 
 type CardComponent = ((props: CardProps) => ReactElement) & {
   Header: (props: CardProps) => ReactElement;
@@ -9,10 +13,12 @@ type CardComponent = ((props: CardProps) => ReactElement) & {
   Footer: (props: CardProps) => ReactElement;
 };
 
-const CardRoot = ({ children, className }: CardProps) => (
+const CardRoot = ({ children, className, variant = "solid" }: CardProps) => (
   <div
     className={clsx(
-      "rounded-2xl border border-border bg-card text-card-foreground",
+      "rounded-2xl border text-card-foreground",
+      variant === "solid" && "border-border bg-card",
+      variant === "soft" && "border-border/60 bg-card/70",
       className,
     )}
   >

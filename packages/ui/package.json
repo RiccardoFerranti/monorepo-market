@@ -9,6 +9,8 @@
     "dist"
   ],
   "exports": {
+    ".": "./src/index.ts",
+    "./product": "./src/product/index.ts",
     "./*": "./src/*.tsx",
     "./styles.css": "./styles.css"
   },

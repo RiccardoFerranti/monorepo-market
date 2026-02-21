@@ -13,6 +13,14 @@ export const BRANDS = {
       showCategories: false,
       thumbnails: 0,
     },
+    productPage: {
+      layout: "image-left", // or "image-right"
+      galleryThumbs: 1,
+      showReviews: true,
+      showTags: true,
+      maxTags: 8,
+      maxReviews: 5,
+    },
   },
   projectB: {
     header: {
@@ -27,6 +35,14 @@ export const BRANDS = {
       contentAlign: "left",
       showCategories: true,
       thumbnails: 2,
+    },
+    productPage: {
+      layout: "image-left",
+      galleryThumbs: 6,
+      showReviews: true,
+      showTags: true,
+      maxTags: 8,
+      maxReviews: 5,
     },
   },
 } as const;

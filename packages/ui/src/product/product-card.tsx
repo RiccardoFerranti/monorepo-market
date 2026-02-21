@@ -1,7 +1,8 @@
 import clsx from "clsx";
 import type { ReactNode } from "react";
 import type { IProductCardConfig, IProductRecord } from "@repo/types";
-import { Badge } from "./badge";
+import { Badge } from "../badge";
+import Image from "next/image";
 
 type TProductCardProps = {
   config: IProductCardConfig;
@@ -87,7 +88,7 @@ export function ProductCard({
   const Tags = showTags ? (
     <div className={clsx("mt-3 flex flex-wrap gap-2", contentJustify)}>
       {tags.slice(0, 4).map((tag) => (
-        <Badge key={tag} title={tag}>
+        <Badge key={tag} title={tag} truncate>
           {tag}
         </Badge>
       ))}
@@ -113,12 +114,14 @@ export function ProductCard({
   const MediaVertical = (
     <div className="p-3">
       {primary ? (
-        <div className="h-44 w-full rounded-xl bg-muted/85">
-          <img
+        <div className="relative h-44 w-full rounded-xl bg-muted/85">
+          <Image
             src={primary}
             alt={product.title}
+            fill
+            sizes="(max-width: 768px) 100vw, 300px"
             className={clsx(
-              "h-full w-full rounded-xl object-contain p-4",
+              "rounded-xl object-contain p-4",
               "transition-transform duration-300 group-hover:scale-[1.03]",
             )}
           />
@@ -137,9 +140,11 @@ export function ProductCard({
                 "hover:ring-border hover:bg-muted",
               )}
             >
-              <img
+              <Image
                 src={src}
                 alt={`${product.title} thumbnail`}
+                width={40}
+                height={40}
                 className="h-full w-full rounded-lg object-contain p-2 opacity-90"
               />
             </div>

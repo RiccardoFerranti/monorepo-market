@@ -1,8 +1,7 @@
 import { LOCALES, MARKETS, BRANDS, paths } from "@repo/constants";
 import type { TLocale } from "@repo/types";
 import { notFound } from "next/navigation";
-import { Header } from "@repo/ui/header";
-import { Footer } from "@repo/ui/footer";
+import { Header, Footer } from "@repo/ui";
 import { BRAND } from "../consts/brand";
 
 /**

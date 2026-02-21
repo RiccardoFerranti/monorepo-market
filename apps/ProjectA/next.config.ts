@@ -14,6 +14,11 @@ const nextConfig: NextConfig = {
       revalidate: 60 * 5,   // regenerate after 5 minutes
       expire: 60 * 60,      // fully expire after 1 hour
     },
+    product5m: {
+      stale: 60 * 5, 
+      revalidate: 60 * 5,
+      expire: 60 * 60,
+    },
   },
   redirects: async () => [
     {

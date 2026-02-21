@@ -1,7 +1,7 @@
 import clsx from "clsx";
 
 import type { IProductCardConfig } from "@repo/types";
-import { SkeletonBlock, SkeletonCard } from "./skeleton-card";
+import { SkeletonBlock, SkeletonCard } from "../skeleton-card";
 
 export function ProductCardSkeleton({
   config,

@@ -1,6 +1,6 @@
 import { BRANDS } from "@repo/constants";
+import { SkeletonBlock } from "@repo/ui";
 import { BRAND } from "@/app/consts/brand";
-import { SkeletonBlock } from "@repo/ui/skeleton-card";
 import ProductsGridSkeleton from "./components/products-grid-skeleton";
 
 export default function Loading() {

@@ -1,9 +1,30 @@
 import { LOCALES, paths, BRANDS } from "@repo/constants";
-import type { TBrand, TLocale } from "@repo/types";
-import { Footer } from "@repo/ui/footer";
-import { Header } from "@repo/ui/header";
+import type { TLocale } from "@repo/types";
 import { notFound } from "next/navigation";
+import { Footer, Header } from "@repo/ui";
 import { MARKETS } from "@repo/constants";
+import { BRAND } from "../consts/brand";
+
+/**
+ * Pre-generates all supported market routes at build time.
+ *
+ * Ensures `/en`, `/ca`, etc. are statically rendered,
+ * improving performance and SEO by avoiding on-demand rendering.
+ * @returns {Array<{market: string}>} An array of objects with market keys for each locale
+ */
+export function generateStaticParams() {
+  return LOCALES.map((market) => ({ market }));
+}
+
+/**
+ * Checks if a given string is a valid locale.
+ *
+ * @param {string} value - The string to check as a locale.
+ * @returns {value is TLocale} True if the value is a valid TLocale, otherwise false.
+ */
+function isLocale(value: string): value is TLocale {
+  return (LOCALES as readonly string[]).includes(value);
+}
 
 export default async function MarketLayout({
   children,
@@ -14,18 +35,16 @@ export default async function MarketLayout({
 }) {
   const { market } = await params;
 
-  if (!LOCALES.includes(market as TLocale)) notFound();
+  if (!isLocale(market)) notFound();
 
-  const locale = market as TLocale;
+  const locale = market;
   const content = MARKETS[locale];
-
-  const brand: TBrand = "projectB";
-  const brandConfig = BRANDS[brand];
+  const brandConfig = BRANDS[BRAND];
 
   return (
     <div className="min-h-screen flex flex-col">
       <Header
-        title="Project B"
+        title="Project A"
         navPosition={brandConfig.header.navPosition}
         links={[
           { label: content.nav.home, href: paths.home(locale) },
@@ -39,7 +58,7 @@ export default async function MarketLayout({
       </main>
 
       <Footer align={brandConfig.footer.align}>
-        {brand} • /{locale}
+        {BRAND} • /{locale}
       </Footer>
     </div>
   );

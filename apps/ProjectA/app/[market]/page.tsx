@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { MARKETS, paths } from "@repo/constants";
 import type { TLocale } from "@repo/types";
-import { Card } from "@repo/ui/card";
+import { Card } from "@repo/ui";
 
 export default async function MarketPage({
   params,
