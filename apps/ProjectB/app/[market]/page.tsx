@@ -1,17 +1,20 @@
 import Link from "next/link";
 import { MARKETS, paths } from "@repo/constants";
-import type { TLocale } from "@repo/types";
 import { Card } from "@repo/ui";
+import { isLocale } from "../utils/is-locale";
+import { notFound } from "next/navigation";
 
-type TMarketPageProps = {
+type TWelcomePageProps = {
   params: Promise<{ market: string }>;
 };
 
-export default async function MarketPage({ params }: TMarketPageProps) {
+export default async function WelcomePage({ params }: TWelcomePageProps) {
   const { market } = await params;
-  const locale = market as TLocale;
 
-  const copy = MARKETS[locale];
+  if (!isLocale(market)) notFound();
+
+  const copy = MARKETS[market];
+  const welcomePage = MARKETS[market].pages.welcome;
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 space-y-10">
@@ -20,7 +23,7 @@ export default async function MarketPage({ params }: TMarketPageProps) {
         <div className="flex flex-col gap-6">
           <div className="space-y-2">
             <p className="text-sm font-medium text-foreground/70">
-              {copy.hero.marketLabel}
+              {welcomePage.hero.marketLabel}
             </p>
 
             <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
@@ -28,23 +31,23 @@ export default async function MarketPage({ params }: TMarketPageProps) {
             </h1>
 
             <p className="max-w-2xl text-base text-foreground/70">
-              {copy.hero.description}
+              {welcomePage.hero.description}
             </p>
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row">
             <Link
-              href={paths.products(locale)}
+              href={paths.products(market)}
               className="inline-flex items-center justify-center rounded-xl bg-primary px-5 py-3 text-sm font-medium text-primary-foreground hover:opacity-90 transition"
             >
-              {copy.hero.ctaPrimary}
+              {welcomePage.hero.ctaPrimary}
             </Link>
 
             <Link
-              href={paths.login(locale)}
+              href={paths.login(market)}
               className="inline-flex items-center justify-center rounded-xl border border-border bg-background px-5 py-3 text-sm font-medium hover:bg-muted/60 transition"
             >
-              {copy.hero.ctaSecondary}
+              {welcomePage.hero.ctaSecondary}
             </Link>
           </div>
         </div>
@@ -55,10 +58,10 @@ export default async function MarketPage({ params }: TMarketPageProps) {
         <Card>
           <Card.Content>
             <p className="text-sm font-semibold">
-              {copy.highlights.marketAwareTitle}
+              {welcomePage.highlights.marketAwareTitle}
             </p>
             <p className="mt-2 text-sm text-foreground/70">
-              {copy.highlights.marketAwareDesc}
+              {welcomePage.highlights.marketAwareDesc}
             </p>
           </Card.Content>
         </Card>
@@ -66,19 +69,21 @@ export default async function MarketPage({ params }: TMarketPageProps) {
         <Card>
           <Card.Content>
             <p className="text-sm font-semibold">
-              {copy.highlights.brandConfigTitle}
+              {welcomePage.highlights.brandConfigTitle}
             </p>
             <p className="mt-2 text-sm text-foreground/70">
-              {copy.highlights.brandConfigDesc}
+              {welcomePage.highlights.brandConfigDesc}
             </p>
           </Card.Content>
         </Card>
 
         <Card>
           <Card.Content>
-            <p className="text-sm font-semibold">{copy.highlights.seoTitle}</p>
+            <p className="text-sm font-semibold">
+              {welcomePage.highlights.seoTitle}
+            </p>
             <p className="mt-2 text-sm text-foreground/70">
-              {copy.highlights.seoDesc}
+              {welcomePage.highlights.seoDesc}
             </p>
           </Card.Content>
         </Card>

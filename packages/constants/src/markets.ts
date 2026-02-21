@@ -6,22 +6,32 @@ export const MARKETS = {
       products: "Products",
       login: "Login",
     },
-    hero: {
-      marketLabel: "EN market",
-      description:
-        "A scalable product portal built in a monorepo with shared UI, brand configuration, and market-aware routing.",
-      ctaPrimary: "Browse products",
-      ctaSecondary: "Login",
-    },
-    highlights: {
-      marketAwareTitle: "Market-aware",
-      marketAwareDesc: "Content and navigation adapt to /en and /ca.",
-      brandConfigTitle: "Brand-configurable",
-      brandConfigDesc:
-        "Shared components render per brand with minimal duplication.",
-      seoTitle: "SEO-friendly",
-      seoDesc: "Products can be served via ISR/SSR with fresh content.",
-    },
+    pages: {
+      welcome: {
+        hero: {
+          marketLabel: "EN market",
+          description:
+            "A scalable product portal built in a monorepo with shared UI, brand configuration, and market-aware routing.",
+          ctaPrimary: "Browse products",
+          ctaSecondary: "Login",
+        },
+        highlights: {
+          marketAwareTitle: "Market-aware",
+          marketAwareDesc: "Content and navigation adapt to /en and /ca.",
+          brandConfigTitle: "Brand-configurable",
+          brandConfigDesc:
+            "Shared components render per brand with minimal duplication.",
+          seoTitle: "SEO-friendly",
+          seoDesc: "Products can be served via ISR/SSR with fresh content.",
+        },
+      },
+      products: {
+        title: "Products"
+      },
+      product: {
+        backToProducts: "Back to products",
+      }
+    }
   },
   ca: {
     welcome: "Bienvenue",
@@ -30,21 +40,31 @@ export const MARKETS = {
       products: "Produits",
       login: "Connexion",
     },
-    hero: {
-      marketLabel: "Marché CA",
-      description:
-        "Un portail produit évolutif construit en monorepo avec une UI partagée, une configuration par marque et un routage par marché.",
-      ctaPrimary: "Voir les produits",
-      ctaSecondary: "Connexion",
-    },
-    highlights: {
-      marketAwareTitle: "Par marché",
-      marketAwareDesc: "Le contenu et la navigation s’adaptent à /en et /ca.",
-      brandConfigTitle: "Configuré par marque",
-      brandConfigDesc:
-        "Les composants partagés changent selon la marque sans duplication.",
-      seoTitle: "Optimisé SEO",
-      seoDesc: "Produits servis via ISR/SSR avec contenu rafraîchi.",
+    pages: {
+      welcome: {
+        hero: {
+          marketLabel: "Marché CA",
+          description:
+            "Un portail produit évolutif construit en monorepo avec une UI partagée, une configuration par marque et un routage par marché.",
+          ctaPrimary: "Voir les produits",
+          ctaSecondary: "Connexion",
+        },
+        highlights: {
+          marketAwareTitle: "Par marché",
+          marketAwareDesc: "Le contenu et la navigation s’adaptent à /en et /ca.",
+          brandConfigTitle: "Configuré par marque",
+          brandConfigDesc:
+            "Les composants partagés changent selon la marque sans duplication.",
+          seoTitle: "Optimisé SEO",
+          seoDesc: "Produits servis via ISR/SSR avec contenu rafraîchi.",
+        },
+      },
+      products: {
+        title: "Produits"
+      },
+      product: {
+        backToProducts: "Retour aux produits",
+      }
     },
   },
 } as const;

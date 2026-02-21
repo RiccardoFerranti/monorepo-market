@@ -5,27 +5,19 @@
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "outputs": [".next/**", "!.next/cache/**"],
+      "env": ["API_BASE_URL", "NODE_ENV"]
     },
     "lint": {
-      "dependsOn": ["^lint"],
-      "env": ["NODE_ENV"]
+      "dependsOn": ["^lint"]
     },
     "check-types": {
-      "dependsOn": ["^check-types"],
-      "env": ["NODE_ENV"]
+      "dependsOn": ["^check-types"]
     },
     "dev": {
       "cache": false,
-      "persistent": true
-    }
-  },
-  "pipeline": {
-    "build": {
-      "env": ["API_BASE_URL"]
-    },
-    "dev": {
-      "env": ["API_BASE_URL"]
+      "persistent": true,
+      "env": ["API_BASE_URL", "NODE_ENV"]
     }
   }
 }

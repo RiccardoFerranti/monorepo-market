@@ -2,8 +2,8 @@ import { cacheLife } from "next/cache";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import clsx from "clsx";
-import type { IProductPageConfig, IProductRecord, TLocale } from "@repo/types";
-import { BRANDS, LOCALES, paths } from "@repo/constants";
+import type { IProductPageConfig, IProductRecord } from "@repo/types";
+import { BRANDS, MARKETS, paths } from "@repo/constants";
 import {
   ProductGallery,
   ProductReviews,
@@ -12,18 +12,8 @@ import {
   Card,
 } from "@repo/ui";
 import { BRAND } from "@/app/consts/brand";
-
-type TPageProps = {
-  params: Promise<{ market: string; slug: string }>;
-};
-
-function isLocale(value: string): value is TLocale {
-  return (LOCALES as readonly string[]).includes(value);
-}
-
-function isNumericId(value: string) {
-  return /^[0-9]+$/.test(value);
-}
+import { isLocale } from "@/app/utils/is-locale";
+import { isNumericId } from "@/app/utils/is-numeric-id";
 
 async function getProductCached(id: string): Promise<IProductRecord> {
   "use cache";
@@ -40,7 +30,11 @@ async function getProductCached(id: string): Promise<IProductRecord> {
   return res.json();
 }
 
-export default async function ProductPage({ params }: TPageProps) {
+type TProductPageProps = {
+  params: Promise<{ market: string; slug: string }>;
+};
+
+export default async function ProductPage({ params }: TProductPageProps) {
   const { market, slug } = await params;
 
   if (!isLocale(market)) notFound();
@@ -68,6 +62,8 @@ export default async function ProductPage({ params }: TPageProps) {
 
   const imageRight = (pageConfig.layout === "image-right") as boolean;
 
+  const productPage = MARKETS[market].pages.product;
+
   return (
     <div className="mx-auto max-w-6xl px-6 py-8">
       <div className="mb-6">
@@ -75,7 +71,7 @@ export default async function ProductPage({ params }: TPageProps) {
           href={paths.products(market)}
           className="text-sm text-foreground/70 hover:text-foreground"
         >
-          ← Back to products
+          ← {productPage.backToProducts}
         </Link>
       </div>
 
