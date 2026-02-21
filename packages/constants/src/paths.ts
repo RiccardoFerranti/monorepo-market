@@ -1,4 +1,4 @@
-import type { TLocale } from "@repo/types";
+import type { TLocale } from "@repo/types"; 
 import { ROUTES } from "./routes";
 
 /**

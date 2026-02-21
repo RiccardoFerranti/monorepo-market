@@ -20,7 +20,7 @@ async function getProductsCached(): Promise<{
   generatedAt: string;
 }> {
   "use cache";
-  cacheLife("products30s");
+  cacheLife("products5m");
   // await new Promise((r) => setTimeout(r, 3000));
   const res = await fetch("https://dummyjson.com/products?limit=20");
   if (!res.ok) throw new Error("Failed to fetch products");

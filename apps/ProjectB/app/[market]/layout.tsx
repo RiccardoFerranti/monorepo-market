@@ -1,9 +1,11 @@
-import { LOCALES, paths, BRANDS } from "@repo/constants";
+import { LOCALES, MARKETS, BRANDS, paths } from "@repo/constants";
 import type { TLocale } from "@repo/types";
 import { notFound } from "next/navigation";
-import { Footer, Header } from "@repo/ui";
-import { MARKETS } from "@repo/constants";
+// import { Header, Footer } from "@repo/ui";
+import { Footer, Header, THeaderLink, THeaderProps } from "@repo/ui";
 import { BRAND } from "../consts/brand";
+import { HeaderWithActive } from "../components/header-with-active";
+import { Suspense } from "react";
 
 /**
  * Pre-generates all supported market routes at build time.
@@ -41,17 +43,27 @@ export default async function MarketLayout({
   const content = MARKETS[locale];
   const brandConfig = BRANDS[BRAND];
 
+  const links: THeaderLink[] = [
+    { key: "home", label: content.nav.home, href: paths.home(locale) },
+    {
+      key: "products",
+      label: content.nav.products,
+      href: paths.products(locale),
+    },
+    { key: "login", label: content.nav.login, href: paths.login(locale) },
+  ];
+
+  const headerProps: Omit<THeaderProps, "activeKey"> = {
+    title: "Project B",
+    navPosition: brandConfig.header.navPosition,
+    links,
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
-      <Header
-        title="Project A"
-        navPosition={brandConfig.header.navPosition}
-        links={[
-          { label: content.nav.home, href: paths.home(locale) },
-          { label: content.nav.products, href: paths.products(locale) },
-          { label: content.nav.login, href: paths.login(locale) },
-        ]}
-      />
+      <Suspense fallback={<Header {...headerProps} />}>
+        <HeaderWithActive {...headerProps} />
+      </Suspense>
 
       <main className="flex-1 mx-auto max-w-6xl px-6 py-8 w-full">
         {children}

@@ -12,7 +12,7 @@ type TProductsPageProps = {
 
 export default async function ProductsPage({ params }: TProductsPageProps) {
   const { market } = await params;
-  await new Promise((r) => setTimeout(r, 3000));
+  // await new Promise((r) => setTimeout(r, 3000));
   const config = BRANDS[BRAND].productCard;
 
   if (!LOCALES.includes(market as TLocale)) notFound();
@@ -26,7 +26,7 @@ export default async function ProductsPage({ params }: TProductsPageProps) {
       </div>
 
       <Suspense fallback={<ProductsGridFallback config={config} />}>
-        <ProductsGrid />
+        <ProductsGrid market={market} />
       </Suspense>
     </div>
   );

@@ -1,4 +1,4 @@
-import { TLocale } from "./brands";
+import { TLocale } from "./markets";
 
 // Routes per market
 export type Routes = {
