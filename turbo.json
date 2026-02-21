@@ -19,5 +19,13 @@
       "cache": false,
       "persistent": true
     }
+  },
+  "pipeline": {
+    "build": {
+      "env": ["API_BASE_URL"]
+    },
+    "dev": {
+      "env": ["API_BASE_URL"]
+    }
   }
 }

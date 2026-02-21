@@ -22,7 +22,14 @@ async function getProductsCached(): Promise<{
   "use cache";
   cacheLife("products5m");
   // await new Promise((r) => setTimeout(r, 3000));
-  const res = await fetch("https://dummyjson.com/products?limit=20");
+
+  const baseUrl = process.env.API_BASE_URL;
+
+  if (!baseUrl) {
+    throw new Error("API_BASE_URL is not defined");
+  }
+
+  const res = await fetch(`${baseUrl}/products?limit=20`);
   if (!res.ok) throw new Error("Failed to fetch products");
   const data: { products: IProductRecord[] } = await res.json();
 
