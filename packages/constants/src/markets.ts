@@ -32,6 +32,7 @@ export const MARKETS = {
       },
       product: {
         backToProducts: "Back to products",
+        authNotice: "Sign in to see warranty, shipping, reviews and other details.",
       },
       login: {
         title: "Login",
@@ -81,6 +82,7 @@ export const MARKETS = {
       },
       product: {
         backToProducts: "Retour aux produits",
+        authNotice: "Connectez-vous pour voir la garantie, la livraison, les avis et d'autres informations.",
       },
       login: {
         title: "Connexion",

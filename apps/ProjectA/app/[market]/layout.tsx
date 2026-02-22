@@ -7,6 +7,7 @@ import { BRAND } from "@/consts/brand";
 import { HeaderWithActive } from "@/components/header-with-active";
 import LogoutButton from "./logout/components/logout-button";
 import { isLoggedIn } from "@/utils/is-logged-in";
+import HeaderAuth from "@/components/header-auth";
 
 /**
  * Pre-generates all supported market routes at build time.
@@ -34,12 +35,66 @@ type TMarketLayoutProps = {
   params: Promise<{ market: string }>;
 };
 
+// export default async function MarketLayout({
+//   children,
+//   params,
+// }: TMarketLayoutProps) {
+//   const { market } = await params;
+
+//   if (!isLocale(market)) notFound();
+
+//   const locale = market;
+//   const content = MARKETS[locale];
+//   const brandConfig = BRANDS[BRAND];
+
+//   const links: THeaderLink[] = [
+//     { key: "home", label: content.nav.home, href: paths.home(locale) },
+//     {
+//       key: "products",
+//       label: content.nav.products,
+//       href: paths.products(locale),
+//     },
+//   ];
+
+//   const loggedIn = await isLoggedIn();
+
+//   if (!loggedIn) {
+//     links.push({
+//       key: "login",
+//       label: content.nav.login,
+//       href: paths.login(locale),
+//     });
+//   }
+
+//   const headerProps: Omit<THeaderProps, "activeKey"> = {
+//     title: "Project A",
+//     navPosition: brandConfig.header.navPosition,
+//     links,
+//     rightSlot: loggedIn ? <LogoutButton label={content.nav.logout} /> : null,
+//   };
+
+//   return (
+//     <div className="min-h-screen flex flex-col">
+//       <Suspense fallback={<Header {...headerProps} />}>
+//         <HeaderWithActive {...headerProps} />
+//       </Suspense>
+
+//       <main className="flex-1 mx-auto max-w-6xl px-6 py-8 w-full">
+//         {children}
+//       </main>
+
+//       <Footer align={brandConfig.footer.align}>
+//         {BRAND} • /{locale}
+//       </Footer>
+//     </div>
+//   );
+// }
+
 export default async function MarketLayout({
   children,
   params,
 }: TMarketLayoutProps) {
   const { market } = await params;
-
   if (!isLocale(market)) notFound();
 
   const locale = market;
@@ -55,27 +110,21 @@ export default async function MarketLayout({
     },
   ];
 
-  const loggedIn = await isLoggedIn();
-
-  if (!loggedIn) {
-    links.push({
-      key: "login",
-      label: content.nav.login,
-      href: paths.login(locale),
-    });
-  }
-
   const headerProps: Omit<THeaderProps, "activeKey"> = {
     title: "Project A",
     navPosition: brandConfig.header.navPosition,
     links,
-    rightSlot: loggedIn ? <LogoutButton label={content.nav.logout} /> : null,
   };
 
   return (
     <div className="min-h-screen flex flex-col">
       <Suspense fallback={<Header {...headerProps} />}>
-        <HeaderWithActive {...headerProps} />
+        <HeaderAuth
+          {...headerProps}
+          locale={locale}
+          loginLabel={content.nav.login}
+          logoutLabel={content.nav.logout}
+        />
       </Suspense>
 
       <main className="flex-1 mx-auto max-w-6xl px-6 py-8 w-full">

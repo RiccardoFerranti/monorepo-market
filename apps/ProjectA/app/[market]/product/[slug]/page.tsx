@@ -135,7 +135,7 @@ export default async function ProductPage({ params }: TProductPageProps) {
               />
             ) : (
               <p className="mt-6 text-sm text-foreground/70">
-                Sign in to see warranty, shipping, and other details.
+                {productPage.authNotice}
               </p>
             )}
           </Card.Content>

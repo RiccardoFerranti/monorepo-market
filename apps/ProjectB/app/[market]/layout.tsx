@@ -3,9 +3,12 @@ import type { TLocale } from "@repo/types";
 import { notFound } from "next/navigation";
 // import { Header, Footer } from "@repo/ui";
 import { Footer, Header, THeaderLink, THeaderProps } from "@repo/ui";
-import { BRAND } from "../consts/brand";
-import { HeaderWithActive } from "../components/header-with-active";
+import { BRAND } from "../../consts/brand";
+import { HeaderWithActive } from "../../components/header-with-active";
 import { Suspense } from "react";
+import LogoutButton from "./logout/components/logout-button";
+import { isLoggedIn } from "@/utils/is-logged-in";
+import HeaderAuth from "@/components/header-auth";
 
 /**
  * Pre-generates all supported market routes at build time.
@@ -28,15 +31,16 @@ function isLocale(value: string): value is TLocale {
   return (LOCALES as readonly string[]).includes(value);
 }
 
+type TMarketLayoutProps = {
+  children: React.ReactNode;
+  params: Promise<{ market: string }>;
+};
+
 export default async function MarketLayout({
   children,
   params,
-}: {
-  children: React.ReactNode;
-  params: Promise<{ market: string }>;
-}) {
+}: TMarketLayoutProps) {
   const { market } = await params;
-
   if (!isLocale(market)) notFound();
 
   const locale = market;
@@ -50,7 +54,6 @@ export default async function MarketLayout({
       label: content.nav.products,
       href: paths.products(locale),
     },
-    { key: "login", label: content.nav.login, href: paths.login(locale) },
   ];
 
   const headerProps: Omit<THeaderProps, "activeKey"> = {
@@ -62,7 +65,12 @@ export default async function MarketLayout({
   return (
     <div className="min-h-screen flex flex-col">
       <Suspense fallback={<Header {...headerProps} />}>
-        <HeaderWithActive {...headerProps} />
+        <HeaderAuth
+          {...headerProps}
+          locale={locale}
+          loginLabel={content.nav.login}
+          logoutLabel={content.nav.logout}
+        />
       </Suspense>
 
       <main className="flex-1 mx-auto max-w-6xl px-6 py-8 w-full">

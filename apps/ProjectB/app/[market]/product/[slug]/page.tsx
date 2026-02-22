@@ -1,34 +1,15 @@
-import { cacheLife } from "next/cache";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import clsx from "clsx";
 import type { IProductPageConfig, IProductRecord } from "@repo/types";
 import { BRANDS, MARKETS, paths } from "@repo/constants";
-import {
-  ProductGallery,
-  ProductReviews,
-  ProductStat,
-  Badge,
-  Card,
-} from "@repo/ui";
-import { BRAND } from "@/app/consts/brand";
-import { isLocale } from "@/app/utils/is-locale";
-import { isNumericId } from "@/app/utils/is-numeric-id";
-
-async function getProductCached(id: string): Promise<IProductRecord> {
-  "use cache";
-  cacheLife("product5m");
-
-  const baseUrl = process.env.API_BASE_URL;
-
-  if (!baseUrl) {
-    throw new Error("API_BASE_URL is not defined");
-  }
-
-  const res = await fetch(`${baseUrl}/products/${id}`);
-  if (!res.ok) throw new Error("Failed to fetch product");
-  return res.json();
-}
+import { ProductGallery, ProductStat, Badge, Card } from "@repo/ui";
+import { BRAND } from "@/consts/brand";
+import { isLocale } from "@/utils/is-locale";
+import { isNumericId } from "@/utils/is-numeric-id";
+import { getProductCached } from "@/app/lib/get-product-cached";
+import ProductExtendedDetails from "./components/product-extended-details";
+import { isLoggedIn } from "@/utils/is-logged-in";
 
 type TProductPageProps = {
   params: Promise<{ market: string; slug: string }>;
@@ -46,7 +27,7 @@ export default async function ProductPage({ params }: TProductPageProps) {
   } catch {
     notFound();
   }
-
+  console.log(product);
   const pageConfig: IProductPageConfig = BRANDS[BRAND].productPage;
 
   const primary = product.thumbnail ?? product.images?.[0] ?? "";
@@ -57,12 +38,12 @@ export default async function ProductPage({ params }: TProductPageProps) {
   ).slice(0, pageConfig.galleryThumbs);
 
   const showTags = pageConfig.showTags && (product.tags?.length ?? 0) > 0;
-  const showReviews =
-    pageConfig.showReviews && (product.reviews?.length ?? 0) > 0;
 
   const imageRight = (pageConfig.layout === "image-right") as boolean;
 
   const productPage = MARKETS[market].pages.product;
+
+  const loggedIn = await isLoggedIn();
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-8">
@@ -145,13 +126,16 @@ export default async function ProductPage({ params }: TProductPageProps) {
               </div>
             ) : null}
 
-            {/* REVIEWS (config-driven) */}
-            {showReviews ? (
-              <ProductReviews
-                reviews={product.reviews}
-                max={pageConfig.maxReviews}
+            {loggedIn ? (
+              <ProductExtendedDetails
+                pageConfig={pageConfig}
+                product={product}
               />
-            ) : null}
+            ) : (
+              <p className="mt-6 text-sm text-foreground/70">
+                {productPage.authNotice}
+              </p>
+            )}
           </Card.Content>
         </Card>
       </div>

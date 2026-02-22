@@ -164,6 +164,7 @@ export function Header({
           </Link>
         );
       })}
+      {rightSlot}
     </nav>
   );
 
@@ -192,7 +193,6 @@ export function Header({
 
           <div className="flex justify-end items-center gap-2">
             {navPosition === "right" ? Nav : null}
-            {rightSlot}
           </div>
         </div>
       </div>
