@@ -18,6 +18,13 @@
       "cache": false,
       "persistent": true,
       "env": ["API_BASE_URL", "NODE_ENV"]
+    },
+    "test": {
+      "dependsOn": ["^test"]
+    },
+    "test:watch": {
+      "cache": false,
+      "persistent": true
     }
   }
 }

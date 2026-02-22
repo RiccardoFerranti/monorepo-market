@@ -20,7 +20,9 @@
     "dev:styles": "tailwindcss -i ./src/styles.css -o ./dist/index.css --watch",
     "dev:components": "tsc --watch",
     "lint": "eslint src --max-warnings 0",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@repo/constants": "*",
@@ -33,9 +35,16 @@
     "@repo/tailwind-config": "*",
     "@repo/typescript-config": "*",
     "@tailwindcss/cli": "^4.1.18",
-    "tailwindcss": "^4.1.18",
-    "typescript": "5.9.2",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/jest": "^30.0.0",
+    "@types/react": "19.2.2",
     "eslint": "^9.39.1",
-    "@types/react": "19.2.2"
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "tailwindcss": "^4.1.18",
+    "ts-jest": "^29.4.6",
+    "typescript": "5.9.2"
   }
 }
