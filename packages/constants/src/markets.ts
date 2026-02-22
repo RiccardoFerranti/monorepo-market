@@ -33,6 +33,11 @@ export const MARKETS = {
       product: {
         backToProducts: "Back to products",
         authNotice: "Sign in to see warranty, shipping, reviews and other details.",
+        notFound: {
+          title: "Product not found",
+          description:
+            "This product does not exist or may have been removed.",
+        },
       },
       login: {
         title: "Login",
@@ -46,6 +51,12 @@ export const MARKETS = {
           loginFailed: "Login failed. Please try again.",
           tooShort: "Username and password must be at least 3 characters.",
         },
+      },
+      notFound: {
+        title: "Page not found",
+        description:
+          "The page you are looking for does not exist or may have been moved.",
+        backHome: "Back to home",
       },
     }
   },
@@ -83,6 +94,11 @@ export const MARKETS = {
       product: {
         backToProducts: "Retour aux produits",
         authNotice: "Connectez-vous pour voir la garantie, la livraison, les avis et d'autres informations.",
+        notFound: {
+          title: "Produit introuvable",
+          description:
+            "Ce produit n'existe pas ou a été supprimé.",
+        },
       },
       login: {
         title: "Connexion",
@@ -97,6 +113,12 @@ export const MARKETS = {
           tooShort: "Le nom d'utilisateur et le mot de passe doivent contenir au moins 3 caractères.",
         },
       },
+      notFound: {
+        title: "Page introuvable",
+        description:
+          "La page que vous recherchez n'existe pas ou a été déplacée.",
+        backHome: "Retour à l'accueil",
+      },    
     },
   },
 } as const;

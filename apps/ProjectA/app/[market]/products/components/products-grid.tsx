@@ -8,7 +8,7 @@ import { BRAND } from "@/consts/brand";
 import { getProductsCached } from "@/app/lib/get-products-cached";
 
 type TProductsGridProps = {
-  market: string;
+  market: TLocale;
 };
 
 export default async function ProductsGrid({ market }: TProductsGridProps) {

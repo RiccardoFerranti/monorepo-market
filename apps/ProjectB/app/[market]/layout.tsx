@@ -1,13 +1,9 @@
 import { LOCALES, MARKETS, BRANDS, paths } from "@repo/constants";
 import type { TLocale } from "@repo/types";
 import { notFound } from "next/navigation";
-// import { Header, Footer } from "@repo/ui";
 import { Footer, Header, THeaderLink, THeaderProps } from "@repo/ui";
-import { BRAND } from "../../consts/brand";
-import { HeaderWithActive } from "../../components/header-with-active";
+import { BRAND, TITLE } from "../../consts/brand";
 import { Suspense } from "react";
-import LogoutButton from "./logout/components/logout-button";
-import { isLoggedIn } from "@/utils/is-logged-in";
 import HeaderAuth from "@/components/header-auth";
 
 /**
@@ -15,7 +11,7 @@ import HeaderAuth from "@/components/header-auth";
  *
  * Ensures `/en`, `/ca`, etc. are statically rendered,
  * improving performance and SEO by avoiding on-demand rendering.
- * @returns {Array<{market: string}>} An array of objects with market keys for each locale
+ * @returns {Array<{market: TLocale}>} An array of objects with market keys for each locale
  */
 export function generateStaticParams() {
   return LOCALES.map((market) => ({ market }));
@@ -33,7 +29,7 @@ function isLocale(value: string): value is TLocale {
 
 type TMarketLayoutProps = {
   children: React.ReactNode;
-  params: Promise<{ market: string }>;
+  params: Promise<{ market: TLocale }>;
 };
 
 export default async function MarketLayout({
@@ -57,7 +53,7 @@ export default async function MarketLayout({
   ];
 
   const headerProps: Omit<THeaderProps, "activeKey"> = {
-    title: "Project B",
+    title: TITLE,
     navPosition: brandConfig.header.navPosition,
     links,
   };

@@ -3,12 +3,12 @@ import { notFound } from "next/navigation";
 import type { TLocale } from "@repo/types";
 import { BRANDS, LOCALES, MARKETS } from "@repo/constants";
 import { BRAND } from "@/consts/brand";
+import { isLocale } from "@/utils/is-locale";
 import { ProductsGridFallback } from "./components/products-grid-fallback";
 import ProductsGrid from "./components/products-grid";
-import { isLocale } from "@/utils/is-locale";
 
 type TProductsPageProps = {
-  params: Promise<{ market: string }>;
+  params: Promise<{ market: TLocale }>;
 };
 
 export default async function ProductsPage({ params }: TProductsPageProps) {

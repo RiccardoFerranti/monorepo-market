@@ -3,9 +3,10 @@ import { isLocale } from "@/utils/is-locale";
 import LoginForm from "./components/login-form";
 import { cookies } from "next/headers";
 import { AUTH_COOKIE, paths } from "@repo/constants";
+import { TLocale } from "@repo/types";
 
 type TLoginPageProps = {
-  params: Promise<{ market: string }>;
+  params: Promise<{ market: TLocale }>;
   searchParams?: Promise<{ next?: string }>;
 };
 

@@ -1,18 +1,18 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import clsx from "clsx";
-import type { IProductPageConfig, IProductRecord } from "@repo/types";
+import type { IProductPageConfig, IProductRecord, TLocale } from "@repo/types";
 import { BRANDS, MARKETS, paths } from "@repo/constants";
 import { ProductGallery, ProductStat, Badge, Card } from "@repo/ui";
 import { BRAND } from "@/consts/brand";
 import { isLocale } from "@/utils/is-locale";
 import { isNumericId } from "@/utils/is-numeric-id";
+import { isLoggedIn } from "@/utils/is-logged-in";
 import { getProductCached } from "@/app/lib/get-product-cached";
 import ProductExtendedDetails from "./components/product-extended-details";
-import { isLoggedIn } from "@/utils/is-logged-in";
 
 type TProductPageProps = {
-  params: Promise<{ market: string; slug: string }>;
+  params: Promise<{ market: TLocale; slug: string }>;
 };
 
 export default async function ProductPage({ params }: TProductPageProps) {

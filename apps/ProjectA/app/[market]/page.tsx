@@ -3,9 +3,11 @@ import { MARKETS, paths } from "@repo/constants";
 import { Card } from "@repo/ui";
 import { notFound } from "next/navigation";
 import { isLocale } from "../../utils/is-locale";
+import { TLocale } from "@repo/types";
+import { TITLE } from "@/consts/brand";
 
 type TWelcomePageProps = {
-  params: Promise<{ market: string }>;
+  params: Promise<{ market: TLocale }>;
 };
 
 export default async function WelcomePage({ params }: TWelcomePageProps) {
@@ -27,7 +29,7 @@ export default async function WelcomePage({ params }: TWelcomePageProps) {
             </p>
 
             <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-              {copy.welcome} Project A
+              {copy.welcome} {TITLE}
             </h1>
 
             <p className="max-w-2xl text-base text-foreground/70">

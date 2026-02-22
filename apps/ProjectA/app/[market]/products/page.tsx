@@ -8,7 +8,7 @@ import ProductsGrid from "./components/products-grid";
 import { isLocale } from "@/utils/is-locale";
 
 type TProductsPageProps = {
-  params: Promise<{ market: string }>;
+  params: Promise<{ market: TLocale }>;
 };
 
 export default async function ProductsPage({ params }: TProductsPageProps) {
