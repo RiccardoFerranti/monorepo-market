@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { useActionState } from "react";
-import { Card } from "@repo/ui";
+import { Card, Input } from "@repo/ui";
 import type { TLocale } from "@repo/types";
 import { MARKETS } from "@repo/constants";
 import { login } from "../actions";
@@ -35,30 +35,26 @@ export default function LoginForm({ market }: TLoginFormProps) {
       <Card.Content>
         <form action={formAction} className="space-y-4">
           <div>
-            <label className="text-xs text-foreground/70">
-              {loginPage.usernameLabel}
-            </label>
-            <input
-              name="username"
-              required
-              className="mt-1 w-full rounded-xl border border-border bg-background/40 px-3 py-2 text-sm"
-              autoComplete="username"
-              minLength={3}
-              autoCapitalize="none"
-              autoCorrect="off"
-              spellCheck={false}
-            />
+            <div>
+              <label htmlFor="username">{loginPage.usernameLabel}</label>
+              <Input
+                id="username"
+                name="username"
+                autoComplete="username"
+                minLength={3}
+                autoCapitalize="none"
+                autoCorrect="off"
+                spellCheck={false}
+              />
+            </div>
           </div>
 
           <div>
-            <label className="text-xs text-foreground/70">
-              {loginPage.passwordLabel}
-            </label>
-            <input
+            <label htmlFor="password">{loginPage.passwordLabel}</label>
+            <Input
+              id="password"
               name="password"
-              type="password"
               required
-              className="mt-1 w-full rounded-xl border border-border bg-background/40 px-3 py-2 text-sm"
               autoComplete="current-password"
               minLength={3}
               autoCapitalize="none"

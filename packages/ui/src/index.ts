@@ -5,3 +5,4 @@ export * from "./footer";
 export * from "./header";
 export * from "./card";
 export * from "./skeleton-card";
+export * from "./input";
