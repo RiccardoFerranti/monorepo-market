@@ -131,6 +131,7 @@ export type THeaderProps = {
   activeKey?: THeaderLink["key"];
   navPosition?: TNavPosition;
   className?: string;
+  rightSlot?: React.ReactNode;
 };
 
 export function Header({
@@ -139,6 +140,7 @@ export function Header({
   activeKey,
   navPosition = "right",
   className,
+  rightSlot,
 }: THeaderProps) {
   const Nav = (
     <nav className="flex items-center gap-1 sm:gap-2">
@@ -188,8 +190,9 @@ export function Header({
             {navPosition === "center" ? Nav : null}
           </div>
 
-          <div className="flex justify-end">
+          <div className="flex justify-end items-center gap-2">
             {navPosition === "right" ? Nav : null}
+            {rightSlot}
           </div>
         </div>
       </div>

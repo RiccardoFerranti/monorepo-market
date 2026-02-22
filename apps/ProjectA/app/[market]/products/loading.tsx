@@ -1,5 +1,5 @@
 import { BRANDS } from "@repo/constants";
-import { BRAND } from "@/app/consts/brand";
+import { BRAND } from "@/consts/brand";
 import { SkeletonBlock } from "@repo/ui";
 import ProductsGridSkeleton from "./components/products-grid-skeleton";
 

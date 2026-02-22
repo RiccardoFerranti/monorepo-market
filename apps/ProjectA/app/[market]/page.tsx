@@ -2,7 +2,7 @@ import Link from "next/link";
 import { MARKETS, paths } from "@repo/constants";
 import { Card } from "@repo/ui";
 import { notFound } from "next/navigation";
-import { isLocale } from "../utils/is-locale";
+import { isLocale } from "../../utils/is-locale";
 
 type TWelcomePageProps = {
   params: Promise<{ market: string }>;

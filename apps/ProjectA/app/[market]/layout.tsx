@@ -1,11 +1,12 @@
+import { Suspense } from "react";
 import { LOCALES, MARKETS, BRANDS, paths } from "@repo/constants";
 import type { TLocale } from "@repo/types";
 import { notFound } from "next/navigation";
-// import { Header, Footer } from "@repo/ui";
 import { Footer, Header, THeaderLink, THeaderProps } from "@repo/ui";
-import { BRAND } from "../consts/brand";
-import { HeaderWithActive } from "../components/header-with-active";
-import { Suspense } from "react";
+import { BRAND } from "@/consts/brand";
+import { HeaderWithActive } from "@/components/header-with-active";
+import LogoutButton from "./logout/components/logout-button";
+import { isLoggedIn } from "@/utils/is-logged-in";
 
 /**
  * Pre-generates all supported market routes at build time.
@@ -28,13 +29,15 @@ function isLocale(value: string): value is TLocale {
   return (LOCALES as readonly string[]).includes(value);
 }
 
+type TMarketLayoutProps = {
+  children: React.ReactNode;
+  params: Promise<{ market: string }>;
+};
+
 export default async function MarketLayout({
   children,
   params,
-}: {
-  children: React.ReactNode;
-  params: Promise<{ market: string }>;
-}) {
+}: TMarketLayoutProps) {
   const { market } = await params;
 
   if (!isLocale(market)) notFound();
@@ -50,13 +53,23 @@ export default async function MarketLayout({
       label: content.nav.products,
       href: paths.products(locale),
     },
-    { key: "login", label: content.nav.login, href: paths.login(locale) },
   ];
+
+  const loggedIn = await isLoggedIn();
+
+  if (!loggedIn) {
+    links.push({
+      key: "login",
+      label: content.nav.login,
+      href: paths.login(locale),
+    });
+  }
 
   const headerProps: Omit<THeaderProps, "activeKey"> = {
     title: "Project A",
     navPosition: brandConfig.header.navPosition,
     links,
+    rightSlot: loggedIn ? <LogoutButton label={content.nav.logout} /> : null,
   };
 
   return (

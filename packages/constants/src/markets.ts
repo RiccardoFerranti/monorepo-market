@@ -1,10 +1,12 @@
 export const MARKETS = {
+  // en
   en: {
     welcome: "Welcome",
     nav: {
       home: "Home",
       products: "Products",
       login: "Login",
+      logout: "Logout"
     },
     pages: {
       welcome: {
@@ -30,15 +32,30 @@ export const MARKETS = {
       },
       product: {
         backToProducts: "Back to products",
-      }
+      },
+      login: {
+        title: "Login",
+        usernameLabel: "Username",
+        passwordLabel: "Password",
+        submit: "Sign in",
+        errors: {
+          missingFields: "Username and password are required.",
+          invalidCredentials: "Invalid username or password.",
+          apiMissing: "Login service unavailable.",
+          loginFailed: "Login failed. Please try again.",
+          tooShort: "Username and password must be at least 3 characters.",
+        },
+      },
     }
   },
+  // ca (French)
   ca: {
     welcome: "Bienvenue",
     nav: {
       home: "Accueil",
       products: "Produits",
       login: "Connexion",
+      logout: "Déconnexion",
     },
     pages: {
       welcome: {
@@ -64,7 +81,20 @@ export const MARKETS = {
       },
       product: {
         backToProducts: "Retour aux produits",
-      }
+      },
+      login: {
+        title: "Connexion",
+        usernameLabel: "Nom d'utilisateur",
+        passwordLabel: "Mot de passe",
+        submit: "Se connecter",
+        errors: {
+          missingFields: "Nom d'utilisateur et mot de passe requis.",
+          invalidCredentials: "Identifiants invalides.",
+          apiMissing: "Service de connexion indisponible.",
+          loginFailed: "Échec de la connexion. Veuillez réessayer.",
+          tooShort: "Le nom d'utilisateur et le mot de passe doivent contenir au moins 3 caractères.",
+        },
+      },
     },
   },
 } as const;
