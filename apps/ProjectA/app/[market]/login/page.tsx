@@ -1,19 +1,26 @@
+import { Suspense } from "react";
 import { notFound, redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { AUTH_COOKIE, paths } from "@repo/constants";
 import { isLocale } from "@repo/utils";
-import { TLocale } from "@repo/types";
+import type { TLocale } from "@repo/types";
 import LoginForm from "./components/login-form";
+import { LoginFallback } from "./components/login-fallback";
 
 type TLoginPageProps = {
   params: Promise<{ market: TLocale }>;
   searchParams?: Promise<{ next?: string }>;
 };
 
-export default async function LoginPage({
-  params,
-  searchParams,
-}: TLoginPageProps) {
+export default function LoginPage(props: TLoginPageProps) {
+  return (
+    <Suspense fallback={<LoginFallback />}>
+      <LoginInner {...props} />
+    </Suspense>
+  );
+}
+
+async function LoginInner({ params, searchParams }: TLoginPageProps) {
   const { market } = await params;
   const sp = (await searchParams) ?? {};
 

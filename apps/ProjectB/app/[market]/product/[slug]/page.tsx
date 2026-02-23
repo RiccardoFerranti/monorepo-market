@@ -26,7 +26,7 @@ export default async function ProductPage({ params }: TProductPageProps) {
   } catch {
     notFound();
   }
-  console.log(product);
+
   const pageConfig: IProductPageConfig = BRANDS[BRAND].productPage;
 
   const primary = product.thumbnail ?? product.images?.[0] ?? "";
