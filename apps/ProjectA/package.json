@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@repo/ui": "*",
+    "@repo/utils": "*",
     "@tailwindcss/postcss": "^4.1.18",
     "next": "16.1.5",
     "postcss": "^8.5.6",

@@ -3,13 +3,14 @@ import clsx from "clsx";
 import type { IProductCardConfig } from "@repo/types";
 import { SkeletonBlock, SkeletonCard } from "../skeleton-card";
 
+type TProductCardSkeletonProps = {
+  config: IProductCardConfig;
+  className?: string;
+};
 export function ProductCardSkeleton({
   config,
   className,
-}: {
-  config: IProductCardConfig;
-  className?: string;
-}) {
+}: TProductCardSkeletonProps) {
   const isVertical = config.layout === "vertical";
   const showThumbs = config.thumbnails > 0;
   const showTags = config.showCategories;

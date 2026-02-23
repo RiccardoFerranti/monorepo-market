@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { LOCALES, MARKETS, BRANDS, paths } from "@repo/constants";
 import type { TLocale } from "@repo/types";
+import { isLocale } from "@repo/utils";
 import { notFound } from "next/navigation";
 import { Footer, Header, THeaderLink, THeaderProps } from "@repo/ui";
 import { BRAND, TITLE } from "@/consts/brand";
@@ -15,16 +16,6 @@ import HeaderAuth from "@/components/header-auth";
  */
 export function generateStaticParams() {
   return LOCALES.map((market) => ({ market }));
-}
-
-/**
- * Checks if a given string is a valid locale.
- *
- * @param {string} value - The string to check as a locale.
- * @returns {value is TLocale} True if the value is a valid TLocale, otherwise false.
- */
-function isLocale(value: string): value is TLocale {
-  return (LOCALES as readonly string[]).includes(value);
 }
 
 type TMarketLayoutProps = {

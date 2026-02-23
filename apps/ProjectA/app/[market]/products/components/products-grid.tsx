@@ -2,10 +2,9 @@ import Link from "next/link";
 import type { TLocale } from "@repo/types";
 import { BRANDS, paths } from "@repo/constants";
 import { ProductCard } from "@repo/ui";
-import shuffleFirstN from "@/utils/shuffle-first-n";
-import { logGroup } from "@/utils/server-logger";
 import { BRAND } from "@/consts/brand";
 import { getProductsCached } from "@/app/lib/get-products-cached";
+import { logGroup, shuffleFirstN } from "@repo/utils";
 
 type TProductsGridProps = {
   market: TLocale;

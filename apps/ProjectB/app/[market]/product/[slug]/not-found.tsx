@@ -4,12 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MARKETS, paths } from "@repo/constants";
 import { Button } from "@repo/ui";
-import type { TLocale } from "@repo/types";
-
-function getMarketFromPath(pathname: string): TLocale {
-  const seg = pathname.split("/")[1];
-  return seg === "ca" ? "ca" : "en";
-}
+import { getMarketFromPath } from "@repo/utils";
 
 export default function ProductNotFound() {
   const pathname = usePathname();

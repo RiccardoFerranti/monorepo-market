@@ -1,9 +1,9 @@
 import { notFound, redirect } from "next/navigation";
-import { isLocale } from "@/utils/is-locale";
-import LoginForm from "./components/login-form";
 import { cookies } from "next/headers";
 import { AUTH_COOKIE, paths } from "@repo/constants";
+import { isLocale } from "@repo/utils";
 import { TLocale } from "@repo/types";
+import LoginForm from "./components/login-form";
 
 type TLoginPageProps = {
   params: Promise<{ market: TLocale }>;

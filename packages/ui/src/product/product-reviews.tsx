@@ -30,11 +30,14 @@ export function ProductReviews({
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
                 <p className="text-sm font-medium text-card-foreground">
-                  {review.reviewerName ?? "Anonymous"}
+                  {review.reviewerName || "Anonymous"}
                 </p>
 
                 {review.date ? (
-                  <p className="text-xs text-card-foreground/60">
+                  <p
+                    data-testid="review-date"
+                    className="text-xs text-card-foreground/60"
+                  >
                     {new Date(review.date).toLocaleDateString()}
                   </p>
                 ) : null}

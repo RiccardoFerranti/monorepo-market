@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import type { TLocale } from "@repo/types";
 import { BRANDS, LOCALES, MARKETS } from "@repo/constants";
 import { BRAND } from "@/consts/brand";
-import { isLocale } from "@/utils/is-locale";
+import { isLocale } from "@repo/utils";
 import { ProductsGridFallback } from "./components/products-grid-fallback";
 import ProductsGrid from "./components/products-grid";
 

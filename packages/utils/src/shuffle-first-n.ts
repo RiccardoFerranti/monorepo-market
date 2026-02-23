@@ -13,7 +13,7 @@
  * - The remaining elements keep their original order.
  * - The original `items` array is NOT modified.
  */
-export default function shuffleFirstN<T>(
+export function shuffleFirstN<T>(
   items: readonly T[],
   n = 10,
   seed = 1,

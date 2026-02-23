@@ -1,10 +1,11 @@
+import { Suspense } from "react";
+import { notFound } from "next/navigation";
 import { LOCALES, MARKETS, BRANDS, paths } from "@repo/constants";
 import type { TLocale } from "@repo/types";
-import { notFound } from "next/navigation";
+import { isLocale } from "@repo/utils";
 import { Footer, Header, THeaderLink, THeaderProps } from "@repo/ui";
-import { BRAND, TITLE } from "../../consts/brand";
-import { Suspense } from "react";
 import HeaderAuth from "@/components/header-auth";
+import { BRAND, TITLE } from "../../consts/brand";
 
 /**
  * Pre-generates all supported market routes at build time.
@@ -15,16 +16,6 @@ import HeaderAuth from "@/components/header-auth";
  */
 export function generateStaticParams() {
   return LOCALES.map((market) => ({ market }));
-}
-
-/**
- * Checks if a given string is a valid locale.
- *
- * @param {string} value - The string to check as a locale.
- * @returns {value is TLocale} True if the value is a valid TLocale, otherwise false.
- */
-function isLocale(value: string): value is TLocale {
-  return (LOCALES as readonly string[]).includes(value);
 }
 
 type TMarketLayoutProps = {

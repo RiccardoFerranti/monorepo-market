@@ -4,7 +4,7 @@ import { Card } from "@repo/ui";
 import { notFound } from "next/navigation";
 import { TITLE } from "@/consts/brand";
 import { TLocale } from "@repo/types";
-import { isLocale } from "@/utils/is-locale";
+import { isLocale } from "@repo/utils";
 
 type TWelcomePageProps = {
   params: Promise<{ market: TLocale }>;

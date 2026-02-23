@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MARKETS, paths } from "@repo/constants";
 import { Button } from "@repo/ui";
-import { getMarketFromPath } from "@/utils/get-market-from-path";
+import { getMarketFromPath } from "@repo/utils";
 
 export default function ProductNotFound() {
   const pathname = usePathname();
