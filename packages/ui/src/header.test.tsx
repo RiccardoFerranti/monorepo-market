@@ -24,6 +24,15 @@ describe("Header", () => {
     );
   });
 
+  it("should render title as a link", () => {
+    render(<Header title="Project" titleHref="/en" links={makeLinks()} />);
+
+    expect(screen.getByRole("link", { name: /project home/i })).toHaveAttribute(
+      "href",
+      "/en",
+    );
+  });
+
   it("should set aria-current on the active link", () => {
     render(<Header title="Project" links={makeLinks()} activeKey="products" />);
 

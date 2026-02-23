@@ -1,7 +1,6 @@
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { LOCALES, MARKETS, BRANDS, paths } from "@repo/constants";
-import type { TLocale } from "@repo/types";
 import { isLocale } from "@repo/utils";
 import { Footer, Header, THeaderLink, THeaderProps } from "@repo/ui";
 import HeaderAuth from "@/components/header-auth";
@@ -20,7 +19,7 @@ export function generateStaticParams() {
 
 type TMarketLayoutProps = {
   children: React.ReactNode;
-  params: Promise<{ market: TLocale }>;
+  params: Promise<{ market: string }>;
 };
 
 export default async function MarketLayout({
@@ -45,6 +44,7 @@ export default async function MarketLayout({
 
   const headerProps: Omit<THeaderProps, "activeKey"> = {
     title: TITLE,
+    titleHref: paths.home(locale),
     navPosition: brandConfig.header.navPosition,
     links,
   };

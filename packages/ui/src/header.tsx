@@ -13,6 +13,7 @@ export type TNavPosition = "left" | "center" | "right";
 
 export type THeaderProps = {
   title: string;
+  titleHref?: string;
   links: THeaderLink[];
   activeKey?: THeaderLink["key"];
   navPosition?: TNavPosition;
@@ -22,6 +23,7 @@ export type THeaderProps = {
 
 export function Header({
   title,
+  titleHref = "/",
   links,
   activeKey,
   navPosition = "right",
@@ -67,9 +69,17 @@ export function Header({
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="grid grid-cols-[1fr_auto_1fr] items-center py-3 sm:py-4">
           <div className="flex items-center gap-3">
-            <span className="text-sm font-semibold tracking-wide uppercase text-foreground">
+            <Link
+              href={titleHref}
+              className={clsx(
+                "text-sm font-semibold tracking-wide uppercase text-foreground",
+                "rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+              )}
+              aria-label={`${title} home`}
+            >
               {title}
-            </span>
+            </Link>
+
             {navPosition === "left" ? Nav : null}
           </div>
 
