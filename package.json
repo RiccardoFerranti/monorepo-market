@@ -3,12 +3,24 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
+    "build:a": "turbo run build --filter=project-a",
+    "build:b": "turbo run build --filter=project-b",
     "dev": "turbo run dev --filter=project-a --filter=project-b",
+    "dev:a": "turbo run dev --filter=project-a",
+    "dev:b": "turbo run dev --filter=project-b",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "lint:a": "turbo run lint --filter=project-a",
+    "lint:b": "turbo run lint --filter=project-b",
     "check-types": "turbo run check-types",
+    "check-types:a": "turbo run check-types --filter=project-a",
+    "check-types:b": "turbo run check-types --filter=project-b",
     "test": "turbo run test",
-    "test:watch": "turbo run test:watch"
+    "test:a": "turbo run test --filter=project-a",
+    "test:b": "turbo run test --filter=project-b",
+    "test:watch": "turbo run test:watch",
+    "test:watch:a": "turbo run test:watch --filter=project-a",
+    "test:watch:b": "turbo run test:watch --filter=project-b",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
     "prettier": "^3.7.4",

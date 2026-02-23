@@ -1,135 +1,415 @@
-# Turborepo starter
+# Monorepo Market – Senior Frontend Assessment
 
-This Turborepo starter is maintained by the Turborepo core team.
+This project demonstrates a scalable, brand-driven product portal built with **Next.js 16**, **React 19**, and **Turborepo**.
 
-## Using this example
+The application supports multiple brands (**ProjectA** and **ProjectB**) and multiple markets (`/en`, `/ca`) using a shared, strongly-typed component architecture.
 
-Run the following command:
+The primary goals of this implementation are:
 
-```sh
-npx create-turbo@latest
+- Avoid code duplication (strict DRY principle)
+- Support brand-specific markup, styling, and business logic
+- Demonstrate SSR, ISG, Partial Pre-Rendering (PPR), and caching
+- Showcase a testing strategy (unit + integration)
+- Maintain strong type safety and modular structure
+
+## Architecture Overview
+
+The project is structured as a Turborepo monorepo to enable shared logic, reusable components, and clear separation of concerns.
+
+### Applications
+
+- `apps/ProjectA` – Brand A application
+- `apps/ProjectB` – Brand B application
+
+Each application:
+
+- Supports `/en` and `/ca` markets
+- Uses brand-specific configuration
+- Is independently buildable and deployable
+
+### Shared Packages
+
+- `@repo/ui` – Shared React component library
+- `@repo/utils` – Shared utility functions (routing helpers, validation, shuffling, logging)
+- `@repo/constants` – Global configuration and brand definitions
+- `@repo/types` – Centralized type definitions
+- `@repo/tailwind-config` – Shared Tailwind configuration
+- `@repo/eslint-config` – Shared ESLint rules
+- `@repo/typescript-config` – Shared TypeScript configuration
+
+### Brand Configuration Strategy
+
+Brand customization is handled through configuration objects defined in `@repo/constants`.
+
+Each brand defines:
+
+- Layout configuration (e.g., vertical vs horizontal ProductCard)
+- Style differences
+- Component behavior differences
+- Feature toggles
+
+## Shared Component Architecture
+
+A core requirement of this assessment was the ability to customize markup, styles, and business logic per brand while keeping components reusable and DRY.
+
+To achieve this, shared components are designed as **config-driven, generic building blocks**.
+
+### Example: `ProductCard`
+
+`ProductCard` is implemented once inside `@repo/ui` and receives a configuration object:
+
+```ts
+type IProductCardConfig = {
+  layout: "vertical" | "horizontal";
+  titlePlacement: "top-left" | "bottom-left";
+  contentAlign: "left" | "center";
+  showCategories: boolean;
+  thumbnails: number;
+};
 ```
 
-## What's inside?
+### Brand Configuration Example
 
-This Turborepo includes the following packages/apps:
+Each brand provides its own configuration:
 
-### Apps and Packages
+#### ProjectA
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+- Vertical layout
+- Title bottom-left
+- No category tags
+- No thumbnails
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+#### ProjectB
 
-### Utilities
+- Horizontal layout
+- Title top-left
+- Category tags enabled
+- Two thumbnails
 
-This Turborepo has some additional tools already setup for you:
+The component dynamically adjusts:
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+- Layout structure
+- Rendered elements
+- Conditional sections
+- Behavior
 
-### Build
+Without duplicating markup across projects.
 
-To build all apps and packages, run the following command:
+---
 
+### Why This Approach?
+
+Instead of creating separate components per brand:
+
+- No `ProductCardA`
+- No `ProductCardB`
+- No conditional branching inside applications
+
+All customization is controlled through typed configuration passed from the brand layer.
+
+This ensures:
+
+- Single source of truth
+- Minimal duplication
+- Strong type safety
+- Easy scalability for additional brands
+
+## Rendering Strategy (Next.js 16)
+
+The application demonstrates multiple rendering strategies available in Next.js 16.
+
+### Server-Side Rendering (SSR)
+
+Dynamic routes such as:
+
+- `/[market]/product/[slug]`
+- `/[market]/login`
+
+use server components and runtime data access (e.g., `cookies()`).
+
+Authentication state is resolved on the server to ensure:
+
+- Correct SEO behavior
+- Proper gating of extended product information
+- No client-side flashing of protected content
+
+---
+
+### Incremental Static Generation (ISG)
+
+The `/[market]/products` route uses Next.js 16 caching with `cacheLife()`.
+
+A 5-minute revalidation window is configured to ensure that:
+
+- Crawlers receive updated HTML
+- Users see periodically refreshed product data
+- The page remains performant while allowing controlled content mutation
+
+This approach combines caching efficiency with predictable regeneration behavior.
+
+---
+
+### Content Mutation Mechanism
+
+To demonstrate incremental updates, the product list applies a deterministic shuffle to the first 10 items using a seeded algorithm.
+
+This:
+
+- Produces modified content per revalidation window
+- Avoids non-deterministic `Math.random()`
+- Ensures consistent output within the cache window
+
+A console log is emitted to demonstrate regeneration events.
+
+---
+
+### Partial Pre-Rendering (PPR)
+
+Next.js Partial Pre-Rendering is leveraged to:
+
+- Deliver static shells instantly
+- Stream dynamic content when necessary
+- Improve performance without sacrificing dynamic behavior
+
+This allows hybrid rendering behavior across routes.
+
+## Authentication & SEO Handling
+
+A simple cookie-based authentication mechanism is implemented.
+
+Authentication state is resolved on the server using `cookies()` to ensure:
+
+- No client-side hydration flicker
+- Proper SEO behavior
+- Correct content gating
+
+### Logged-out State
+
+- `/[market]/products` remains publicly accessible
+- `/[market]/product/[slug]` shows limited product information
+- Extended product details are hidden
+
+### Logged-in State
+
+When authenticated:
+
+- Extended product details are rendered server-side
+- Additional product metadata and reviews become visible
+
+This ensures public content remains crawlable while sensitive information is server-gated.
+
+## Testing Strategy
+
+The project includes both unit and integration tests to demonstrate testing approach and architectural validation.
+
+### Unit Tests
+
+Unit tests focus on shared components and utility logic inside `@repo/ui` and `@repo/utils`.
+
+Examples include:
+
+- `ProductCard` layout rendering (vertical vs horizontal)
+- Conditional rendering (tags, thumbnails, title placement)
+- `ProductGallery` behavior
+- `ProductReviews` rendering logic
+- Utility functions (`isLocale`, `isNumericId`, `shuffleFirstN`, etc..)
+- Header active link logic
+
+These tests validate core functionality and configuration-driven behavior.
+
+---
+
+### Brand-Specific Rendering Tests
+
+Integration-style tests verify that:
+
+- ProjectA renders `ProductCard` in vertical layout
+- ProjectB renders `ProductCard` in horizontal layout
+- Brand configuration is correctly applied
+
+This ensures that shared components adapt properly per brand.
+
+---
+
+### Authentication Flow Tests
+
+Tests cover:
+
+- Logged-in vs logged-out rendering
+- Conditional visibility of extended product details
+- Header behavior based on authentication state
+
+The goal is not full coverage, but to demonstrate architectural correctness and critical flow validation.
+
+## How to Run the Project
+
+### Prerequisites
+
+- Node.js ≥ 18
+- npm ≥ 9
+
+---
+
+### Install Dependencies
+
+From the repository root:
+
+```bash
+npm install
 ```
-cd my-turborepo
 
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
+### Run Both Applications (Monorepo)
 
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+```bash
+npm run dev
 ```
 
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+### Run Specific Application (Monorepo)
 
-```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
+```bash
+npm run dev:a
+npm run dev:b
 ```
 
-### Develop
+This starts:
 
-To develop all apps and packages, run the following command:
+- **ProjectA**
+- **ProjectB**
 
-```
-cd my-turborepo
+Each application runs independently and supports:
 
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
+- `/en`
+- `/ca`
 
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
+### Build the Applications (Monorepo)
 
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
+```bash
+npm run build
 ```
 
-### Remote Caching
+### Build specific Application (Monorepo)
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
+```bash
+npm run build:a
+npm run build:b
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+### Run Tests
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
+```bash
+npm run test
 ```
 
-## Useful Links
+### Watch mode:
 
-Learn more about the power of Turborepo:
+```bash
+npm run test:watch
+```
 
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+### Testing Caching & ISR Behavior
+
+To properly observe caching, ISR, and Partial Pre-Rendering behavior, the project must be run in production mode.
+
+Development mode (`next dev`) bypasses several caching mechanisms — this is expected behavior in Next.js.
+
+```bash
+npm run build
+npm start
+```
+
+This ensures:
+
+- `cacheLife()` is respected
+- Revalidation intervals are applied
+- Deterministic product shuffling occurs once per revalidation window
+
+Cache durations are defined in the shared configuration layer.
+
+Available cache profiles:
+
+- `products30s` – Short interval for testing regeneration
+- `products5m` – 5-minute revalidation (default for product lists)
+- `product5m` – 5-minute revalidation for product details
+- Cache entries expire after 1 hour (expire) and won’t be served beyond that window
+
+These values can be adjusted centrally without modifying route logic.
+
+**Note on regeneration behavior (stale-while-revalidate):**  
+When `stale > 0`, the first request after a `revalidate` window may be served from the previous cached result while regeneration happens in the background. A subsequent request will receive the freshly regenerated content. This is expected behavior and keeps responses fast.
+
+### Lint & Type Check
+
+```bash
+npm run lint
+npm run check-types
+```
+
+## Architecture Decisions & Trade-offs
+
+### Configuration-Driven UI vs Component Duplication
+
+A configuration-driven approach was chosen over creating brand-specific components.
+
+This avoids:
+
+- Component duplication (`ProductCardA`, `ProductCardB`)
+- Application-level branching
+- Diverging implementations per brand
+
+Trade-off:
+Component props are slightly more complex, but scalability and maintainability are significantly improved.
+
+---
+
+### Server-First Rendering Strategy
+
+Server Components are used by default to:
+
+- Minimize client JavaScript
+- Improve SEO
+- Avoid hydration inconsistencies
+
+Client Components are introduced only where necessary (navigation hooks, interactivity).
+
+Trade-off:
+Requires clear separation between server and client concerns.
+
+---
+
+### Controlled Content Mutation with ISR
+
+The products page uses incremental revalidation with deterministic shuffling.
+
+This ensures:
+
+- Predictable regeneration
+- Stable cache windows
+- SEO-friendly static output
+
+Trade-off:
+True real-time updates are not implemented in this demo.
+
+---
+
+### Authentication Scope
+
+Routes are not fully protected in this demo.
+
+Only extended product details are gated via HttpOnly session cookies.
+
+If write operations (cart, checkout, reviews) were introduced, session validation and authorization would be enforced inside Server Actions.
+
+Trade-off:
+This keeps the demo focused on rendering and architecture rather than full auth infrastructure.
+
+---
+
+### Monorepo Scalability
+
+Turborepo enables:
+
+- Shared packages
+- Independent app builds
+- Clean separation between brand and shared layers
+
+This structure supports horizontal scaling to additional brands with minimal duplication.

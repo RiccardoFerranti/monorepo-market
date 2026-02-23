@@ -29,7 +29,7 @@ export async function getProductsCached(): Promise<{
   const data: { products: IProductRecord[] } = await res.json();
 
   /**
-   * We generate the timestamp INSIDE the cached function
+   * The timestamp is generated inside the cached function
    * so that:
    *
    * - products, seed and generatedAt are frozen together for the entire cache window (5 minutes).
