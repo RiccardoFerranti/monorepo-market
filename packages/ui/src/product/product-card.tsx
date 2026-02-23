@@ -136,8 +136,6 @@ export function ProductCard({
               className={clsx(
                 "h-10 w-10 rounded-lg bg-muted/85 overflow-hidden",
                 "ring-1 ring-border/70",
-                "transition-transform duration-200",
-                "hover:ring-border hover:bg-muted",
               )}
             >
               <Image
@@ -177,8 +175,6 @@ export function ProductCard({
               className={clsx(
                 "h-10 w-10 rounded-lg bg-muted/85 overflow-hidden",
                 "ring-1 ring-border/70",
-                "transition-transform duration-200",
-                "hover:ring-border hover:bg-muted",
               )}
             >
               <img

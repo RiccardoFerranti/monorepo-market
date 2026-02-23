@@ -39,14 +39,18 @@ Each application:
 
 ### Brand Configuration Strategy
 
-Brand customization is handled through configuration objects defined in `@repo/constants`.
+Brand customization is handled through strongly typed configuration objects defined in `@repo/constants`.
 
-Each brand defines:
+Each brand provides a declarative configuration layer that controls:
 
-- Layout configuration (e.g., vertical vs horizontal ProductCard)
-- Style differences
-- Component behavior differences
-- Feature toggles
+- Layout structure (e.g., vertical vs horizontal `ProductCard`)
+- Visual and alignment differences
+- Component behavior variations
+- Feature toggles (e.g., reviews visibility, tag display, gallery thumbnail count)
+
+This configuration layer effectively acts as a lightweight feature-flag system, enabling per-brand customization without introducing conditional branching inside applications.
+
+All shared components remain generic and consume only typed configuration, ensuring scalability, strict DRY adherence, and predictable behavior across brands.
 
 ## Shared Component Architecture
 
@@ -413,3 +417,19 @@ Turborepo enables:
 - Clean separation between brand and shared layers
 
 This structure supports horizontal scaling to additional brands with minimal duplication.
+
+## Potential Improvements (Production Considerations)
+
+In a real production environment, the following enhancements would be introduced:
+
+- **Internationalization (i18n)**  
+  Integration with a dedicated translation layer (e.g., `next-intl`) to support scalable multilingual content instead of static market-based strings.
+
+- **Pagination / Infinite Scroll**  
+  Server-driven pagination for large product datasets to improve performance, memory usage, and scalability.
+
+- **Robust Authentication**  
+  Token-based authentication with proper session validation and authorization checks for protected mutations (cart, checkout, reviews).
+
+- **Stronger Validation**  
+  Schema-based validation (e.g., Zod) for form inputs and API boundaries to ensure runtime safety alongside TypeScript typing.
