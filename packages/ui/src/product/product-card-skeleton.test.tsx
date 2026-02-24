@@ -1,13 +1,12 @@
 import { render } from "@testing-library/react";
+
 import { ProductCardSkeleton } from "./product-card-skeleton";
 import { makeProductCardConfig } from "../test-utils/make-config";
 
 describe("ProductCardSkeleton", () => {
   it("should render vertical layout by default", () => {
     const { container } = render(
-      <ProductCardSkeleton
-        config={makeProductCardConfig({ layout: "vertical" })}
-      />,
+      <ProductCardSkeleton config={makeProductCardConfig({ layout: "vertical" })} />,
     );
 
     const root = container.firstElementChild as HTMLElement | null;
@@ -18,9 +17,7 @@ describe("ProductCardSkeleton", () => {
 
   it("should render horizontal layout when config.layout is horizontal", () => {
     const { container } = render(
-      <ProductCardSkeleton
-        config={makeProductCardConfig({ layout: "horizontal" })}
-      />,
+      <ProductCardSkeleton config={makeProductCardConfig({ layout: "horizontal" })} />,
     );
 
     const root = container.firstElementChild as HTMLElement | null;
@@ -31,9 +28,7 @@ describe("ProductCardSkeleton", () => {
 
   it("should render the correct number of thumbnail skeleton blocks (vertical)", () => {
     const { container } = render(
-      <ProductCardSkeleton
-        config={makeProductCardConfig({ layout: "vertical", thumbnails: 2 })}
-      />,
+      <ProductCardSkeleton config={makeProductCardConfig({ layout: "vertical", thumbnails: 2 })} />,
     );
 
     // In vertical: thumbs use h-12 w-12
@@ -43,9 +38,7 @@ describe("ProductCardSkeleton", () => {
 
   it("should not render thumbnail skeleton blocks when thumbnails is 0 (vertical)", () => {
     const { container } = render(
-      <ProductCardSkeleton
-        config={makeProductCardConfig({ layout: "vertical", thumbnails: 0 })}
-      />,
+      <ProductCardSkeleton config={makeProductCardConfig({ layout: "vertical", thumbnails: 0 })} />,
     );
 
     const thumbs = container.querySelectorAll(".h-12.w-12");
@@ -66,9 +59,7 @@ describe("ProductCardSkeleton", () => {
 
   it("should render tags skeleton when showCategories is true", () => {
     const { container } = render(
-      <ProductCardSkeleton
-        config={makeProductCardConfig({ showCategories: true })}
-      />,
+      <ProductCardSkeleton config={makeProductCardConfig({ showCategories: true })} />,
     );
 
     // Tags block uses rounded-full blocks with h-5
@@ -78,9 +69,7 @@ describe("ProductCardSkeleton", () => {
 
   it("should not render tags skeleton when showCategories is false", () => {
     const { container } = render(
-      <ProductCardSkeleton
-        config={makeProductCardConfig({ showCategories: false })}
-      />,
+      <ProductCardSkeleton config={makeProductCardConfig({ showCategories: false })} />,
     );
 
     const tagPills = container.querySelectorAll(".h-5.rounded-full");

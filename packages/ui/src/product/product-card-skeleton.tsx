@@ -1,16 +1,14 @@
 import clsx from "clsx";
 
 import type { IProductCardConfig } from "@repo/types";
+
 import { SkeletonBlock, SkeletonCard } from "../skeleton-card";
 
 type TProductCardSkeletonProps = {
   config: IProductCardConfig;
   className?: string;
 };
-export function ProductCardSkeleton({
-  config,
-  className,
-}: TProductCardSkeletonProps) {
+export function ProductCardSkeleton({ config, className }: TProductCardSkeletonProps) {
   const isVertical = config.layout === "vertical";
   const showThumbs = config.thumbnails > 0;
   const showTags = config.showCategories;
@@ -39,7 +37,7 @@ export function ProductCardSkeleton({
   );
 
   const MediaHorizontal = (
-    <div className="h-full border-r border-border/40 p-3">
+    <div className="border-border/40 h-full border-r p-3">
       <SkeletonBlock className="h-32 w-full rounded-xl" />
       {showThumbs ? (
         <div className="mt-2 flex gap-2">
@@ -63,10 +61,7 @@ export function ProductCardSkeleton({
 
   return (
     <SkeletonCard
-      className={clsx(
-        isVertical ? "flex flex-col" : "grid grid-cols-[140px_1fr]",
-        className,
-      )}
+      className={clsx(isVertical ? "flex flex-col" : "grid grid-cols-[140px_1fr]", className)}
     >
       {isVertical ? (
         <>
@@ -76,9 +71,7 @@ export function ProductCardSkeleton({
             {!titleOnTop ? <div className="mt-1">{Title}</div> : null}
             {Desc}
             {Tags}
-            <div className="mt-5 flex items-center justify-between">
-              {Price}
-            </div>
+            <div className="mt-5 flex items-center justify-between">{Price}</div>
           </div>
         </>
       ) : (
@@ -89,9 +82,7 @@ export function ProductCardSkeleton({
             {Desc}
             {Tags}
             <div className="mt-5">{!titleOnTop ? Title : null}</div>
-            <div className="mt-4 flex items-center justify-between">
-              {Price}
-            </div>
+            <div className="mt-4 flex items-center justify-between">{Price}</div>
           </div>
         </>
       )}

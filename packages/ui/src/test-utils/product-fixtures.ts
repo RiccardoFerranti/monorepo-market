@@ -1,8 +1,6 @@
 import type { IProductRecord, IProductRecordReview } from "@repo/types";
 
-export function makeReview(
-  overrides: Partial<IProductRecordReview> = {},
-): IProductRecordReview {
+export function makeReview(overrides: Partial<IProductRecordReview> = {}): IProductRecordReview {
   return {
     rating: 4.5,
     comment: "Great!",
@@ -13,9 +11,7 @@ export function makeReview(
   };
 }
 
-export function makeProduct(
-  overrides: Partial<IProductRecord> = {},
-): IProductRecord {
+export function makeProduct(overrides: Partial<IProductRecord> = {}): IProductRecord {
   const base: IProductRecord = {
     id: 1,
     title: "Test Product",

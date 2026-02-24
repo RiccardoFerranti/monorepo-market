@@ -1,5 +1,6 @@
-import { Button, TVariant } from "@repo/ui";
 import { useFormStatus } from "react-dom";
+
+import { Button, type TVariant } from "@repo/ui";
 
 type TSubmitButtonProps = {
   label: string;
@@ -7,19 +8,10 @@ type TSubmitButtonProps = {
   variant: TVariant;
 };
 
-export function SubmitButton({
-  label,
-  className,
-  variant,
-}: TSubmitButtonProps) {
+export function SubmitButton({ label, className, variant }: TSubmitButtonProps) {
   const { pending } = useFormStatus();
   return (
-    <Button
-      type="submit"
-      disabled={pending}
-      className={className}
-      variant={variant}
-    >
+    <Button type="submit" disabled={pending} className={className} variant={variant}>
       {pending ? "…" : label}
     </Button>
   );

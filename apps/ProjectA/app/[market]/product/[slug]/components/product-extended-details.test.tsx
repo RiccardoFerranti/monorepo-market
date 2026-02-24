@@ -1,7 +1,9 @@
 import { render, screen } from "@testing-library/react";
-import ProductExtendedDetails from "./product-extended-details";
+
 import type { IProductPageConfig } from "@repo/types";
 import { makeProduct, makeReview } from "@repo/ui";
+
+import ProductExtendedDetails from "./product-extended-details";
 
 describe("ProductExtendedDetails", () => {
   const pageConfig: IProductPageConfig = {
@@ -22,9 +24,7 @@ describe("ProductExtendedDetails", () => {
       minimumOrderQuantity: 2,
     });
 
-    render(
-      <ProductExtendedDetails product={product} pageConfig={pageConfig} />,
-    );
+    render(<ProductExtendedDetails product={product} pageConfig={pageConfig} />);
 
     expect(screen.getByText("SKU")).toBeInTheDocument();
     expect(screen.getByText("SKU-123")).toBeInTheDocument();
@@ -47,9 +47,7 @@ describe("ProductExtendedDetails", () => {
       reviews: [makeReview({ reviewerName: "Alice", rating: 4.2 })],
     });
 
-    render(
-      <ProductExtendedDetails product={product} pageConfig={pageConfig} />,
-    );
+    render(<ProductExtendedDetails product={product} pageConfig={pageConfig} />);
 
     expect(screen.getByText("Reviews")).toBeInTheDocument();
     expect(screen.getByText("Alice")).toBeInTheDocument();

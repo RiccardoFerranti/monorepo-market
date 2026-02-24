@@ -1,6 +1,7 @@
 "use client";
 
 import type { InputHTMLAttributes } from "react";
+
 import clsx from "clsx";
 
 export type TInputProps = InputHTMLAttributes<HTMLInputElement> & {
@@ -12,8 +13,8 @@ export function Input({ className, id, ...props }: TInputProps) {
     <input
       id={id}
       className={clsx(
-        "mt-1 w-full rounded-xl border border-border bg-background/40 px-3 py-2 text-sm",
-        "outline-none focus:ring-2 focus:ring-ring",
+        "border-border bg-background/40 mt-1 w-full rounded-xl border px-3 py-2 text-sm",
+        "focus:ring-ring outline-none focus:ring-2",
         className,
       )}
       {...props}

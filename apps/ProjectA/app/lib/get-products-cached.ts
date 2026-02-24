@@ -1,6 +1,7 @@
-import { PRODUCTS_REVALIDATE_MS } from "@repo/constants";
-import { IProductRecord } from "@repo/types";
 import { cacheLife } from "next/cache";
+
+import { PRODUCTS_REVALIDATE_MS } from "@repo/constants";
+import type { IProductRecord } from "@repo/types";
 
 /**
  * Fetches products from the external API and generates a deterministic seed for shuffling based on cache lifetime.
@@ -38,7 +39,7 @@ export async function getProductsCached(): Promise<{
    * This guarantees deterministic output per cache window.
    */
   const now = Date.now();
-  
+
   return {
     products: data.products,
     seed: Math.floor(now / PRODUCTS_REVALIDATE_MS),

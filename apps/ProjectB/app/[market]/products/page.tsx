@@ -1,11 +1,16 @@
 import { Suspense } from "react";
+
 import { notFound } from "next/navigation";
-import type { TLocale } from "@repo/types";
+
 import { BRANDS, LOCALES, MARKETS } from "@repo/constants";
-import { BRAND } from "@/consts/brand";
+import type { TLocale } from "@repo/types";
 import { isLocale } from "@repo/utils";
-import { ProductsGridFallback } from "./components/products-grid-fallback";
+
+import { BRAND } from "@/consts/brand";
+
 import ProductsGrid from "./components/products-grid";
+import { ProductsGridFallback } from "./components/products-grid-fallback";
+
 
 type TProductsPageProps = {
   params: Promise<{ market: TLocale }>;
@@ -27,9 +32,7 @@ export default async function ProductsPage({ params }: TProductsPageProps) {
       {/* Header */}
       <div className="mb-6 flex items-end justify-between">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight">
-            {productsPage.title}
-          </h1>
+          <h1 className="text-2xl font-semibold tracking-tight">{productsPage.title}</h1>
         </div>
       </div>
 

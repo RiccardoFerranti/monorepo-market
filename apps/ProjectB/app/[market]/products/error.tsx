@@ -14,13 +14,13 @@ export default function Error({ error, reset }: TErrorProps) {
         <Card.Content className="text-center">
           <h2 className="text-lg font-semibold">Failed to load products</h2>
 
-          <p className="mt-2 text-sm text-card-foreground/70">
+          <p className="text-card-foreground/70 mt-2 text-sm">
             {error.message || "Something went wrong while fetching products"}
           </p>
 
           <Button
             onClick={reset}
-            className="mt-6 rounded-lg bg-primary px-4 py-2 text-sm text-primary-foreground hover:opacity-90"
+            className="bg-primary text-primary-foreground mt-6 rounded-lg px-4 py-2 text-sm hover:opacity-90"
           >
             Try again
           </Button>

@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "lint": "eslint src --max-warnings 0",
+    "lint:fix": "eslint . --fix",
     "check-types": "tsc --noEmit",
     "test": "jest",
     "test:watch": "jest --watch"

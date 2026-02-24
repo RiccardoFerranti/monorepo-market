@@ -1,6 +1,7 @@
-import { PRODUCTS_REVALIDATE_MS } from "@repo/constants";
-import { IProductRecord } from "@repo/types";
 import { cacheLife } from "next/cache";
+
+import { PRODUCTS_REVALIDATE_MS } from "@repo/constants";
+import type { IProductRecord } from "@repo/types";
 
 /**
  * Fetches products from the external API and generates a deterministic seed for shuffling based on cache lifetime.

@@ -1,11 +1,15 @@
 import { Suspense } from "react";
-import { notFound, redirect } from "next/navigation";
+
 import { cookies } from "next/headers";
+import { notFound, redirect } from "next/navigation";
+
 import { AUTH_COOKIE, paths } from "@repo/constants";
-import { isLocale } from "@repo/utils";
 import type { TLocale } from "@repo/types";
-import LoginForm from "./components/login-form";
+import { isLocale } from "@repo/utils";
+
+
 import { LoginFallback } from "./components/login-fallback";
+import LoginForm from "./components/login-form";
 
 type TLoginPageProps = {
   params: Promise<{ market: TLocale }>;
@@ -36,7 +40,7 @@ async function LoginInner({ params, searchParams }: TLoginPageProps) {
   return (
     <div className="mx-auto max-w-md px-6 py-10">
       <h1 className="text-2xl font-semibold tracking-tight">Login</h1>
-      <p className="mt-2 text-sm text-foreground/70">
+      <p className="text-foreground/70 mt-2 text-sm">
         Use <b>emilys</b> / <b>emilyspass</b>
       </p>
 

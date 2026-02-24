@@ -1,10 +1,13 @@
 import { Suspense } from "react";
-import { LOCALES, MARKETS, BRANDS, paths } from "@repo/constants";
-import { isLocale } from "@repo/utils";
+
 import { notFound } from "next/navigation";
-import { Footer, Header, THeaderLink, THeaderProps } from "@repo/ui";
-import { BRAND, TITLE } from "@/consts/brand";
+
+import { LOCALES, MARKETS, BRANDS, paths } from "@repo/constants";
+import { Footer, Header, type THeaderLink, type THeaderProps } from "@repo/ui";
+import { isLocale } from "@repo/utils";
+
 import HeaderAuth from "@/components/header-auth";
+import { BRAND, TITLE } from "@/consts/brand";
 
 /**
  * Pre-generates all supported market routes at build time.
@@ -22,10 +25,7 @@ type TMarketLayoutProps = {
   params: Promise<{ market: string }>;
 };
 
-export default async function MarketLayout({
-  children,
-  params,
-}: TMarketLayoutProps) {
+export default async function MarketLayout({ children, params }: TMarketLayoutProps) {
   const { market } = await params;
   if (!isLocale(market)) notFound();
 
@@ -50,7 +50,7 @@ export default async function MarketLayout({
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col">
       <Suspense fallback={<Header {...headerProps} />}>
         <HeaderAuth
           {...headerProps}
@@ -60,9 +60,7 @@ export default async function MarketLayout({
         />
       </Suspense>
 
-      <main className="flex-1 mx-auto max-w-6xl px-6 py-8 w-full">
-        {children}
-      </main>
+      <main className="mx-auto w-full max-w-6xl flex-1 px-6 py-8">{children}</main>
 
       <Footer align={brandConfig.footer.align}>
         {BRAND} • /{locale}

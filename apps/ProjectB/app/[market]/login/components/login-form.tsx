@@ -2,12 +2,16 @@
 
 import * as React from "react";
 import { useActionState } from "react";
-import { Card, Input } from "@repo/ui";
-import type { TLocale } from "@repo/types";
+
 import { MARKETS } from "@repo/constants";
-import { login } from "../actions";
-import { TLoginErrorKey } from "../types";
+import type { TLocale } from "@repo/types";
+import { Card, Input } from "@repo/ui";
+
 import { SubmitButton } from "@/components/submit-button";
+
+import { login } from "../actions";
+import type { TLoginErrorKey } from "../types";
+
 
 type TLoginState = { ok: true } | { ok: false; messageKey: TLoginErrorKey };
 
@@ -19,16 +23,11 @@ type TLoginFormProps = {
 export default function LoginForm({ market }: TLoginFormProps) {
   const loginPage = MARKETS[market].pages.login;
 
-  const loginWithLocale = (prev: TLoginState | null, fd: FormData) =>
-    login(market, prev, fd);
+  const loginWithLocale = (prev: TLoginState | null, fd: FormData) => login(market, prev, fd);
 
-  const [state, formAction] = useActionState<TLoginState | null, FormData>(
-    loginWithLocale,
-    null,
-  );
+  const [state, formAction] = useActionState<TLoginState | null, FormData>(loginWithLocale, null);
 
-  const errorText =
-    state && state.ok === false ? loginPage.errors[state.messageKey] : null;
+  const errorText = state && state.ok === false ? loginPage.errors[state.messageKey] : null;
 
   return (
     <Card variant="soft">
@@ -64,15 +63,9 @@ export default function LoginForm({ market }: TLoginFormProps) {
             />
           </div>
 
-          {errorText ? (
-            <p className="text-sm text-destructive">{errorText}</p>
-          ) : null}
+          {errorText ? <p className="text-destructive text-sm">{errorText}</p> : null}
 
-          <SubmitButton
-            label={loginPage.submit}
-            className="w-full"
-            variant="primary"
-          />
+          <SubmitButton label={loginPage.submit} className="w-full" variant="primary" />
         </form>
       </Card.Content>
     </Card>

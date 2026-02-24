@@ -1,6 +1,7 @@
 "use client";
 
 import { useSelectedLayoutSegments } from "next/navigation";
+
 import { Header, type THeaderLink } from "@repo/ui";
 
 function activeKeyFromSegments(segments: string[]): THeaderLink["key"] {
@@ -11,9 +12,7 @@ function activeKeyFromSegments(segments: string[]): THeaderLink["key"] {
   return "home";
 }
 
-export function HeaderWithActive(
-  props: Omit<React.ComponentProps<typeof Header>, "activeKey">,
-) {
+export function HeaderWithActive(props: Omit<React.ComponentProps<typeof Header>, "activeKey">) {
   const segments = useSelectedLayoutSegments() as string[];
   const activeKey = activeKeyFromSegments(segments);
   return <Header {...props} activeKey={activeKey} />;

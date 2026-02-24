@@ -1,8 +1,11 @@
-import type { TLocale } from "@repo/types";
 import { paths } from "@repo/constants";
+import type { TLocale } from "@repo/types";
 import type { THeaderLink, THeaderProps } from "@repo/ui/header";
-import { isLoggedIn } from "@/utils/is-logged-in";
+
+
 import LogoutButton from "@/app/[market]/logout/components/logout-button";
+import { isLoggedIn } from "@/utils/is-logged-in";
+
 import { HeaderWithActive } from "./header-with-active";
 
 type THeaderAuthProps = Omit<THeaderProps, "activeKey"> & {

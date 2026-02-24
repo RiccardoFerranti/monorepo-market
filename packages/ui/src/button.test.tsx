@@ -1,13 +1,12 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+
 import { Button } from "./button";
 
 describe("Button", () => {
   it("should render children", () => {
     render(<Button>Click me</Button>);
-    expect(
-      screen.getByRole("button", { name: "Click me" }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Click me" })).toBeInTheDocument();
   });
 
   it("should default to primary variant styles", () => {

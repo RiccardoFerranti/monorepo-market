@@ -1,4 +1,4 @@
-export * from "./brands"
+export * from "./brands";
 export * from "./locales";
 export * from "./paths";
 export * from "./routes";

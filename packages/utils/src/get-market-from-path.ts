@@ -1,4 +1,4 @@
-import { TLocale } from "@repo/types";
+import type { TLocale } from "@repo/types";
 
 /**
  * Determines the market locale from the given pathname.

@@ -1,22 +1,15 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+
 import { ProductGallery } from "./product-gallery";
 
 describe("ProductGallery", () => {
   it("should render primary image when thumbs is empty", () => {
-    render(
-      <ProductGallery
-        title="My product"
-        primary="https://example.com/p.png"
-        thumbs={[]}
-      />,
-    );
+    render(<ProductGallery title="My product" primary="https://example.com/p.png" thumbs={[]} />);
 
     // active -> primary
     expect(screen.getByAltText("My product")).toBeInTheDocument();
     // no thumbs row
-    expect(
-      screen.queryByRole("button", { name: /Show image for/i }),
-    ).toBeNull();
+    expect(screen.queryByRole("button", { name: /Show image for/i })).toBeNull();
   });
 
   it("should default active image to first thumb when provided", () => {
@@ -29,9 +22,7 @@ describe("ProductGallery", () => {
     );
 
     const main = screen.getByAltText("My product") as HTMLImageElement;
-    expect(main.getAttribute("src")).toContain(
-      encodeURIComponent("https://example.com/t1.png"),
-    );
+    expect(main.getAttribute("src")).toContain(encodeURIComponent("https://example.com/t1.png"));
   });
 
   it("should change active image when clicking a thumbnail", () => {
@@ -49,9 +40,7 @@ describe("ProductGallery", () => {
     fireEvent.click(buttons[1]!);
 
     const main = screen.getByAltText("My product") as HTMLImageElement;
-    expect(main.getAttribute("src")).toContain(
-      encodeURIComponent("https://example.com/t2.png"),
-    );
+    expect(main.getAttribute("src")).toContain(encodeURIComponent("https://example.com/t2.png"));
   });
 
   it("should set aria-pressed true on active thumbnail", () => {

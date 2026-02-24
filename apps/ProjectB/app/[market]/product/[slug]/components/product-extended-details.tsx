@@ -1,4 +1,4 @@
-import { IProductPageConfig, IProductRecord } from "@repo/types";
+import type { IProductPageConfig, IProductRecord } from "@repo/types";
 import { ProductReviews, ProductStat } from "@repo/ui";
 
 type TProductExtendedDetailsProps = {
@@ -10,8 +10,7 @@ export default function ProductExtendedDetails({
   product,
   pageConfig,
 }: TProductExtendedDetailsProps) {
-  const showReviews =
-    pageConfig.showReviews && (product.reviews?.length ?? 0) > 0;
+  const showReviews = pageConfig.showReviews && (product.reviews?.length ?? 0) > 0;
 
   return (
     <>
@@ -21,9 +20,7 @@ export default function ProductExtendedDetails({
 
         <ProductStat
           label="Weight"
-          value={
-            typeof product.weight === "number" ? `${product.weight} kg` : "—"
-          }
+          value={typeof product.weight === "number" ? `${product.weight} kg` : "—"}
         />
 
         <ProductStat
@@ -35,25 +32,13 @@ export default function ProductExtendedDetails({
           }
         />
 
-        <ProductStat
-          label="Availability"
-          value={product.availabilityStatus ?? "—"}
-        />
+        <ProductStat label="Availability" value={product.availabilityStatus ?? "—"} />
 
-        <ProductStat
-          label="Warranty"
-          value={product.warrantyInformation ?? "—"}
-        />
+        <ProductStat label="Warranty" value={product.warrantyInformation ?? "—"} />
 
-        <ProductStat
-          label="Shipping"
-          value={product.shippingInformation ?? "—"}
-        />
+        <ProductStat label="Shipping" value={product.shippingInformation ?? "—"} />
 
-        <ProductStat
-          label="Return policy"
-          value={product.returnPolicy ?? "—"}
-        />
+        <ProductStat label="Return policy" value={product.returnPolicy ?? "—"} />
 
         <ProductStat
           label="Min order qty"

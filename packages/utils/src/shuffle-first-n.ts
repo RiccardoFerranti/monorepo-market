@@ -13,11 +13,7 @@
  * - The remaining elements keep their original order.
  * - The original `items` array is NOT modified.
  */
-export function shuffleFirstN<T>(
-  items: readonly T[],
-  n = 10,
-  seed = 1,
-): T[] {
+export function shuffleFirstN<T>(items: readonly T[], n = 10, seed = 1): T[] {
   // Split into "head" (shuffled) and "tail" (kept as-is)
   const head = items.slice(0, n) as T[];
   const tail = items.slice(n) as T[];

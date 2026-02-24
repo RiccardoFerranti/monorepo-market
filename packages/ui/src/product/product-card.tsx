@@ -1,8 +1,14 @@
-import clsx from "clsx";
 import type { ReactNode } from "react";
-import type { IProductCardConfig, IProductRecord } from "@repo/types";
-import { Badge } from "../badge";
+
 import Image from "next/image";
+
+import clsx from "clsx";
+
+import type { IProductCardConfig, IProductRecord } from "@repo/types";
+
+
+import { Badge } from "../badge";
+
 
 type TProductCardProps = {
   config: IProductCardConfig;
@@ -12,8 +18,7 @@ type TProductCardProps = {
 };
 
 const isTop = (p: IProductCardConfig["titlePlacement"]) => p.startsWith("top");
-const isRight = (p: IProductCardConfig["titlePlacement"]) =>
-  p.endsWith("right");
+const isRight = (p: IProductCardConfig["titlePlacement"]) => p.endsWith("right");
 
 function alignToText(align: IProductCardConfig["contentAlign"]) {
   if (align === "right") return "text-right";
@@ -33,12 +38,7 @@ function alignToJustify(align: IProductCardConfig["contentAlign"]) {
   return "justify-start";
 }
 
-export function ProductCard({
-  config,
-  product,
-  footerRight,
-  className,
-}: TProductCardProps) {
+export function ProductCard({ config, product, footerRight, className }: TProductCardProps) {
   const titleOnTop = isTop(config.titlePlacement);
   const titleAlignRight = isRight(config.titlePlacement);
 
@@ -65,7 +65,7 @@ export function ProductCard({
     <div className={clsx("flex w-full", titleRowJustify)}>
       <h3
         className={clsx(
-          "line-clamp-1 text-sm font-semibold tracking-tight text-card-foreground",
+          "text-card-foreground line-clamp-1 text-sm font-semibold tracking-tight",
           titleText,
         )}
       >
@@ -75,12 +75,7 @@ export function ProductCard({
   );
 
   const Description = (
-    <p
-      className={clsx(
-        "mt-1 line-clamp-2 text-sm text-card-foreground/70",
-        contentText,
-      )}
-    >
+    <p className={clsx("text-card-foreground/70 mt-1 line-clamp-2 text-sm", contentText)}>
       {product.description}
     </p>
   );
@@ -98,11 +93,9 @@ export function ProductCard({
   const Footer = (
     <div className="mt-2 flex w-full items-center">
       <div className="flex w-full items-center justify-between">
-        <span className="text-sm font-semibold text-card-foreground">
-          ${product.price}
-        </span>
+        <span className="text-card-foreground text-sm font-semibold">${product.price}</span>
         {footerRight ?? (
-          <span className="whitespace-nowrap text-xs text-card-foreground/60 opacity-0 transition-opacity group-hover:opacity-100">
+          <span className="text-card-foreground/60 text-xs whitespace-nowrap opacity-0 transition-opacity group-hover:opacity-100">
             View →
           </span>
         )}
@@ -114,7 +107,7 @@ export function ProductCard({
   const MediaVertical = (
     <div className="p-3">
       {primary ? (
-        <div className="relative h-44 w-full rounded-xl bg-muted/85">
+        <div className="bg-muted/85 relative h-44 w-full rounded-xl">
           <Image
             src={primary}
             alt={product.title}
@@ -134,8 +127,8 @@ export function ProductCard({
             <div
               key={src}
               className={clsx(
-                "h-10 w-10 rounded-lg bg-muted/85 overflow-hidden",
-                "ring-1 ring-border/70",
+                "bg-muted/85 h-10 w-10 overflow-hidden rounded-lg",
+                "ring-border/70 ring-1",
               )}
             >
               <Image
@@ -153,9 +146,9 @@ export function ProductCard({
   );
 
   const MediaHorizontal = (
-    <div className="h-full border-r border-border/40 p-3">
+    <div className="border-border/40 h-full border-r p-3">
       {primary ? (
-        <div className="h-32 rounded-xl bg-muted">
+        <div className="bg-muted h-32 rounded-xl">
           <img
             src={primary}
             alt={product.title}
@@ -173,8 +166,8 @@ export function ProductCard({
             <div
               key={src}
               className={clsx(
-                "h-10 w-10 rounded-lg bg-muted/85 overflow-hidden",
-                "ring-1 ring-border/70",
+                "bg-muted/85 h-10 w-10 overflow-hidden rounded-lg",
+                "ring-border/70 ring-1",
               )}
             >
               <img
@@ -196,12 +189,12 @@ export function ProductCard({
     <article
       className={clsx(
         "group overflow-hidden rounded-2xl",
-        "border border-border/60",
-        "bg-card backdrop-blur supports-backdrop-filter:bg-card/55",
-        "shadow-sm shadow-black/20 ring-1 ring-white/5",
+        "border-border/60 border",
+        "bg-card supports-backdrop-filter:bg-card/55 backdrop-blur",
+        "shadow-sm ring-1 shadow-black/20 ring-white/5",
         "transition-all duration-200 ease-out",
-        "hover:-translate-y-1 hover:shadow-lg hover:shadow-black/30 hover:border-border hover:ring-1 hover:ring-white/20",
-        "cursor-pointer flex flex-col",
+        "hover:border-border hover:-translate-y-1 hover:shadow-lg hover:ring-1 hover:shadow-black/30 hover:ring-white/20",
+        "flex cursor-pointer flex-col",
         className,
       )}
     >
@@ -223,18 +216,18 @@ export function ProductCard({
     <article
       className={clsx(
         "group overflow-hidden rounded-2xl",
-        "border border-border/60",
-        "bg-card/70 backdrop-blur supports-backdrop-filter:bg-card/55",
-        "shadow-sm shadow-black/20 ring-1 ring-white/5",
+        "border-border/60 border",
+        "bg-card/70 supports-backdrop-filter:bg-card/55 backdrop-blur",
+        "shadow-sm ring-1 shadow-black/20 ring-white/5",
         "transition-all duration-200 ease-out",
-        "hover:-translate-y-1 hover:shadow-lg hover:shadow-black/30 hover:border-border hover:ring-1 hover:ring-white/20",
-        "cursor-pointer grid grid-cols-[140px_1fr]",
+        "hover:border-border hover:-translate-y-1 hover:shadow-lg hover:ring-1 hover:shadow-black/30 hover:ring-white/20",
+        "grid cursor-pointer grid-cols-[140px_1fr]",
         className,
       )}
     >
       {Media}
 
-      <div className={clsx("min-w-0 p-4 flex flex-col bg-card", contentItems)}>
+      <div className={clsx("bg-card flex min-w-0 flex-col p-4", contentItems)}>
         {titleOnTop ? (
           <>
             <div className="w-full">{Title}</div>
