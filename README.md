@@ -12,6 +12,18 @@ The primary goals of this implementation are:
 - Showcase a testing strategy (unit + integration)
 - Maintain strong type safety and modular structure
 
+## Visual Overview
+
+### ProjectA – Products Page
+
+![ProjectA Products](./docs/screenshots/project-a-products.png)
+
+### ProjectB – Products Page
+
+![ProjectB Products](./docs/screenshots/project-b-products.png)
+
+---
+
 ## Architecture Overview
 
 The project is structured as a Turborepo monorepo to enable shared logic, reusable components, and clear separation of concerns.
@@ -322,8 +334,23 @@ To properly observe caching, ISR, and Partial Pre-Rendering behavior, the projec
 
 Development mode (`next dev`) bypasses several caching mechanisms — this is expected behavior in Next.js.
 
+#### 1. Build from the repository root:
+
 ```bash
 npm run build
+```
+
+#### 2. Start a specific application in production mode:
+
+```bash
+cd apps/ProjectA
+npm start
+```
+
+or
+
+```bash
+cd apps/ProjectB
 npm start
 ```
 
