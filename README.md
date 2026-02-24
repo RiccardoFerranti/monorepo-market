@@ -252,8 +252,11 @@ The goal is not full coverage, but to demonstrate architectural correctness and 
 
 ### Prerequisites
 
+- **Node.js 22 LTS (recommended)** — used during development
 - Node.js ≥ 18
 - npm ≥ 9
+
+> Note: Using Node 23 may show `EBADENGINE` warnings from some dependencies (e.g. Jest / ESLint ecosystem). The project still runs, but Node 22 LTS is the smoothest setup.
 
 ---
 
