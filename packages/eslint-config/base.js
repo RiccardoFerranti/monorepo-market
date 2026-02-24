@@ -33,33 +33,20 @@ export const config = [
         {
           groups: ["builtin", "external", "internal", ["parent", "sibling", "index"]],
           pathGroups: [
-            {
-              pattern: "react",
-              group: "external",
-              position: "before",
-            },
-            {
-              pattern: "next/**",
-              group: "external",
-              position: "before",
-            },
-            {
-              pattern: "@repo/**",
-              group: "internal",
-              position: "before",
-            },
-            {
-              pattern: "@/**",
-              group: "internal",
-              position: "after",
-            },
+            { pattern: "react", group: "external", position: "before" },
+            { pattern: "next/**", group: "external", position: "before" },
+
+            // monorepo packages first
+            { pattern: "@repo/**", group: "internal", position: "before" },
+
+            // app alias after monorepo packages, but still internal
+            { pattern: "@/**", group: "internal", position: "after" },
           ],
-          pathGroupsExcludedImportTypes: ["react"],
+          // exclude whole groups, not package names
+          pathGroupsExcludedImportTypes: ["builtin"],
+
           "newlines-between": "always",
-          alphabetize: {
-            order: "asc",
-            caseInsensitive: true,
-          },
+          alphabetize: { order: "asc", caseInsensitive: true },
         },
       ],
     },
