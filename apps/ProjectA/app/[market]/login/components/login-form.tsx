@@ -40,6 +40,7 @@ export default function LoginForm({ market }: TLoginFormProps) {
               <Input
                 id="username"
                 name="username"
+                required
                 autoComplete="username"
                 minLength={3}
                 autoCapitalize="none"

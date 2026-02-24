@@ -187,6 +187,9 @@ Authentication state is resolved on the server using `cookies()` to ensure:
 - Proper SEO behavior
 - Correct content gating
 
+For simplicity, a refresh-token mechanism is not implemented in this demo.  
+In a production environment, access tokens would be short-lived and refreshed securely using a rotation strategy (e.g., rotating refresh tokens with server-side validation).
+
 ### Logged-out State
 
 - `/[market]/products` remains publicly accessible
@@ -432,4 +435,5 @@ In a real production environment, the following enhancements would be introduced
   Token-based authentication with proper session validation and authorization checks for protected mutations (cart, checkout, reviews).
 
 - **Stronger Validation**  
-  Schema-based validation (e.g., Zod) for form inputs and API boundaries to ensure runtime safety alongside TypeScript typing.
+  Schema-based validation (Zod) is applied at the server boundary for form inputs (login) to ensure runtime safety alongside TypeScript typing.  
+  In a production environment, external API responses would also be validated at the integration boundary.

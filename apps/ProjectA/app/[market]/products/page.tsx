@@ -16,8 +16,6 @@ export default async function ProductsPage({ params }: TProductsPageProps) {
 
   if (!isLocale(market)) notFound();
 
-  // await new Promise((r) => setTimeout(r, 3000));
-
   const config = BRANDS[BRAND].productCard;
 
   if (!LOCALES.includes(market as TLocale)) notFound();
