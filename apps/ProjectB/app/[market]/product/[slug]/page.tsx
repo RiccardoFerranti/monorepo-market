@@ -1,14 +1,19 @@
-import { notFound } from "next/navigation";
 import Link from "next/link";
+import { notFound } from "next/navigation";
+
 import clsx from "clsx";
-import type { IProductPageConfig, IProductRecord, TLocale } from "@repo/types";
+
 import { BRANDS, MARKETS, paths } from "@repo/constants";
+import type { IProductPageConfig, IProductRecord, TLocale } from "@repo/types";
 import { ProductGallery, ProductStat, Badge, Card } from "@repo/ui";
-import { BRAND } from "@/consts/brand";
 import { isLocale, isNumericId } from "@repo/utils";
-import { isLoggedIn } from "@/utils/is-logged-in";
+
 import { getProductCached } from "@/app/lib/get-product-cached";
+import { BRAND } from "@/consts/brand";
+import { isLoggedIn } from "@/utils/is-logged-in";
+
 import ProductExtendedDetails from "./components/product-extended-details";
+
 
 type TProductPageProps = {
   params: Promise<{ market: TLocale; slug: string }>;

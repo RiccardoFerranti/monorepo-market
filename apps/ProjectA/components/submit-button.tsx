@@ -1,5 +1,6 @@
-import { Button, type TVariant } from "@repo/ui";
 import { useFormStatus } from "react-dom";
+
+import { Button, type TVariant } from "@repo/ui";
 
 type TSubmitButtonProps = {
   label: string;

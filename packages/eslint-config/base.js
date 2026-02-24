@@ -2,7 +2,7 @@ import js from "@eslint/js";
 import eslintConfigPrettier from "eslint-config-prettier";
 import turboPlugin from "eslint-plugin-turbo";
 import tseslint from "typescript-eslint";
-import onlyWarn from "eslint-plugin-only-warn";
+import importPlugin from "eslint-plugin-import";
 
 /**
  * A shared ESLint configuration for the repository.
@@ -16,6 +16,7 @@ export const config = [
   {
     plugins: {
       turbo: turboPlugin,
+      import: importPlugin,
     },
     rules: {
       "@typescript-eslint/no-unused-vars": [
@@ -27,6 +28,40 @@ export const config = [
       ],
       "@typescript-eslint/consistent-type-imports": "error",
       "no-console": ["warn", { allow: ["warn", "error"] }],
+      "import/order": [
+        "error",
+        {
+          groups: ["builtin", "external", "internal", ["parent", "sibling", "index"]],
+          pathGroups: [
+            {
+              pattern: "react",
+              group: "external",
+              position: "before",
+            },
+            {
+              pattern: "next/**",
+              group: "external",
+              position: "before",
+            },
+            {
+              pattern: "@repo/**",
+              group: "internal",
+              position: "before",
+            },
+            {
+              pattern: "@/**",
+              group: "internal",
+              position: "after",
+            },
+          ],
+          pathGroupsExcludedImportTypes: ["react"],
+          "newlines-between": "always",
+          alphabetize: {
+            order: "asc",
+            caseInsensitive: true,
+          },
+        },
+      ],
     },
   },
   // allow console in tests

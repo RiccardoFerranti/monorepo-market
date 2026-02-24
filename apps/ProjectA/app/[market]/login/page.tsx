@@ -1,11 +1,15 @@
 import { Suspense } from "react";
-import { notFound, redirect } from "next/navigation";
+
 import { cookies } from "next/headers";
+import { notFound, redirect } from "next/navigation";
+
 import { AUTH_COOKIE, paths } from "@repo/constants";
-import { isLocale } from "@repo/utils";
 import type { TLocale } from "@repo/types";
-import LoginForm from "./components/login-form";
+import { isLocale } from "@repo/utils";
+
+
 import { LoginFallback } from "./components/login-fallback";
+import LoginForm from "./components/login-form";
 
 type TLoginPageProps = {
   params: Promise<{ market: TLocale }>;

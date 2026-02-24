@@ -1,6 +1,7 @@
 "use client";
 
 import { useSelectedLayoutSegments } from "next/navigation";
+
 import { Header, type THeaderLink } from "@repo/ui";
 
 function activeKeyFromSegments(segments: string[]): THeaderLink["key"] {

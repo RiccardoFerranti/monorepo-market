@@ -1,6 +1,8 @@
 import { render, screen } from "@testing-library/react";
-import { ProductReviews } from "./product-reviews";
+
 import type { IProductRecordReview } from "@repo/types";
+
+import { ProductReviews } from "./product-reviews";
 
 describe("ProductReviews", () => {
   const reviews: IProductRecordReview[] = [

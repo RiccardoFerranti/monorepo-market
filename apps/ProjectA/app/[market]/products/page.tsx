@@ -1,11 +1,17 @@
 import { Suspense } from "react";
-import type { TLocale } from "@repo/types";
-import { BRANDS, LOCALES, MARKETS } from "@repo/constants";
+
 import { notFound } from "next/navigation";
+
+import { BRANDS, LOCALES, MARKETS } from "@repo/constants";
+import type { TLocale } from "@repo/types";
 import { isLocale } from "@repo/utils";
+
+
 import { BRAND } from "@/consts/brand";
-import { ProductsGridFallback } from "./components/products-grid-fallback";
+
 import ProductsGrid from "./components/products-grid";
+import { ProductsGridFallback } from "./components/products-grid-fallback";
+
 
 type TProductsPageProps = {
   params: Promise<{ market: TLocale }>;

@@ -1,6 +1,7 @@
 import clsx from "clsx";
 
 import type { IProductCardConfig } from "@repo/types";
+
 import { SkeletonBlock, SkeletonCard } from "../skeleton-card";
 
 type TProductCardSkeletonProps = {

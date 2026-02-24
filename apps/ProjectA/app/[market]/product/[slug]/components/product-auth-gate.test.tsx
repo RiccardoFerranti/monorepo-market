@@ -1,7 +1,9 @@
 import { render, screen } from "@testing-library/react";
-import ProductExtendedDetails from "./product-extended-details";
+
 import type { IProductPageConfig } from "@repo/types";
 import { makeProduct } from "@repo/ui";
+
+import ProductExtendedDetails from "./product-extended-details";
 
 describe("Product auth gating (integration-ish)", () => {
   const pageConfig: IProductPageConfig = {

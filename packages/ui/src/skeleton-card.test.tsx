@@ -1,4 +1,5 @@
 import { render } from "@testing-library/react";
+
 import { SkeletonBlock, SkeletonCard } from "./skeleton-card";
 
 describe("Skeleton", () => {

@@ -1,7 +1,8 @@
 "use client";
 
-import clsx from "clsx";
 import type { ReactNode } from "react";
+
+import clsx from "clsx";
 
 type TFooterProps = {
   children?: ReactNode;

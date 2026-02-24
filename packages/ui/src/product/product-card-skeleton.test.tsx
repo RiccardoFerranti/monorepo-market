@@ -1,4 +1,5 @@
 import { render } from "@testing-library/react";
+
 import { ProductCardSkeleton } from "./product-card-skeleton";
 import { makeProductCardConfig } from "../test-utils/make-config";
 

@@ -1,6 +1,8 @@
 import { render, screen } from "@testing-library/react";
-import HeaderAuth from "./header-auth";
+
 import type { THeaderLink } from "@repo/ui/header";
+
+import HeaderAuth from "./header-auth";
 import { isLoggedIn } from "../utils/is-logged-in";
 
 jest.mock("next/navigation", () => ({

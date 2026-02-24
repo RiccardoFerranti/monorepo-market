@@ -1,7 +1,8 @@
 import { render, screen } from "@testing-library/react";
+
 import { ProductCard } from "./product-card";
-import { makeProduct } from "../test-utils/product-fixtures";
 import { makeProductCardConfig } from "../test-utils/make-config";
+import { makeProduct } from "../test-utils/product-fixtures";
 
 describe("ProductCard", () => {
   it("should render title, description, and price", () => {

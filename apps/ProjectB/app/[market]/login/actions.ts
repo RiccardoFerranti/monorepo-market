@@ -2,10 +2,12 @@
 
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+
 import { AUTH_COOKIE, AUTH_COOKIE_MAX_AGE_SEC, paths } from "@repo/constants";
 import type { TLocale } from "@repo/types";
-import type { TLoginErrorKey } from "./types";
+
 import { LoginSchema } from "./login-validation-schema";
+import type { TLoginErrorKey } from "./types";
 
 type TLoginState = { ok: true } | { ok: false; messageKey: TLoginErrorKey };
 

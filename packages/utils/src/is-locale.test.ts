@@ -1,5 +1,6 @@
-import { isLocale } from "./is-locale";
 import { LOCALES } from "@repo/constants";
+
+import { isLocale } from "./is-locale";
 
 describe("isLocale", () => {
   it("should return true for all valid locales", () => {

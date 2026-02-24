@@ -1,8 +1,14 @@
-import clsx from "clsx";
 import type { ReactNode } from "react";
-import type { IProductCardConfig, IProductRecord } from "@repo/types";
-import { Badge } from "../badge";
+
 import Image from "next/image";
+
+import clsx from "clsx";
+
+import type { IProductCardConfig, IProductRecord } from "@repo/types";
+
+
+import { Badge } from "../badge";
+
 
 type TProductCardProps = {
   config: IProductCardConfig;

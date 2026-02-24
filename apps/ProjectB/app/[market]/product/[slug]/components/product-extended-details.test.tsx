@@ -1,7 +1,9 @@
 import { render, screen } from "@testing-library/react";
-import ProductExtendedDetails from "./product-extended-details";
+
 import type { IProductPageConfig } from "@repo/types";
 import { makeProduct, makeReview } from "@repo/ui";
+
+import ProductExtendedDetails from "./product-extended-details";
 
 describe("ProductExtendedDetails", () => {
   const pageConfig: IProductPageConfig = {

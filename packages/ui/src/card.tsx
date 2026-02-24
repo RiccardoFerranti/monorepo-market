@@ -1,5 +1,6 @@
-import clsx from "clsx";
 import type { ReactNode, ReactElement } from "react";
+
+import clsx from "clsx";
 
 type TCardProps = {
   children: ReactNode;

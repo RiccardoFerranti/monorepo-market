@@ -1,5 +1,6 @@
-import { useFormStatus } from "react-dom";
 import { render, screen } from "@testing-library/react";
+import { useFormStatus } from "react-dom";
+
 import { SubmitButton } from "./submit-button";
 
 // Mock react-dom useFormStatus

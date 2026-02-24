@@ -1,6 +1,8 @@
 import { render, screen } from "@testing-library/react";
+
 import { BRANDS } from "@repo/constants";
 import { ProductCard, makeProduct } from "@repo/ui";
+
 import { BRAND } from "@/consts/brand";
 
 describe("Brand layout - ProjectB", () => {

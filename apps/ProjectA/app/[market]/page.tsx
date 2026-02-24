@@ -1,9 +1,11 @@
 import Link from "next/link";
-import { MARKETS, paths } from "@repo/constants";
-import { Card } from "@repo/ui";
 import { notFound } from "next/navigation";
-import { isLocale } from "@repo/utils";
+
+import { MARKETS, paths } from "@repo/constants";
 import type { TLocale } from "@repo/types";
+import { Card } from "@repo/ui";
+import { isLocale } from "@repo/utils";
+
 import { TITLE } from "@/consts/brand";
 
 type TWelcomePageProps = {

@@ -1,10 +1,13 @@
 import Link from "next/link";
-import { MARKETS, paths } from "@repo/constants";
-import { Card } from "@repo/ui";
 import { notFound } from "next/navigation";
-import { TITLE } from "@/consts/brand";
+
+import { MARKETS, paths } from "@repo/constants";
 import type { TLocale } from "@repo/types";
+import { Card } from "@repo/ui";
 import { isLocale } from "@repo/utils";
+
+import { TITLE } from "@/consts/brand";
+
 
 type TWelcomePageProps = {
   params: Promise<{ market: TLocale }>;

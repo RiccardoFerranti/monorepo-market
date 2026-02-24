@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
 import { MARKETS, paths } from "@repo/constants";
 import { Button } from "@repo/ui";
 import { getMarketFromPath } from "@repo/utils";

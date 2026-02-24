@@ -1,7 +1,10 @@
 import { BRANDS } from "@repo/constants";
 import { SkeletonBlock } from "@repo/ui";
+
 import { BRAND } from "@/consts/brand";
+
 import ProductsGridSkeleton from "./components/products-grid-skeleton";
+
 
 export default function Loading() {
   const config = BRANDS[BRAND].productCard;

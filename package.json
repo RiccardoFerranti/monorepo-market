@@ -9,6 +9,7 @@
     "dev:a": "turbo run dev --filter=project-a",
     "dev:b": "turbo run dev --filter=project-b",
     "lint": "turbo run lint",
+    "lint:fix": "turbo run lint -- --fix",
     "lint:a": "turbo run lint --filter=project-a",
     "lint:b": "turbo run lint --filter=project-b",
     "check-types": "turbo run check-types",
