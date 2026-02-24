@@ -49,7 +49,7 @@ export default async function ProductPage({ params }: TProductPageProps) {
       <div className="mb-6">
         <Link
           href={paths.products(market)}
-          className="text-sm text-foreground/70 hover:text-foreground"
+          className="text-foreground/70 hover:text-foreground text-sm"
         >
           ← {productPage.backToProducts}
         </Link>
@@ -64,11 +64,7 @@ export default async function ProductPage({ params }: TProductPageProps) {
         {/* GALLERY */}
         <Card className={clsx(imageRight && "lg:order-2")} variant="soft">
           <Card.Content>
-            <ProductGallery
-              title={product.title}
-              primary={primary}
-              thumbs={thumbs}
-            />
+            <ProductGallery title={product.title} primary={primary} thumbs={thumbs} />
           </Card.Content>
         </Card>
         {/* DETAILS */}
@@ -76,21 +72,17 @@ export default async function ProductPage({ params }: TProductPageProps) {
           <Card.Content>
             <div className="flex items-start justify-between gap-4">
               <div className="min-w-0">
-                <h1 className="text-2xl font-semibold tracking-tight text-card-foreground">
+                <h1 className="text-card-foreground text-2xl font-semibold tracking-tight">
                   {product.title}
                 </h1>
 
-                <p className="mt-2 text-sm text-card-foreground/70">
-                  {product.description}
-                </p>
+                <p className="text-card-foreground/70 mt-2 text-sm">{product.description}</p>
               </div>
 
               <div className="shrink-0 text-right">
-                <div className="text-xl font-semibold text-card-foreground">
-                  ${product.price}
-                </div>
+                <div className="text-card-foreground text-xl font-semibold">${product.price}</div>
                 {typeof product.discountPercentage === "number" ? (
-                  <div className="mt-1 text-xs text-card-foreground/60">
+                  <div className="text-card-foreground/60 mt-1 text-xs">
                     -{product.discountPercentage.toFixed(0)}%
                   </div>
                 ) : null}
@@ -106,11 +98,7 @@ export default async function ProductPage({ params }: TProductPageProps) {
               />
               <ProductStat
                 label="Rating"
-                value={
-                  typeof product.rating === "number"
-                    ? product.rating.toFixed(2)
-                    : "—"
-                }
+                value={typeof product.rating === "number" ? product.rating.toFixed(2) : "—"}
               />
             </div>
 
@@ -126,14 +114,9 @@ export default async function ProductPage({ params }: TProductPageProps) {
             ) : null}
 
             {loggedIn ? (
-              <ProductExtendedDetails
-                pageConfig={pageConfig}
-                product={product}
-              />
+              <ProductExtendedDetails pageConfig={pageConfig} product={product} />
             ) : (
-              <p className="mt-6 text-sm text-foreground/70">
-                {productPage.authNotice}
-              </p>
+              <p className="text-foreground/70 mt-6 text-sm">{productPage.authNotice}</p>
             )}
           </Card.Content>
         </Card>

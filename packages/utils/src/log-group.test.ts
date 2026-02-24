@@ -56,9 +56,6 @@ describe("logGroup", () => {
       color: "red",
     });
 
-    expect(console.groupCollapsed).toHaveBeenCalledWith(
-      "%cColored",
-      "color:red;font-weight:600;",
-    );
+    expect(console.groupCollapsed).toHaveBeenCalledWith("%cColored", "color:red;font-weight:600;");
   });
 });

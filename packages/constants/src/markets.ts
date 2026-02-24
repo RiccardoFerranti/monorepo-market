@@ -21,8 +21,7 @@ export const MARKETS = {
           marketAwareTitle: "Market-aware",
           marketAwareDesc: "Content and navigation adapt to /en and /ca.",
           brandConfigTitle: "Brand-configurable",
-          brandConfigDesc:
-            "Shared components render per brand with minimal duplication.",
+          brandConfigDesc: "Shared components render per brand with minimal duplication.",
           seoTitle: "SEO-friendly",
           seoDesc: "Products can be served via ISR/SSR with fresh content.",
         },
@@ -32,8 +31,7 @@ export const MARKETS = {
       },
       product: {
         backToProducts: "Back to products",
-        authNotice:
-          "Sign in to see warranty, shipping, reviews and other details.",
+        authNotice: "Sign in to see warranty, shipping, reviews and other details.",
         notFound: {
           title: "Product not found",
           description: "This product does not exist or may have been removed.",
@@ -54,8 +52,7 @@ export const MARKETS = {
       },
       notFound: {
         title: "Page not found",
-        description:
-          "The page you are looking for does not exist or may have been moved.",
+        description: "The page you are looking for does not exist or may have been moved.",
         backHome: "Back to home",
       },
     },
@@ -80,11 +77,9 @@ export const MARKETS = {
         },
         highlights: {
           marketAwareTitle: "Par marché",
-          marketAwareDesc:
-            "Le contenu et la navigation s’adaptent à /en et /ca.",
+          marketAwareDesc: "Le contenu et la navigation s’adaptent à /en et /ca.",
           brandConfigTitle: "Configuré par marque",
-          brandConfigDesc:
-            "Les composants partagés changent selon la marque sans duplication.",
+          brandConfigDesc: "Les composants partagés changent selon la marque sans duplication.",
           seoTitle: "Optimisé SEO",
           seoDesc: "Produits servis via ISR/SSR avec contenu rafraîchi.",
         },
@@ -117,8 +112,7 @@ export const MARKETS = {
       },
       notFound: {
         title: "Page introuvable",
-        description:
-          "La page que vous recherchez n'existe pas ou a été déplacée.",
+        description: "La page que vous recherchez n'existe pas ou a été déplacée.",
         backHome: "Retour à l'accueil",
       },
     },

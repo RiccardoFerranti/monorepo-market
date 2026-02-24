@@ -19,35 +19,31 @@ export default async function WelcomePage({ params }: TWelcomePageProps) {
   const welcomePage = MARKETS[market].pages.welcome;
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 space-y-10">
+    <div className="mx-auto max-w-6xl space-y-10 px-4 py-10 sm:px-6">
       {/* Hero */}
-      <section className="rounded-2xl border border-border bg-card p-8 sm:p-10">
+      <section className="border-border bg-card rounded-2xl border p-8 sm:p-10">
         <div className="flex flex-col gap-6">
           <div className="space-y-2">
-            <p className="text-sm font-medium text-foreground/70">
-              {welcomePage.hero.marketLabel}
-            </p>
+            <p className="text-foreground/70 text-sm font-medium">{welcomePage.hero.marketLabel}</p>
 
             <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
               {copy.welcome} {TITLE}
             </h1>
 
-            <p className="max-w-2xl text-base text-foreground/70">
-              {welcomePage.hero.description}
-            </p>
+            <p className="text-foreground/70 max-w-2xl text-base">{welcomePage.hero.description}</p>
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row">
             <Link
               href={paths.products(market)}
-              className="inline-flex items-center justify-center rounded-xl bg-primary px-5 py-3 text-sm font-medium text-primary-foreground hover:opacity-90 transition"
+              className="bg-primary text-primary-foreground inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-medium transition hover:opacity-90"
             >
               {welcomePage.hero.ctaPrimary}
             </Link>
 
             <Link
               href={paths.login(market)}
-              className="inline-flex items-center justify-center rounded-xl border border-border bg-background px-5 py-3 text-sm font-medium hover:bg-muted/60 transition"
+              className="border-border bg-background hover:bg-muted/60 inline-flex items-center justify-center rounded-xl border px-5 py-3 text-sm font-medium transition"
             >
               {welcomePage.hero.ctaSecondary}
             </Link>
@@ -59,10 +55,8 @@ export default async function WelcomePage({ params }: TWelcomePageProps) {
       <section className="grid gap-4 sm:grid-cols-3">
         <Card>
           <Card.Content>
-            <p className="text-sm font-semibold">
-              {welcomePage.highlights.marketAwareTitle}
-            </p>
-            <p className="mt-2 text-sm text-foreground/70">
+            <p className="text-sm font-semibold">{welcomePage.highlights.marketAwareTitle}</p>
+            <p className="text-foreground/70 mt-2 text-sm">
               {welcomePage.highlights.marketAwareDesc}
             </p>
           </Card.Content>
@@ -70,10 +64,8 @@ export default async function WelcomePage({ params }: TWelcomePageProps) {
 
         <Card>
           <Card.Content>
-            <p className="text-sm font-semibold">
-              {welcomePage.highlights.brandConfigTitle}
-            </p>
-            <p className="mt-2 text-sm text-foreground/70">
+            <p className="text-sm font-semibold">{welcomePage.highlights.brandConfigTitle}</p>
+            <p className="text-foreground/70 mt-2 text-sm">
               {welcomePage.highlights.brandConfigDesc}
             </p>
           </Card.Content>
@@ -81,12 +73,8 @@ export default async function WelcomePage({ params }: TWelcomePageProps) {
 
         <Card>
           <Card.Content>
-            <p className="text-sm font-semibold">
-              {welcomePage.highlights.seoTitle}
-            </p>
-            <p className="mt-2 text-sm text-foreground/70">
-              {welcomePage.highlights.seoDesc}
-            </p>
+            <p className="text-sm font-semibold">{welcomePage.highlights.seoTitle}</p>
+            <p className="text-foreground/70 mt-2 text-sm">{welcomePage.highlights.seoDesc}</p>
           </Card.Content>
         </Card>
       </section>

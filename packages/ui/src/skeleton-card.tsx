@@ -16,7 +16,7 @@ export function SkeletonBlock({ className }: TSSkeletonBlockProps) {
         "before:-translate-x-full",
         "before:animate-[shimmer_1.3s_linear_infinite]",
         "before:bg-linear-to-r",
-        "before:from-transparent before:via-foreground/10 before:to-transparent",
+        "before:via-foreground/10 before:from-transparent before:to-transparent",
         className,
       )}
     />
@@ -32,7 +32,7 @@ export function SkeletonCard({ className, children }: TSkeletonCardProps) {
   return (
     <div
       className={clsx(
-        "rounded-2xl border border-border/60 bg-card shadow-sm overflow-hidden",
+        "border-border/60 bg-card overflow-hidden rounded-2xl border shadow-sm",
         className,
       )}
     >

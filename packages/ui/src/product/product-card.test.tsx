@@ -5,9 +5,7 @@ import { makeProductCardConfig } from "../test-utils/make-config";
 
 describe("ProductCard", () => {
   it("should render title, description, and price", () => {
-    render(
-      <ProductCard config={makeProductCardConfig()} product={makeProduct()} />,
-    );
+    render(<ProductCard config={makeProductCardConfig()} product={makeProduct()} />);
 
     expect(screen.getByText("Test Product")).toBeInTheDocument();
     expect(screen.getByText("Test description")).toBeInTheDocument();
@@ -40,49 +38,33 @@ describe("ProductCard", () => {
   });
 
   it("should render primary image using thumbnail (or first image fallback)", () => {
-    render(
-      <ProductCard config={makeProductCardConfig()} product={makeProduct()} />,
-    );
+    render(<ProductCard config={makeProductCardConfig()} product={makeProduct()} />);
 
     // main image uses product.title as alt
     const main = screen.getByAltText("Test Product") as HTMLImageElement;
     expect(main).toBeInTheDocument();
-    expect(main.getAttribute("src")).toContain(
-      encodeURIComponent("https://example.com/thumb.png"),
-    );
+    expect(main.getAttribute("src")).toContain(encodeURIComponent("https://example.com/thumb.png"));
   });
 
   it("should render thumbnails excluding the primary image and respecting config.thumbnails", () => {
     render(
-      <ProductCard
-        config={makeProductCardConfig({ thumbnails: 2 })}
-        product={makeProduct()}
-      />,
+      <ProductCard config={makeProductCardConfig({ thumbnails: 2 })} product={makeProduct()} />,
     );
 
     // thumbs alt is `${title} thumbnail`
-    const thumbs = screen.getAllByAltText(
-      "Test Product thumbnail",
-    ) as HTMLImageElement[];
+    const thumbs = screen.getAllByAltText("Test Product thumbnail") as HTMLImageElement[];
     expect(thumbs).toHaveLength(2);
 
     // ensure primary is excluded
     const thumbSrcs = thumbs.map((t) => t.getAttribute("src"));
 
-    expect(thumbSrcs[0]).toContain(
-      encodeURIComponent("https://example.com/img1.png"),
-    );
-    expect(thumbSrcs[1]).toContain(
-      encodeURIComponent("https://example.com/img2.png"),
-    );
+    expect(thumbSrcs[0]).toContain(encodeURIComponent("https://example.com/img1.png"));
+    expect(thumbSrcs[1]).toContain(encodeURIComponent("https://example.com/img2.png"));
   });
 
   it("should not render thumbnails row when config.thumbnails is 0", () => {
     render(
-      <ProductCard
-        config={makeProductCardConfig({ thumbnails: 0 })}
-        product={makeProduct()}
-      />,
+      <ProductCard config={makeProductCardConfig({ thumbnails: 0 })} product={makeProduct()} />,
     );
 
     expect(screen.queryByAltText("Test Product thumbnail")).toBeNull();
@@ -102,9 +84,7 @@ describe("ProductCard", () => {
   });
 
   it("should render default footerRight ('View →') when footerRight is not provided", () => {
-    render(
-      <ProductCard config={makeProductCardConfig()} product={makeProduct()} />,
-    );
+    render(<ProductCard config={makeProductCardConfig()} product={makeProduct()} />);
     expect(screen.getByText("View →")).toBeInTheDocument();
   });
 

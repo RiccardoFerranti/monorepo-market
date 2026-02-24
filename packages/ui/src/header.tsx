@@ -44,7 +44,7 @@ export function Header({
               active
                 ? "bg-muted/60 text-foreground"
                 : "text-foreground/75 hover:text-foreground hover:bg-muted/40",
-              "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+              "focus-visible:ring-ring focus-visible:ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
             )}
             aria-current={active ? "page" : undefined}
           >
@@ -60,8 +60,8 @@ export function Header({
     <header
       className={clsx(
         "sticky top-0 z-20",
-        "border-b border-border/70",
-        "bg-card/35 backdrop-blur supports-backdrop-filter:bg-card/35",
+        "border-border/70 border-b",
+        "bg-card/35 supports-backdrop-filter:bg-card/35 backdrop-blur",
         "shadow-lg shadow-black/20",
         className,
       )}
@@ -72,8 +72,8 @@ export function Header({
             <Link
               href={titleHref}
               className={clsx(
-                "text-sm font-semibold tracking-wide uppercase text-foreground",
-                "rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                "text-foreground text-sm font-semibold tracking-wide uppercase",
+                "focus-visible:ring-ring focus-visible:ring-offset-background rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
               )}
               aria-label={`${title} home`}
             >
@@ -83,11 +83,9 @@ export function Header({
             {navPosition === "left" ? Nav : null}
           </div>
 
-          <div className="flex justify-center">
-            {navPosition === "center" ? Nav : null}
-          </div>
+          <div className="flex justify-center">{navPosition === "center" ? Nav : null}</div>
 
-          <div className="flex justify-end items-center gap-2">
+          <div className="flex items-center justify-end gap-2">
             {navPosition === "right" ? Nav : null}
           </div>
         </div>

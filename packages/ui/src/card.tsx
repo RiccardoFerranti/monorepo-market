@@ -16,7 +16,7 @@ type CardComponent = ((props: CardProps) => ReactElement) & {
 const CardRoot = ({ children, className, variant = "solid" }: CardProps) => (
   <div
     className={clsx(
-      "rounded-2xl border text-card-foreground",
+      "text-card-foreground rounded-2xl border",
       variant === "solid" && "border-border bg-card",
       variant === "soft" && "border-border/60 bg-card/70",
       className,
@@ -35,7 +35,7 @@ const Content = ({ children, className }: CardProps) => (
 );
 
 const Footer = ({ children, className }: CardProps) => (
-  <div className={clsx("px-6 pb-6 pt-0", className)}>{children}</div>
+  <div className={clsx("px-6 pt-0 pb-6", className)}>{children}</div>
 );
 
 export const Card = CardRoot as CardComponent;

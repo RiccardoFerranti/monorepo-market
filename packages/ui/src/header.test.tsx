@@ -14,45 +14,25 @@ describe("Header", () => {
     render(<Header title="Project" links={makeLinks()} />);
 
     expect(screen.getByText("Project")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Home" })).toHaveAttribute(
-      "href",
-      "/en",
-    );
-    expect(screen.getByRole("link", { name: "Products" })).toHaveAttribute(
-      "href",
-      "/en/products",
-    );
+    expect(screen.getByRole("link", { name: "Home" })).toHaveAttribute("href", "/en");
+    expect(screen.getByRole("link", { name: "Products" })).toHaveAttribute("href", "/en/products");
   });
 
   it("should render title as a link", () => {
     render(<Header title="Project" titleHref="/en" links={makeLinks()} />);
 
-    expect(screen.getByRole("link", { name: /project home/i })).toHaveAttribute(
-      "href",
-      "/en",
-    );
+    expect(screen.getByRole("link", { name: /project home/i })).toHaveAttribute("href", "/en");
   });
 
   it("should set aria-current on the active link", () => {
     render(<Header title="Project" links={makeLinks()} activeKey="products" />);
 
-    expect(screen.getByRole("link", { name: "Products" })).toHaveAttribute(
-      "aria-current",
-      "page",
-    );
-    expect(screen.getByRole("link", { name: "Home" })).not.toHaveAttribute(
-      "aria-current",
-    );
+    expect(screen.getByRole("link", { name: "Products" })).toHaveAttribute("aria-current", "page");
+    expect(screen.getByRole("link", { name: "Home" })).not.toHaveAttribute("aria-current");
   });
 
   it("should render rightSlot", () => {
-    render(
-      <Header
-        title="Project"
-        links={makeLinks()}
-        rightSlot={<button>Logout</button>}
-      />,
-    );
+    render(<Header title="Project" links={makeLinks()} rightSlot={<button>Logout</button>} />);
 
     expect(screen.getByRole("button", { name: "Logout" })).toBeInTheDocument();
   });

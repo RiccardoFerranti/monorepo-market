@@ -15,8 +15,7 @@ describe("Product auth gating (integration-ish)", () => {
 
   it("logged out -> shows auth notice and NOT extended details", () => {
     const product = makeProduct();
-    const authNotice =
-      "Sign in to see warranty, shipping, reviews and other details.";
+    const authNotice = "Sign in to see warranty, shipping, reviews and other details.";
 
     const loggedIn = false;
 

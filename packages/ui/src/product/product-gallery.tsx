@@ -11,12 +11,7 @@ type TProductGalleryProps = {
   className?: string;
 };
 
-export function ProductGallery({
-  title,
-  thumbs,
-  primary,
-  className,
-}: TProductGalleryProps) {
+export function ProductGallery({ title, thumbs, primary, className }: TProductGalleryProps) {
   const [active, setActive] = React.useState(thumbs[0] || primary || "");
 
   React.useEffect(() => {
@@ -25,7 +20,7 @@ export function ProductGallery({
 
   return (
     <section className={className}>
-      <div className="relative aspect-square w-full rounded-xl bg-muted/25">
+      <div className="bg-muted/25 relative aspect-square w-full rounded-xl">
         {active ? (
           <Image
             src={active}
@@ -51,19 +46,19 @@ export function ProductGallery({
                 aria-label={`Show image for ${title}`}
                 aria-pressed={isActive}
                 className={clsx(
-                  "h-12 w-12 rounded-lg overflow-hidden",
+                  "h-12 w-12 overflow-hidden rounded-lg",
                   "transition-all duration-200",
-                  "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                  "focus-visible:ring-ring focus:outline-none focus-visible:ring-2",
                   "cursor-pointer",
 
                   // base (non-active)
-                  !isActive && "bg-muted/85 ring-1 ring-border/70",
+                  !isActive && "bg-muted/85 ring-border/70 ring-1",
 
                   // active (exact final look)
-                  isActive && "bg-muted ring-2 ring-border",
+                  isActive && "bg-muted ring-border ring-2",
 
                   // hover and active are the same
-                  !isActive && "hover:bg-muted hover:ring-2 hover:ring-border",
+                  !isActive && "hover:bg-muted hover:ring-border hover:ring-2",
                 )}
               >
                 <Image

@@ -27,9 +27,7 @@ export default async function ProductsPage({ params }: TProductsPageProps) {
       {/* Header */}
       <div className="mb-6 flex items-end justify-between">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight">
-            {productsPage.title}
-          </h1>
+          <h1 className="text-2xl font-semibold tracking-tight">{productsPage.title}</h1>
         </div>
       </div>
 

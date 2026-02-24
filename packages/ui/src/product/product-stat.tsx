@@ -9,10 +9,10 @@ type ProductStatProps = {
 
 export function ProductStat({ label, value, className }: ProductStatProps) {
   return (
-    <div className={clsx("rounded-xl bg-background/30 p-4", className)}>
-      <div className="text-xs text-card-foreground/60">{label}</div>
+    <div className={clsx("bg-background/30 rounded-xl p-4", className)}>
+      <div className="text-card-foreground/60 text-xs">{label}</div>
 
-      <div className="mt-1 text-sm text-card-foreground">{value ?? "—"}</div>
+      <div className="text-card-foreground mt-1 text-sm">{value ?? "—"}</div>
     </div>
   );
 }

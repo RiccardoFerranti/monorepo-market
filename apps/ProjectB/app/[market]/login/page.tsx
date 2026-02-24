@@ -36,7 +36,7 @@ async function LoginInner({ params, searchParams }: TLoginPageProps) {
   return (
     <div className="mx-auto max-w-md px-6 py-10">
       <h1 className="text-2xl font-semibold tracking-tight">Login</h1>
-      <p className="mt-2 text-sm text-foreground/70">
+      <p className="text-foreground/70 mt-2 text-sm">
         Use <b>emilys</b> / <b>emilyspass</b>
       </p>
 

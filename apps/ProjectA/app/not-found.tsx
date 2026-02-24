@@ -14,9 +14,9 @@ export default function NotFound() {
   const copy = content.pages.notFound;
 
   return (
-    <div className="mx-auto max-w-3xl px-6 py-16 text-center space-y-3">
+    <div className="mx-auto max-w-3xl space-y-3 px-6 py-16 text-center">
       <h1 className="text-2xl font-semibold tracking-tight">{copy.title}</h1>
-      <p className="text-sm text-foreground/70">{copy.description}</p>
+      <p className="text-foreground/70 text-sm">{copy.description}</p>
 
       <Link href={paths.home(market)} className="inline-block">
         <Button variant="outline">{copy.backHome}</Button>

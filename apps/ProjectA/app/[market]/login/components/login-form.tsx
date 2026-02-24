@@ -19,16 +19,11 @@ type TLoginFormProps = {
 export default function LoginForm({ market }: TLoginFormProps) {
   const loginPage = MARKETS[market].pages.login;
 
-  const loginWithLocale = (prev: TLoginState | null, fd: FormData) =>
-    login(market, prev, fd);
+  const loginWithLocale = (prev: TLoginState | null, fd: FormData) => login(market, prev, fd);
 
-  const [state, formAction] = useActionState<TLoginState | null, FormData>(
-    loginWithLocale,
-    null,
-  );
+  const [state, formAction] = useActionState<TLoginState | null, FormData>(loginWithLocale, null);
 
-  const errorText =
-    state && state.ok === false ? loginPage.errors[state.messageKey] : null;
+  const errorText = state && state.ok === false ? loginPage.errors[state.messageKey] : null;
 
   return (
     <Card variant="soft">
@@ -64,15 +59,9 @@ export default function LoginForm({ market }: TLoginFormProps) {
             />
           </div>
 
-          {errorText ? (
-            <p className="text-sm text-destructive">{errorText}</p>
-          ) : null}
+          {errorText ? <p className="text-destructive text-sm">{errorText}</p> : null}
 
-          <SubmitButton
-            label={loginPage.submit}
-            className="w-full"
-            variant="primary"
-          />
+          <SubmitButton label={loginPage.submit} className="w-full" variant="primary" />
         </form>
       </Card.Content>
     </Card>

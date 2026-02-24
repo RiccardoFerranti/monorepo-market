@@ -15,13 +15,9 @@ jest.mock("../app/[market]/logout/components/logout-button", () => ({
 
 jest.mock("next/link", () => ({
   __esModule: true,
-  default: ({
-    href,
-    children,
-  }: {
-    href: string;
-    children: React.ReactElement;
-  }) => <a href={href}>{children}</a>,
+  default: ({ href, children }: { href: string; children: React.ReactElement }) => (
+    <a href={href}>{children}</a>
+  ),
 }));
 
 jest.mock("../utils/is-logged-in", () => ({

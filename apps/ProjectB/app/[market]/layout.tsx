@@ -22,10 +22,7 @@ type TMarketLayoutProps = {
   params: Promise<{ market: string }>;
 };
 
-export default async function MarketLayout({
-  children,
-  params,
-}: TMarketLayoutProps) {
+export default async function MarketLayout({ children, params }: TMarketLayoutProps) {
   const { market } = await params;
   if (!isLocale(market)) notFound();
 
@@ -50,7 +47,7 @@ export default async function MarketLayout({
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col">
       <Suspense fallback={<Header {...headerProps} />}>
         <HeaderAuth
           {...headerProps}
@@ -60,9 +57,7 @@ export default async function MarketLayout({
         />
       </Suspense>
 
-      <main className="flex-1 mx-auto max-w-6xl px-6 py-8 w-full">
-        {children}
-      </main>
+      <main className="mx-auto w-full max-w-6xl flex-1 px-6 py-8">{children}</main>
 
       <Footer align={brandConfig.footer.align}>
         {BRAND} • /{locale}

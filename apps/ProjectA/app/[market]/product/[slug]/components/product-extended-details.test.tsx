@@ -22,9 +22,7 @@ describe("ProductExtendedDetails", () => {
       minimumOrderQuantity: 2,
     });
 
-    render(
-      <ProductExtendedDetails product={product} pageConfig={pageConfig} />,
-    );
+    render(<ProductExtendedDetails product={product} pageConfig={pageConfig} />);
 
     expect(screen.getByText("SKU")).toBeInTheDocument();
     expect(screen.getByText("SKU-123")).toBeInTheDocument();
@@ -47,9 +45,7 @@ describe("ProductExtendedDetails", () => {
       reviews: [makeReview({ reviewerName: "Alice", rating: 4.2 })],
     });
 
-    render(
-      <ProductExtendedDetails product={product} pageConfig={pageConfig} />,
-    );
+    render(<ProductExtendedDetails product={product} pageConfig={pageConfig} />);
 
     expect(screen.getByText("Reviews")).toBeInTheDocument();
     expect(screen.getByText("Alice")).toBeInTheDocument();
