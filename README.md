@@ -187,6 +187,9 @@ Authentication state is resolved on the server using `cookies()` to ensure:
 - Proper SEO behavior
 - Correct content gating
 
+For simplicity, a refresh-token mechanism is not implemented in this demo.  
+In a production environment, access tokens would be short-lived and refreshed securely using a rotation strategy (e.g., rotating refresh tokens with server-side validation).
+
 ### Logged-out State
 
 - `/[market]/products` remains publicly accessible
