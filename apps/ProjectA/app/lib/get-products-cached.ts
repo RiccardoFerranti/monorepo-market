@@ -38,7 +38,7 @@ export async function getProductsCached(): Promise<{
    * This guarantees deterministic output per cache window.
    */
   const now = Date.now();
-  
+
   return {
     products: data.products,
     seed: Math.floor(now / PRODUCTS_REVALIDATE_MS),

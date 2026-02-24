@@ -1,4 +1,3 @@
-
 export interface IProductCardConfig {
   /**
    * Controls the overall structure of the card.
@@ -14,11 +13,7 @@ export interface IProductCardConfig {
    * Format: "{vertical-position}-{horizontal-alignment}"
    * Example: "top-right" → title at top, aligned right.
    */
-  titlePlacement:
-    | "top-left"
-    | "top-right"
-    | "bottom-left"
-    | "bottom-right";
+  titlePlacement: "top-left" | "top-right" | "bottom-left" | "bottom-right";
 
   /**
    * Controls alignment of description, tags and general content
@@ -65,20 +60,19 @@ export interface IProductPageConfig {
    */
   galleryThumbs: 0 | 1 | 2 | 3 | 4 | 5 | 6;
 
-
   /**
    * Toggles optional sections on the detail page.
    */
   showTags: boolean;
   showReviews: boolean;
 
-   /**
+  /**
    * Maximum number of tags displayed on the product page.
    */
-   maxTags: number;
+  maxTags: number;
 
-   /**
-    * Maximum number of reviews displayed on the product page.
-    */
-   maxReviews: number;
+  /**
+   * Maximum number of reviews displayed on the product page.
+   */
+  maxReviews: number;
 }

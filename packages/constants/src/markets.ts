@@ -6,7 +6,7 @@ export const MARKETS = {
       home: "Home",
       products: "Products",
       login: "Login",
-      logout: "Logout"
+      logout: "Logout",
     },
     pages: {
       welcome: {
@@ -28,15 +28,15 @@ export const MARKETS = {
         },
       },
       products: {
-        title: "Products"
+        title: "Products",
       },
       product: {
         backToProducts: "Back to products",
-        authNotice: "Sign in to see warranty, shipping, reviews and other details.",
+        authNotice:
+          "Sign in to see warranty, shipping, reviews and other details.",
         notFound: {
           title: "Product not found",
-          description:
-            "This product does not exist or may have been removed.",
+          description: "This product does not exist or may have been removed.",
         },
       },
       login: {
@@ -58,7 +58,7 @@ export const MARKETS = {
           "The page you are looking for does not exist or may have been moved.",
         backHome: "Back to home",
       },
-    }
+    },
   },
   // ca (French)
   ca: {
@@ -80,7 +80,8 @@ export const MARKETS = {
         },
         highlights: {
           marketAwareTitle: "Par marché",
-          marketAwareDesc: "Le contenu et la navigation s’adaptent à /en et /ca.",
+          marketAwareDesc:
+            "Le contenu et la navigation s’adaptent à /en et /ca.",
           brandConfigTitle: "Configuré par marque",
           brandConfigDesc:
             "Les composants partagés changent selon la marque sans duplication.",
@@ -89,15 +90,15 @@ export const MARKETS = {
         },
       },
       products: {
-        title: "Produits"
+        title: "Produits",
       },
       product: {
         backToProducts: "Retour aux produits",
-        authNotice: "Connectez-vous pour voir la garantie, la livraison, les avis et d'autres informations.",
+        authNotice:
+          "Connectez-vous pour voir la garantie, la livraison, les avis et d'autres informations.",
         notFound: {
           title: "Produit introuvable",
-          description:
-            "Ce produit n'existe pas ou a été supprimé.",
+          description: "Ce produit n'existe pas ou a été supprimé.",
         },
       },
       login: {
@@ -110,7 +111,8 @@ export const MARKETS = {
           invalidCredentials: "Identifiants invalides.",
           apiMissing: "Service de connexion indisponible.",
           loginFailed: "Échec de la connexion. Veuillez réessayer.",
-          tooShort: "Le nom d'utilisateur et le mot de passe doivent contenir au moins 3 caractères.",
+          tooShort:
+            "Le nom d'utilisateur et le mot de passe doivent contenir au moins 3 caractères.",
         },
       },
       notFound: {
@@ -118,7 +120,7 @@ export const MARKETS = {
         description:
           "La page que vous recherchez n'existe pas ou a été déplacée.",
         backHome: "Retour à l'accueil",
-      },    
+      },
     },
   },
 } as const;

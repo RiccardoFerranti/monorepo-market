@@ -31,7 +31,7 @@ describe("logGroup", () => {
 
     expect(console.groupCollapsed).toHaveBeenCalledWith(
       "%cMy Group",
-      "color:#22c55e;font-weight:600;"
+      "color:#22c55e;font-weight:600;",
     );
     expect(console.groupEnd).toHaveBeenCalled();
   });
@@ -58,7 +58,7 @@ describe("logGroup", () => {
 
     expect(console.groupCollapsed).toHaveBeenCalledWith(
       "%cColored",
-      "color:red;font-weight:600;"
+      "color:red;font-weight:600;",
     );
   });
 });
