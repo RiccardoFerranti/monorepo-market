@@ -16,7 +16,6 @@ export async function getProductsCached(): Promise<{
 }> {
   "use cache";
   cacheLife("products5m");
-  // await new Promise((r) => setTimeout(r, 3000));
 
   const baseUrl = process.env.API_BASE_URL;
 

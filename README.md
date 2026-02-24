@@ -432,4 +432,5 @@ In a real production environment, the following enhancements would be introduced
   Token-based authentication with proper session validation and authorization checks for protected mutations (cart, checkout, reviews).
 
 - **Stronger Validation**  
-  Schema-based validation (e.g., Zod) for form inputs and API boundaries to ensure runtime safety alongside TypeScript typing.
+  Schema-based validation (Zod) is applied at the server boundary for form inputs (login) to ensure runtime safety alongside TypeScript typing.  
+  In a production environment, external API responses would also be validated at the integration boundary.

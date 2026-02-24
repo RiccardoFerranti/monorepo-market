@@ -2,47 +2,57 @@
 
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { AUTH_COOKIE, AUTH_COOKIE_MAX_AGE_SEC, paths } from "@repo/constants"; 
+import { z } from "zod";
+import {
+  AUTH_COOKIE,
+  AUTH_COOKIE_MAX_AGE_SEC,
+  paths,
+} from "@repo/constants";
 import type { TLocale } from "@repo/types";
-import { TLoginErrorKey } from "./types";
+import type { TLoginErrorKey } from "./types";
+import { LoginSchema } from "./login-validation-schema";
 
-type TLoginState =
-  | { ok: true }
-  | { ok: false; messageKey: TLoginErrorKey };
+type TLoginState = { ok: true } | { ok: false; messageKey: TLoginErrorKey };
+
 
 export async function login(
   locale: TLocale,
   _prevState: TLoginState | null,
   formData: FormData,
 ): Promise<TLoginState> {
-  const username = String(formData.get("username") ?? "").trim();
-  const password = String(formData.get("password") ?? "").trim();
+  // Coerce FormData values to strings before parsing
+  const parsed = LoginSchema.safeParse({
+    username: String(formData.get("username") ?? ""),
+    password: String(formData.get("password") ?? ""),
+  });
 
-  if (!username || !password) {
-    return { ok: false, messageKey: 'missingFields' };
+  if (!parsed.success) {
+    // The first issue will have message "missingFields" or "tooShort"
+    const first = parsed.error.issues[0]?.message;
+
+    return {
+      ok: false,
+      messageKey: first === "tooShort" ? "tooShort" : "missingFields",
+    };
   }
-  
-  if (username.length < 3 || password.length < 3) {
-    return { ok: false, messageKey: "missingFields" }; // or add a new key like "tooShort"
-  }
+
+  const { username, password } = parsed.data;
 
   const baseUrl = process.env.API_BASE_URL;
-  if (!baseUrl) return { ok: false, messageKey: 'apiMissing' };
+  if (!baseUrl) return { ok: false, messageKey: "apiMissing" };
 
   const res = await fetch(`${baseUrl}/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    // DummyJSON expects username/password
-    body: JSON.stringify({ username, password }),
-    // keep it dynamic
     cache: "no-store",
+    body: JSON.stringify({ username, password }),
   });
 
   if (!res.ok) {
-    return { ok: false, messageKey: 'invalidCredentials' };
+    return { ok: false, messageKey: "invalidCredentials" };
   }
 
-  const data = (await res.json()) as { accessToken?: string; refreshToken?: string };
+  const data = (await res.json()) as { accessToken?: string };
 
   if (!data.accessToken) {
     return { ok: false, messageKey: "loginFailed" };
@@ -56,5 +66,6 @@ export async function login(
     path: "/",
     maxAge: AUTH_COOKIE_MAX_AGE_SEC,
   });
+
   redirect(paths.products(locale));
 }
