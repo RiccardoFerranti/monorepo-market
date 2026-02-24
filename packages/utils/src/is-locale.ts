@@ -1,5 +1,5 @@
 import { LOCALES } from "@repo/constants";
-import { TLocale } from "@repo/types";
+import type { TLocale } from "@repo/types";
 
 /**
  * Checks if the given value is a valid locale.

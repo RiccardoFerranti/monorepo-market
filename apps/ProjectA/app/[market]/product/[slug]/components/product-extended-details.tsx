@@ -1,4 +1,4 @@
-import { IProductPageConfig, IProductRecord } from "@repo/types";
+import type { IProductPageConfig, IProductRecord } from "@repo/types";
 import { ProductReviews, ProductStat } from "@repo/ui";
 
 type TProductExtendedDetailsProps = {

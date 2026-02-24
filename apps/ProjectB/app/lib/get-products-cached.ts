@@ -1,5 +1,5 @@
 import { PRODUCTS_REVALIDATE_MS } from "@repo/constants";
-import { IProductRecord } from "@repo/types";
+import type { IProductRecord } from "@repo/types";
 import { cacheLife } from "next/cache";
 
 /**

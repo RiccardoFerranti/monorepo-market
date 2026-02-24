@@ -1,6 +1,6 @@
-import { IProductRecordReview } from "@repo/types";
-import clsx from "clsx";
 import type { ReactNode } from "react";
+import clsx from "clsx";
+import type { IProductRecordReview } from "@repo/types";
 
 type TProductReviewsProps = {
   reviews?: IProductRecordReview[];

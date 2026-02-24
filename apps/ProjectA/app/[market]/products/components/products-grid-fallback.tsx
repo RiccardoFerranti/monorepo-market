@@ -1,4 +1,4 @@
-import { IProductCardConfig } from "@repo/types";
+import type { IProductCardConfig } from "@repo/types";
 import ProductsGridSkeleton from "./products-grid-skeleton";
 
 type TProductsGridFallbackProps = {

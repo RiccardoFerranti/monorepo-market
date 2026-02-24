@@ -5,9 +5,9 @@ import { useActionState } from "react";
 import { Card, Input } from "@repo/ui";
 import type { TLocale } from "@repo/types";
 import { MARKETS } from "@repo/constants";
-import { login } from "../actions";
-import { TLoginErrorKey } from "../types";
 import { SubmitButton } from "@/components/submit-button";
+import { login } from "../actions";
+import type { TLoginErrorKey } from "../types";
 
 type TLoginState = { ok: true } | { ok: false; messageKey: TLoginErrorKey };
 

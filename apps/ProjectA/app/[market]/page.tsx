@@ -3,7 +3,7 @@ import { MARKETS, paths } from "@repo/constants";
 import { Card } from "@repo/ui";
 import { notFound } from "next/navigation";
 import { isLocale } from "@repo/utils";
-import { TLocale } from "@repo/types";
+import type { TLocale } from "@repo/types";
 import { TITLE } from "@/consts/brand";
 
 type TWelcomePageProps = {

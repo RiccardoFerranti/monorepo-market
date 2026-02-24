@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { LOCALES, MARKETS, BRANDS, paths } from "@repo/constants";
 import { isLocale } from "@repo/utils";
-import { Footer, Header, THeaderLink, THeaderProps } from "@repo/ui";
+import { Footer, Header, type THeaderLink, type THeaderProps } from "@repo/ui";
 import HeaderAuth from "@/components/header-auth";
 import { BRAND, TITLE } from "../../consts/brand";
 

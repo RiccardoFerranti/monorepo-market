@@ -1,4 +1,4 @@
-import { IProductRecord } from "@repo/types";
+import type { IProductRecord } from "@repo/types";
 import { cacheLife } from "next/cache";
 
 export async function getProductCached(id: string): Promise<IProductRecord> {
