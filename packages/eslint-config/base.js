@@ -26,7 +26,19 @@ export const config = [
         },
       ],
       "@typescript-eslint/consistent-type-imports": "error",
+      "no-console": ["warn", { allow: ["warn", "error"] }],
     },
+  },
+  // allow console in tests
+  {
+    files: ["**/*.test.{js,jsx,ts,tsx}", "**/*.spec.{js,jsx,ts,tsx}"],
+    rules: { "no-console": "off" },
+  },
+
+  // allow console in this specific util
+  {
+    files: ["**/log-group.{js,ts}"],
+    rules: { "no-console": "off" },
   },
   {
     plugins: {
