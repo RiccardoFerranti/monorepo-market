@@ -1,19 +1,19 @@
 import clsx from "clsx";
 import type { ReactNode, ReactElement } from "react";
 
-type CardProps = {
+type TCardProps = {
   children: ReactNode;
   className?: string;
   variant?: "solid" | "soft";
 };
 
-type CardComponent = ((props: CardProps) => ReactElement) & {
-  Header: (props: CardProps) => ReactElement;
-  Content: (props: CardProps) => ReactElement;
-  Footer: (props: CardProps) => ReactElement;
+type TCardComponent = ((props: TCardProps) => ReactElement) & {
+  Header: (props: TCardProps) => ReactElement;
+  Content: (props: TCardProps) => ReactElement;
+  Footer: (props: TCardProps) => ReactElement;
 };
 
-const CardRoot = ({ children, className, variant = "solid" }: CardProps) => (
+const CardRoot = ({ children, className, variant = "solid" }: TCardProps) => (
   <div
     className={clsx(
       "text-card-foreground rounded-2xl border",
@@ -26,19 +26,19 @@ const CardRoot = ({ children, className, variant = "solid" }: CardProps) => (
   </div>
 );
 
-const Header = ({ children, className }: CardProps) => (
+const Header = ({ children, className }: TCardProps) => (
   <div className={clsx("px-6 pt-6", className)}>{children}</div>
 );
 
-const Content = ({ children, className }: CardProps) => (
+const Content = ({ children, className }: TCardProps) => (
   <div className={clsx("px-6 py-6", className)}>{children}</div>
 );
 
-const Footer = ({ children, className }: CardProps) => (
+const Footer = ({ children, className }: TCardProps) => (
   <div className={clsx("px-6 pt-0 pb-6", className)}>{children}</div>
 );
 
-export const Card = CardRoot as CardComponent;
+export const Card = CardRoot as TCardComponent;
 Card.Header = Header;
 Card.Content = Content;
 Card.Footer = Footer;

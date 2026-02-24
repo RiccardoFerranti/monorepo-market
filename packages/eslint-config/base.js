@@ -40,12 +40,19 @@ export const config = [
     files: ["**/log-group.{js,ts}"],
     rules: { "no-console": "off" },
   },
+  // enforce I/T/E naming only in src
   {
-    plugins: {
-      onlyWarn,
+    files: ["**/src/**/*.{ts,tsx}"],
+    rules: {
+      "@typescript-eslint/naming-convention": [
+        "error",
+        { selector: "interface", format: ["PascalCase"], prefix: ["I"] },
+        { selector: "typeAlias", format: ["PascalCase"], prefix: ["T"] },
+        { selector: "enum", format: ["StrictPascalCase"], prefix: ["E"] },
+      ],
     },
   },
   {
-    ignores: ["dist/**"],
+    ignores: ["dist/**", "node_modules/**", ".next/**", "out/**", "build/**"],
   },
 ];
