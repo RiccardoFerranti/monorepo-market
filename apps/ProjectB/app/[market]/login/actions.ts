@@ -2,7 +2,6 @@
 
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { z } from "zod";
 import {
   AUTH_COOKIE,
   AUTH_COOKIE_MAX_AGE_SEC,
