@@ -328,6 +328,25 @@ npm run test
 npm run test:watch
 ```
 
+### Environment Setup
+
+Each application requires an environment variable for the product API.
+
+Copy the example file and create a local environment file:
+
+```bash
+cp apps/ProjectA/.env.example apps/ProjectA/.env.local
+cp apps/ProjectB/.env.example apps/ProjectB/.env.local
+```
+
+(Alternatively, manually duplicate .env.example and rename it to .env.local.)
+
+Then ensure the following variable is defined:
+
+```bash
+API_BASE_URL=https://dummyjson.com
+```
+
 ### Testing Caching & ISR Behavior
 
 To properly observe caching, ISR, and Partial Pre-Rendering behavior, the project must be run in production mode.

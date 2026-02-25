@@ -3,13 +3,27 @@ import { Suspense } from "react";
 import { cookies } from "next/headers";
 import { notFound, redirect } from "next/navigation";
 
+import type { Metadata } from "next";
+
 import { AUTH_COOKIE, paths } from "@repo/constants";
 import type { TLocale } from "@repo/types";
 import { isLocale } from "@repo/utils";
 
+import { TITLE } from "@/consts/brand";
 
 import { LoginFallback } from "./components/login-fallback";
 import LoginForm from "./components/login-form";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: `${TITLE} – Login`,
+    description: "Login to access your account.",
+    robots: {
+      index: false,
+      follow: false,
+    },
+  };
+}
 
 type TLoginPageProps = {
   params: Promise<{ market: TLocale }>;

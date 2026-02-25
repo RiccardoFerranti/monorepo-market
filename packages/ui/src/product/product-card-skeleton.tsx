@@ -8,6 +8,7 @@ type TProductCardSkeletonProps = {
   config: IProductCardConfig;
   className?: string;
 };
+
 export function ProductCardSkeleton({ config, className }: TProductCardSkeletonProps) {
   const isVertical = config.layout === "vertical";
   const showThumbs = config.thumbnails > 0;

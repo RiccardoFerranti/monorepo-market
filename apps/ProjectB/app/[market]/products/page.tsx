@@ -2,15 +2,35 @@ import { Suspense } from "react";
 
 import { notFound } from "next/navigation";
 
-import { BRANDS, LOCALES, MARKETS } from "@repo/constants";
+import type { Metadata } from "next";
+
+import { BRANDS, LOCALES, MARKETS, paths } from "@repo/constants";
 import type { TLocale } from "@repo/types";
 import { isLocale } from "@repo/utils";
 
-import { BRAND } from "@/consts/brand";
+import { BRAND, TITLE } from "@/consts/brand";
 
 import ProductsGrid from "./components/products-grid";
 import { ProductsGridFallback } from "./components/products-grid-fallback";
 
+type TGenerateMetadataProps = {
+  params: { market: string };
+};
+
+export async function generateMetadata({ params }: TGenerateMetadataProps): Promise<Metadata> {
+  const { market } = await params;
+  if (!isLocale(market)) return {};
+
+  const content = MARKETS[market];
+
+  return {
+    title: `${TITLE} – ${content.nav.products}`,
+    description: `${TITLE} product catalogue for /${market}.`,
+    alternates: {
+      canonical: paths.products(market),
+    },
+  };
+}
 
 type TProductsPageProps = {
   params: Promise<{ market: TLocale }>;

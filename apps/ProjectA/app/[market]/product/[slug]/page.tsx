@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import clsx from "clsx";
+import type { Metadata } from "next";
 
 import { BRANDS, MARKETS, paths } from "@repo/constants";
 import type { IProductPageConfig, IProductRecord, TLocale } from "@repo/types";
@@ -9,11 +10,25 @@ import { ProductGallery, ProductStat, Badge, Card } from "@repo/ui";
 import { isNumericId, isLocale } from "@repo/utils";
 
 import { getProductCached } from "@/app/lib/get-product-cached";
-import { BRAND } from "@/consts/brand";
+import { BRAND, TITLE } from "@/consts/brand";
 import { isLoggedIn } from "@/utils/is-logged-in";
 
 import ProductExtendedDetails from "./components/product-extended-details";
 
+type TGenerateMetadataProps = {
+  params: { market: string; slug: string };
+};
+
+export async function generateMetadata({ params }: TGenerateMetadataProps): Promise<Metadata> {
+  const { market, slug } = await params;
+  if (!isLocale(market)) return {};
+
+  return {
+    title: `${TITLE} – Product ${slug}`,
+    description: `${TITLE} product details.`,
+    alternates: { canonical: paths.product(market, slug) },
+  };
+}
 
 type TProductPageProps = {
   params: Promise<{ market: TLocale; slug: string }>;

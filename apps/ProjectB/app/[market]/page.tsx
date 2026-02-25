@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import type { Metadata } from "next";
+
 import { MARKETS, paths } from "@repo/constants";
 import type { TLocale } from "@repo/types";
 import { Card } from "@repo/ui";
@@ -8,6 +10,22 @@ import { isLocale } from "@repo/utils";
 
 import { TITLE } from "@/consts/brand";
 
+type TGenerateMetadataProps = {
+  params: { market: string };
+};
+
+export async function generateMetadata({ params }: TGenerateMetadataProps): Promise<Metadata> {
+  const { market } = await params;
+  if (!isLocale(market)) return {};
+
+  const content = MARKETS[market];
+
+  return {
+    title: content.nav.home,
+    description: `${TITLE} homepage for /${market}.`,
+    alternates: { canonical: paths.home(market) },
+  };
+}
 
 type TWelcomePageProps = {
   params: Promise<{ market: TLocale }>;
