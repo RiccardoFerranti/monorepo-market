@@ -367,7 +367,8 @@ Available cache profiles:
 - `products30s` – Short interval for testing regeneration
 - `products5m` – 5-minute revalidation (default for product lists)
 - `product5m` – 5-minute revalidation for product details
-- Cache entries expire after 1 hour (expire) and won’t be served beyond that window
+
+Cache entries expire after 1 hour (expire) and won’t be served beyond that window
 
 These values can be adjusted centrally without modifying route logic.
 

@@ -2,6 +2,13 @@ import { cacheLife } from "next/cache";
 
 import type { IProductRecord } from "@repo/types";
 
+/**
+ * Fetches a single product by its ID from the external API and caches the result for 5 minutes.
+ *
+ * @param {string} id - The unique identifier of the product to fetch.
+ * @returns {Promise<IProductRecord>} A promise that resolves to the fetched product record.
+ * @throws {Error} If the API base URL is not defined or the fetch fails.
+ */
 export async function getProductCached(id: string): Promise<IProductRecord> {
   "use cache";
   cacheLife("product5m");

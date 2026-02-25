@@ -50,7 +50,7 @@ export default function ProductExtendedDetails({
         />
       </div>
 
-      {/* REVIEWS (config + auth-gated) */}
+      {/* REVIEWS (config) */}
       {showReviews ? (
         <ProductReviews reviews={product.reviews} max={pageConfig.maxReviews} />
       ) : null}
