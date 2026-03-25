@@ -42,9 +42,6 @@ export default async function ProductsPage({ params }: TProductsPageProps) {
   if (!isLocale(market)) notFound();
 
   const config = BRANDS[BRAND].productCard;
-
-  if (!LOCALES.includes(market as TLocale)) notFound();
-
   const productsPage = MARKETS[market].pages.products;
 
   return (

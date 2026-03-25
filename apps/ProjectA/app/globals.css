@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+/* Tailwind in a monorepo requires explicitly defining source paths so that classes inside 
+shared packages are included in the build. */
 @source "../../../packages/ui/src/**/*.{ts,tsx}";
 
 /* Custom dark variant for scoped dark mode */

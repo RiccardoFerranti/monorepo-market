@@ -42,6 +42,7 @@ export async function getProductsCached(): Promise<{
 
   return {
     products: data.products,
+    // Generate seed based on cache window
     seed: Math.floor(now / PRODUCTS_REVALIDATE_MS),
     generatedAt: new Date(now).toISOString(),
   };

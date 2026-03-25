@@ -19,7 +19,8 @@ export function shuffleFirstN<T>(items: readonly T[], n = 10, seed = 1): T[] {
   const tail = items.slice(n) as T[];
 
   /**
-   * Simple seeded PRNG: LCG (Linear Congruential Generator)
+   * Simple seeded PRNG: LCG (Linear Congruential Generator) which is a simple pseudo-random number algorithm
+   * used to generate deterministic random values based on the seed
    * - constants are standard 32-bit LCG parameters
    * - >>> 0 keeps values in unsigned 32-bit range
    */

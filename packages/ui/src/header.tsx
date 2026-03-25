@@ -45,7 +45,8 @@ export function Header({
               active
                 ? "bg-muted/60 text-foreground"
                 : "text-foreground/75 hover:text-foreground hover:bg-muted/40",
-              "focus-visible:ring-ring focus-visible:ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+              "focus-visible:ring-ring focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2",
+              "focus:outline-none",
             )}
             aria-current={active ? "page" : undefined}
           >
@@ -74,7 +75,9 @@ export function Header({
               href={titleHref}
               className={clsx(
                 "text-foreground text-sm font-semibold tracking-wide uppercase",
-                "focus-visible:ring-ring focus-visible:ring-offset-background rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+                "focus-visible:ring-ring focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2",
+                "focus:outline-none",
+                "rounded-md",
               )}
               aria-label={`${title} home`}
             >

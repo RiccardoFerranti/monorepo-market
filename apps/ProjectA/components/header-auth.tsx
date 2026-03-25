@@ -2,7 +2,6 @@ import { paths } from "@repo/constants";
 import type { TLocale } from "@repo/types";
 import type { THeaderLink, THeaderProps } from "@repo/ui/header";
 
-
 import LogoutButton from "@/app/[market]/logout/components/logout-button";
 import { isLoggedIn } from "@/utils/is-logged-in";
 
@@ -21,6 +20,7 @@ export default async function HeaderAuth(props: THeaderAuthProps) {
 
   const nextLinks: THeaderLink[] = [...links];
 
+  // if the user is not logged in, add the login link
   if (!loggedIn) {
     nextLinks.push({
       key: "login",

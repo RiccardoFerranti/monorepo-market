@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { BRANDS, paths } from "@repo/constants";
-import type { TLocale } from "@repo/types";
+import type { IProductRecord, TLocale } from "@repo/types";
 import { ProductCard } from "@repo/ui";
 import { logGroup, shuffleFirstN } from "@repo/utils";
 
@@ -15,7 +15,7 @@ type TProductsGridProps = {
 export default async function ProductsGrid({ market }: TProductsGridProps) {
   const { products, seed, generatedAt } = await getProductsCached();
 
-  const shuffledProducts = shuffleFirstN(products, 10, seed);
+  const shuffledProducts = shuffleFirstN<IProductRecord>(products, 10, seed);
 
   const config = BRANDS[BRAND].productCard;
 

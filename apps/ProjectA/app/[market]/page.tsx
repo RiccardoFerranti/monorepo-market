@@ -14,16 +14,24 @@ type TGenerateMetadataProps = {
   params: { market: string };
 };
 
+/**
+ * Generates metadata for the welcome page.
+ * @param {TGenerateMetadataProps} params - The parameters for the function.
+ * @returns {Promise<Metadata>} The metadata for the welcome page.
+ */
 export async function generateMetadata({ params }: TGenerateMetadataProps): Promise<Metadata> {
   const { market } = await params;
+
+  // falls back to the parent/root metadata.
   if (!isLocale(market)) return {};
 
+  // market supports only valid locales.
   const content = MARKETS[market];
 
   return {
     title: content.nav.home,
     description: `${TITLE} homepage for /${market}.`,
-    alternates: { canonical: paths.home(market) },
+    alternates: { canonical: paths.home(market) }, // This is used to tell search engines which URLs to index and which to ignore.
   };
 }
 

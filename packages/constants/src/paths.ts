@@ -11,7 +11,6 @@ import { ROUTES } from "./routes";
  * paths.home("en"); // "/en"
  * paths.productDetail("ca", "product-slug"); // "/ca/product/product-slug"
  */
-
 export const paths = {
   home: (locale: TLocale) => `/${locale}`,
   login: (locale: TLocale) => `/${locale}${ROUTES.LOGIN}`,
