@@ -10,3 +10,4 @@ export function getMarketFromPath(pathname: string): TLocale {
   const seg = pathname.split("/")[1];
   return seg === "ca" ? "ca" : "en";
 }
+

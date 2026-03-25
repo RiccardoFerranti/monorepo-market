@@ -1,6 +1,6 @@
-# Monorepo Market – Senior Frontend Assessment
+# Monorepo Market – Scalable Multi-Brand Frontend Platform
 
-This project demonstrates a scalable, brand-driven product portal built with **Next.js 16**, **React 19**, and **Turborepo**.
+This project showcases a scalable multi-brand frontend architecture built with **Next.js 16**, **React 19**, and **Turborepo**, with a focus on performance, SEO, and maintainability.
 
 The application supports multiple brands (**ProjectA** and **ProjectB**) and multiple markets (`/en`, `/ca`) using a shared, strongly-typed component architecture.
 
@@ -66,7 +66,7 @@ All shared components remain generic and consume only typed configuration, ensur
 
 ## Shared Component Architecture
 
-A core requirement of this assessment was the ability to customize markup, styles, and business logic per brand while keeping components reusable and DRY.
+A core requirement of this project was the ability to customize markup, styles, and business logic per brand while keeping components reusable and DRY.
 
 To achieve this, shared components are designed as **config-driven, generic building blocks**.
 
@@ -199,7 +199,7 @@ Authentication state is resolved on the server using `cookies()` to ensure:
 - Proper SEO behavior
 - Correct content gating
 
-For simplicity, a refresh-token mechanism is not implemented in this demo.  
+For simplicity, a refresh-token mechanism is not implemented in this project.
 In a production environment, access tokens would be short-lived and refreshed securely using a rotation strategy (e.g., rotating refresh tokens with server-side validation).
 
 ### Logged-out State
@@ -231,7 +231,7 @@ Examples include:
 - Conditional rendering (tags, thumbnails, title placement)
 - `ProductGallery` behavior
 - `ProductReviews` rendering logic
-- Utility functions (`isLocale`, `isNumericId`, `shuffleFirstN`, etc..)
+- Utility functions (`isLocale`, `isNumericId`, `shuffleFirstN`, etc.)
 - Header active link logic
 
 These tests validate core functionality and configuration-driven behavior.
@@ -444,20 +444,20 @@ This ensures:
 - SEO-friendly static output
 
 Trade-off:
-True real-time updates are not implemented in this demo.
+True real-time updates are not implemented here.
 
 ---
 
 ### Authentication Scope
 
-Routes are not fully protected in this demo.
+Routes are not fully protected in this project.
 
 Only extended product details are gated via HttpOnly session cookies.
 
 If write operations (cart, checkout, reviews) were introduced, session validation and authorization would be enforced inside Server Actions.
 
 Trade-off:
-This keeps the demo focused on rendering and architecture rather than full auth infrastructure.
+This keeps the implementation focused on rendering and architecture rather than full auth infrastructure.
 
 ---
 
