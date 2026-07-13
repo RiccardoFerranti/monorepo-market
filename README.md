@@ -1,15 +1,16 @@
 # Monorepo Market – Scalable Multi-Brand Frontend Platform
 
-This project showcases a scalable multi-brand frontend architecture built with **Next.js 16**, **React 19**, and **Turborepo**, with a focus on performance, SEO, and maintainability.
+This project showcases a scalable multi-brand e-commerce frontend architecture built with **Next.js 16**, **React 19**, and **Turborepo**, with a strong focus on scalability, maintainability, SEO, and modern rendering strategies.
 
-The application supports multiple brands (**ProjectA** and **ProjectB**) and multiple markets (`/en`, `/ca`) using a shared, strongly-typed component architecture.
+The application supports multiple brands (**ProjectA** and **ProjectB**) and multiple markets (`/en`, `/ca`) from a shared codebase while allowing brand-specific layouts, styling, and business logic through a configuration-driven architecture.
 
-The primary goals of this implementation are:
+## Key Technical Highlights
+
 
 - Avoid code duplication (strict DRY principle)
 - Support brand-specific markup, styling, and business logic
 - Demonstrate SSR, ISG, Partial Pre-Rendering (PPR), and caching
-- Showcase a testing strategy (unit + integration)
+- Implement a testing strategy (unit + integration)
 - Maintain strong type safety and modular structure
 
 ## Visual Overview
